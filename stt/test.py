@@ -1,26 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-test_model.py — oʻqitilgan modelni sinash va har til uchun WER oʻlchash.
-
-    # bitta audio
-    python3 test_model.py --audio salom.wav --lang uz-UZ
-    python3 test_model.py --audio salom.wav --lang auto
-
-    # har til uchun WER (dev toʻplamida)
-    python3 test_model.py --bench
-    python3 test_model.py --bench --langs uzbek karakalpak --n 200
-
-    # avtomatik til aniqlashni sinash
-    python3 test_model.py --bench --auto
-
-    # boshqa modelni sinash
-    python3 test_model.py --bench --model /data/.../nemotron-multi-best.nemo
-
-Nega kerak: oʻqitish paytidagi `val_wer` — BESH tilning aralash raqami.
-U bitta til yomon ishlayotganini yashiradi. Bu skript har tilni alohida
-oʻlchaydi va bashoratlarni koʻrsatadi.
-"""
 
 from __future__ import annotations
 

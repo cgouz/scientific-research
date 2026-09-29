@@ -1,0 +1,42 @@
+# =====================================================================
+#  All Python packages for the riva-finetune project
+#  Install:   pip install -r requirements.txt
+#  Check:     pip check          (should say "No broken requirements found")
+#  Python 3.10 - 3.12. Tested with transformers 5.17, trl 1.13, peft 0.21, datasets 5.0.
+#
+#  PyTorch: on Linux with an NVIDIA GPU, `pip install torch` gets a CUDA build.
+#  If torch.cuda.is_available() prints False afterwards, install torch with the
+#  command for your CUDA version from https://pytorch.org/get-started/locally/
+# =====================================================================
+
+# --- Deep learning core -------------------------------------------------
+torch>=2.4
+transformers>=5.0            # models, tokenizers, Trainer
+accelerate>=1.0              # GPU / multi-GPU training
+peft>=0.17                   # LoRA adapters (train.py, merge.py)
+trl>=1.0,<2                  # SFTTrainer for Riva fine-tuning (train.py)
+sentencepiece>=0.2           # NLLB / MADLAD tokenizers (train_nmt.py, synth_parallel.py)
+protobuf>=4.25               # needed by some sentencepiece tokenizers
+
+# --- Data ---------------------------------------------------------------
+datasets>=3.0                # loading / tokenizing datasets
+fsspec[http]<=2026.6.0       # datasets 5.0.x refuses newer fsspec
+huggingface_hub>=0.30        # downloads (clone_dataset.py, import_hf.py, ...)
+pyarrow>=15.0                # parquet files (extract_parquet.py, download_un_pc_fr_zh.py)
+pandas>=2.0                  # CSV / Excel / tables
+openpyxl>=3.1                # read/write .xlsx
+pyyaml>=6.0                  # config.yaml
+requests>=2.32               # HTTP (til_download.py, test_riva.py server/Ollama modes)
+
+# --- Quality / evaluation -----------------------------------------------
+sacrebleu>=2.4               # BLEU and chrF scores
+lingua-language-detector>=2.0    # language auto-detect (prepare_data.py, translate.py)
+sentence-transformers>=3.0   # LaBSE filter (synth_parallel.py, til_to_manifest.py --labse)
+
+# --- Optional -----------------------------------------------------------
+# bitsandbytes>=0.45         # QLoRA 4-bit training (load_in_4bit: true) — Linux/Windows + NVIDIA
+# hf_transfer>=0.1           # faster Hugging Face downloads (used automatically if installed)
+# hf_xet>=1.0                # needed to download Xet-stored files with older huggingface_hub
+# gsutil                     # only for the official TIL download_data.py (til_download.py doesn't need it)
+
+# 
