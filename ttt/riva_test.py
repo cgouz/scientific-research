@@ -13,11 +13,11 @@ Three ways to run the model (--backend):
   ollama   Ollama (a model you created with `ollama create`)
 
 Usage:
-  python scripts/test_riva.py                                   # hf, 200 sentences from TIL uz-ru test
-  python scripts/test_riva.py --samples 500 --test-file data/external/uzlpc/test.jsonl
-  python scripts/test_riva.py --backend server --url http://localhost:8080          # llama-server / vLLM
-  python scripts/test_riva.py --backend ollama --ollama-model riva-uz-ru            # Ollama
-  python scripts/test_riva.py --pair en-ru --test-file my_en_ru_test.jsonl          # an official pair
+  python riva_test.py                                   # hf, 200 sentences from TIL uz-ru test
+  python riva_test.py --samples 500 --test-file data/external/uzlpc/test.jsonl
+  python riva_test.py --backend server --url http://localhost:8080          # llama-server / vLLM
+  python riva_test.py --backend ollama --ollama-model riva-uz-ru            # Ollama
+  python riva_test.py --pair en-ru --test-file my_en_ru_test.jsonl          # an official pair
 
 Why a custom prompt for uz-ru: Riva only knows tags like "en-ru". For an unknown pair its chat
 template drops the system message, so this script builds the prompt in the model's exact format:
@@ -35,7 +35,7 @@ import sys
 import time
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+PROJECT_ROOT = Path(__file__).resolve().parent  # everything lives inside riva_train/
 MODEL_ID = "nvidia/Riva-Translate-4B-Instruct-v2"
 LANG_NAMES = {"uz": "Uzbek", "ru": "Russian", "en": "English", "kk": "Kazakh", "tr": "Turkish",
               "de": "German", "fr": "French", "zh": "Simplified Chinese", "ky": "Kyrgyz", "tg": "Tajik"}
@@ -150,7 +150,7 @@ def main():
     ap = argparse.ArgumentParser(description="Zero-shot test of Riva-Translate on your test set.")
     ap.add_argument("--backend", choices=["hf", "server", "ollama"], default="hf")
     ap.add_argument("--model", default=MODEL_ID, help="HF id or local folder (hf backend)")
-    ap.add_argument("--test-file", default=str(PROJECT_ROOT / "data/external/til_uz-ru/test.jsonl"))
+    ap.add_argument("--test-file", default=str(PROJECT_ROOT / "test_data" / "test.jsonl"))
     ap.add_argument("--pair", default="uz-ru")
     ap.add_argument("--samples", type=int, default=200)
     ap.add_argument("--batch-size", type=int, default=16)
