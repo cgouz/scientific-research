@@ -1,0 +1,35 @@
+# Riva-Translate uz -> ru fine-tuning (train_riva_uzru.py).
+# Only the keys you set here override CONFIG in the script; --set overrides this file.
+#   python train_riva_uzru.py --config configs/riva_uz_ru.yaml
+
+model: nvidia/Riva-Translate-4B-Instruct-v2
+method: auto                     # auto | full | lora
+
+data:
+  pair: uz-ru                    # only manifest rows with "pair": "uz-ru" are used
+  root: /data                    # relative paths below are taken from here
+  # Explicit manifest files (JSONL: {"pair", "source", "target", "origin"}). dev/test are optional.
+  manifests:
+    - name: til_uz-ru
+      train: til_uz-ru/train.jsonl
+      dev: til_uz-ru/dev.jsonl
+      test: til_uz-ru/test.jsonl
+    # - name: uzlpc
+    #   train: uzlpc/train.jsonl
+    #   dev: uzlpc/dev.jsonl
+    #   test: uzlpc/test.jsonl
+  dirs: []                       # or: folders holding train.jsonl / dev.jsonl / test.jsonl
+  max_per_source: null
+  max_len: 384
+  eval_samples: 300
+  test_samples: 1000
+
+train:
+  epochs: 5.0
+  lr: auto                       # auto = 1e-5 (full) or 2e-4 (lora)
+  batch_size: auto
+  target_batch: 128
+  eval_steps: 1000
+
+output:
+  dir: outputs/riva-uz-ru                # relative = inside this ttt/ folder

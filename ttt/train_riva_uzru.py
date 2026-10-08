@@ -1,6 +1,7 @@
 """
 Fine-tune nvidia/Riva-Translate-4B-Instruct-v2 on Uzbek -> Russian.
-ONE self-contained file: every setting is in CONFIG below. No config file, no other scripts needed.
+Defaults are in CONFIG below; a YAML file (default configs/riva_uz_ru.yaml) overrides them,
+and --set overrides both. Manifest paths: data.root + data.manifests / data.dirs (see the YAML).
 
 Prompt (identical to riva_test.py, so before/after scores are comparable):
     <s>System\nYou are an expert at translating text from Uzbek to Russian.</s>\n
@@ -11,8 +12,9 @@ The loss is computed ONLY on the Russian translation.
 GPU features: bf16 + TF32, fused AdamW, SDPA, auto batch size (probes the GPU with the longest
 examples), length-grouped batches, multi-GPU via torchrun, gradient checkpointing.
 
-Usage (paths in CONFIG are relative to THIS file's folder):
-  python train_riva_uzru.py                                          # full training
+Usage:
+  python train_riva_uzru.py                                          # full training (configs/riva_uz_ru.yaml)
+  python train_riva_uzru.py --config configs/other.yaml              # another config
   python train_riva_uzru.py --set train.max_steps=200 train.eval_steps=100 data.test_samples=200   # quick test
   python train_riva_uzru.py --set method=lora train.lr=1e-4          # change any setting for one run
   python train_riva_uzru.py --resume                                 # continue after a crash
@@ -42,9 +44,11 @@ from contextlib import nullcontext
 from pathlib import Path
 
 import torch
+import yaml
 
 PROJECT_ROOT = Path(__file__).resolve().parent  # everything lives next to this file (riva_train/)
 os.environ.setdefault("HF_DATASETS_CACHE", str(PROJECT_ROOT / ".cache" / "datasets"))
+DEFAULT_CONFIG = PROJECT_ROOT / "configs" / "riva_uz_ru.yaml"
 
 CONFIG = {
     "model": "nvidia/Riva-Translate-4B-Instruct-v2",   # HF id or local folder
@@ -62,6 +66,8 @@ CONFIG = {
     },
     "data": {
         "pair": "uz-ru",            # only rows with "pair": "uz-ru" are used
+        "root": None,               # base folder for relative manifest paths (None = this file's folder)
+        "manifests": [],            # explicit files: [{"name": .., "train": .., "dev": .., "test": ..}]
         "dirs": [                   # folders with train.jsonl (+ optional dev.jsonl / test.jsonl)
             "data/external/til_uz-ru",
             # add more folders here, e.g. "data/external/my_data",
@@ -125,8 +131,22 @@ def parse_value(text):
         return text
 
 
-def load_config(overrides):
+def merge_yaml(base, extra, prefix=""):
+    out = copy.deepcopy(base)
+    for k, v in (extra or {}).items():
+        if k not in out:
+            sys.exit(f"config: unknown setting '{prefix}{k}' (check the spelling against CONFIG)")
+        out[k] = merge_yaml(out[k], v, f"{prefix}{k}.") if isinstance(v, dict) and isinstance(out[k], dict) else v
+    return out
+
+
+def load_config(path, overrides):
     cfg = copy.deepcopy(CONFIG)
+    if path:
+        p = Path(path)
+        if not p.exists():
+            sys.exit(f"Config not found: {p}")
+        cfg = merge_yaml(cfg, yaml.safe_load(p.read_text(encoding="utf-8")))
     for item in overrides or []:
         if "=" not in item:
             sys.exit(f"--set expects key=value, got '{item}'")
@@ -145,14 +165,29 @@ def load_config(overrides):
 # ---------------------------------------------------------------------------
 # Data + GPU helpers
 # ---------------------------------------------------------------------------
-def resolve(p):
+def resolve(p, root=None):
     p = Path(p)
     if p.is_absolute():
         return p
-    return PROJECT_ROOT / p  # relative paths always mean riva_train/<path>
+    return Path(root) / p if root else PROJECT_ROOT / p  # relative = data.root/<path>, else ttt/<path>
 
 
-def read_manifest(path, pair, limit, rng):
+def manifest_sources(dcfg):
+    """[(name, {split: path}, explicit)] from data.manifests (explicit files) + data.dirs (<dir>/<split>.jsonl)."""
+    root = dcfg.get("root")
+    sources = []
+    for m in dcfg.get("manifests") or []:
+        files = {s: resolve(m[s], root) for s in ("train", "dev", "test") if m.get(s)}
+        if not files:
+            sys.exit(f"data.manifests entry has no train/dev/test path: {m}")
+        sources.append((m.get("name") or next(iter(files.values())).parent.name, files, True))
+    for d in dcfg.get("dirs") or []:
+        d = resolve(d, root)
+        sources.append((d.name, {s: d / f"{s}.jsonl" for s in ("train", "dev", "test")}, False))
+    return sources
+
+
+def read_manifest(path, pair, limit, rng, origin=None):
     rows = []
     if not path.exists():
         return rows
@@ -164,7 +199,7 @@ def read_manifest(path, pair, limit, rng):
                 continue
             if r.get("pair") == pair and r.get("source") and r.get("target"):
                 rows.append({"source": r["source"], "target": r["target"],
-                             "origin": str(r.get("origin", path.parent.name))})
+                             "origin": str(r.get("origin", origin or path.parent.name))})
     if limit and len(rows) > limit:
         rng.shuffle(rows)
         rows = rows[:limit]
@@ -174,17 +209,19 @@ def read_manifest(path, pair, limit, rng):
 def load_data(dcfg, seed, log):
     rng = random.Random(seed)
     splits = {"train": [], "dev": [], "test": []}
-    for d in dcfg["dirs"]:
-        d = resolve(d)
-        if not d.exists():
-            log(f"  (skip) {d} not found")
+    for name, files, explicit in manifest_sources(dcfg):
+        if not explicit and not next(iter(files.values())).parent.exists():
+            log(f"  (skip) {next(iter(files.values())).parent} not found")
             continue
-        for split in splits:
-            rows = read_manifest(d / f"{split}.jsonl", dcfg["pair"],
-                                 dcfg["max_per_source"] if split == "train" else None, rng)
+        for split, path in files.items():
+            if explicit and not path.exists():
+                log(f"  (missing) {name} {split}: {path}")
+                continue
+            rows = read_manifest(path, dcfg["pair"],
+                                 dcfg["max_per_source"] if split == "train" else None, rng, name)
             splits[split] += rows
             if rows:
-                log(f"  {d.name:<20} {split:<5} {len(rows):>10,} {dcfg['pair']} pairs")
+                log(f"  {name:<20} {split:<5} {len(rows):>10,} {dcfg['pair']} pairs")
     held = {r["source"].lower() for s in ("dev", "test") for r in splits[s]}
     before = len(splits["train"])
     splits["train"] = [r for r in splits["train"] if r["source"].lower() not in held]
@@ -434,11 +471,13 @@ def make_trainer_class():
 # ---------------------------------------------------------------------------
 def main():
     ap = argparse.ArgumentParser(description="Fine-tune Riva-Translate on uz->ru.")
+    ap.add_argument("--config", default=str(DEFAULT_CONFIG) if DEFAULT_CONFIG.exists() else None,
+                    help="YAML that overrides CONFIG (default configs/riva_uz_ru.yaml)")
     ap.add_argument("--set", nargs="*", default=[], metavar="KEY=VALUE")
     ap.add_argument("--resume", action="store_true")
     args = ap.parse_args()
 
-    cfg = load_config(args.set)
+    cfg = load_config(args.config, args.set)
     dcfg, tcfg, ocfg, lcfg = cfg["data"], cfg["train"], cfg["output"], cfg["lora"]
     world = int(os.environ.get("WORLD_SIZE", 1))
     local_rank = int(os.environ.get("LOCAL_RANK", 0))
@@ -485,7 +524,7 @@ def main():
     log("\nLoading manifests ...")
     data = load_data(dcfg, int(tcfg["seed"]), log)
     if not data["train"]:
-        sys.exit(f"No '{dcfg['pair']}' rows found in {dcfg['dirs']}")
+        sys.exit(f"No '{dcfg['pair']}' train rows found. Check data.root / data.manifests / data.dirs / data.pair.")
     log(f"  train {len(data['train']):,} | dev {len(data['dev']):,} | test {len(data['test']):,}")
     log("  sources: " + ", ".join(f"{k} {v:,}" for k, v in Counter(r['origin'] for r in data['train']).most_common()))
 

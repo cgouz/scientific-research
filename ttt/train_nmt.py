@@ -11,10 +11,14 @@ Built to use the GPU fully:
   * resumable, early stopping on dev chrF, best checkpoint kept
 
 Usage:
-  python scripts/train_nmt.py --config configs/nmt_uz_ru.yaml
-  python scripts/train_nmt.py --config configs/nmt_uz_ru.yaml --set model.name=nllb-600m train.max_steps=200
-  python scripts/train_nmt.py --config configs/nmt_uz_ru.yaml --resume
-  torchrun --nproc_per_node=gpu scripts/train_nmt.py --config configs/nmt_uz_ru.yaml     # all GPUs
+  python train_nmt.py --config configs/nmt_uz_ru.yaml
+  python train_nmt.py --config configs/nmt_uz_ru.yaml --set model.name=nllb-600m train.max_steps=200
+  python train_nmt.py --config configs/nmt_uz_ru.yaml --resume
+  torchrun --nproc_per_node=gpu train_nmt.py --config configs/nmt_uz_ru.yaml     # all GPUs
+
+Manifest paths (data.* in the YAML): data.manifests lists explicit train/dev/test .jsonl files,
+data.dirs lists folders holding train.jsonl / dev.jsonl / test.jsonl. Relative paths are taken
+from data.root (e.g. /data on the server), or from this folder when data.root is empty.
 
 Output (output.dir, default outputs/nmt-uz-ru/):
   final/                trained model + tokenizer + nmt_config.json  (use with translate_nmt.py)
@@ -57,7 +61,8 @@ NLLB_CODES = {"uz": "uzn_Latn", "ru": "rus_Cyrl", "en": "eng_Latn", "kk": "kaz_C
 
 DEFAULTS = {
     "model": {"name": "nllb-600m", "type": None, "attn": "sdpa"},
-    "data": {"pair": "uz-ru", "dirs": ["data/external/til_uz-ru", "data/external/uzlpc"],
+    "data": {"pair": "uz-ru", "root": None, "manifests": [],
+             "dirs": ["data/external/til_uz-ru", "data/external/uzlpc"],
              "max_per_source": None, "max_len": 256, "eval_samples": 500, "test_samples": 2000},
     "train": {"epochs": 1.0, "max_steps": -1, "lr": 5e-5, "warmup": 0.02, "scheduler": "inverse_sqrt",
               "weight_decay": 0.01, "label_smoothing": 0.1, "batch_size": "auto", "target_batch": 256,
@@ -98,17 +103,29 @@ def load_config(path, overrides):
     return cfg
 
 
-def resolve(p):
+def resolve(p, root=None):
     p = Path(p)
     if p.is_absolute():
         return p
-    return PROJECT_ROOT / p  # relative paths always mean riva_train/<path>
+    return Path(root) / p if root else PROJECT_ROOT / p  # relative = data.root/<path>, else ttt/<path>
 
 
-# ---------------------------------------------------------------------------
-# Data
-# ---------------------------------------------------------------------------
-def read_manifest(path, pair, limit, rng):
+def manifest_sources(dcfg):
+    """[(name, {split: path}, explicit)] from data.manifests (explicit files) + data.dirs (<dir>/<split>.jsonl)."""
+    root = dcfg.get("root")
+    sources = []
+    for m in dcfg.get("manifests") or []:
+        files = {s: resolve(m[s], root) for s in ("train", "dev", "test") if m.get(s)}
+        if not files:
+            sys.exit(f"data.manifests entry has no train/dev/test path: {m}")
+        sources.append((m.get("name") or next(iter(files.values())).parent.name, files, True))
+    for d in dcfg.get("dirs") or []:
+        d = resolve(d, root)
+        sources.append((d.name, {s: d / f"{s}.jsonl" for s in ("train", "dev", "test")}, False))
+    return sources
+
+
+def read_manifest(path, pair, limit, rng, origin=None):
     rows = []
     if not path.exists():
         return rows
@@ -120,7 +137,7 @@ def read_manifest(path, pair, limit, rng):
                 continue
             if r.get("pair") == pair and r.get("source") and r.get("target"):
                 rows.append({"source": r["source"], "target": r["target"],
-                             "origin": str(r.get("origin", path.parent.name))})
+                             "origin": str(r.get("origin", origin or path.parent.name))})
     if limit and len(rows) > limit:
         rng.shuffle(rows)
         rows = rows[:limit]
@@ -130,17 +147,19 @@ def read_manifest(path, pair, limit, rng):
 def load_data(dcfg, seed, log):
     rng = random.Random(seed)
     splits = {"train": [], "dev": [], "test": []}
-    for d in dcfg["dirs"]:
-        d = resolve(d)
-        if not d.exists():
-            log(f"  (skip) {d} not found")
+    for name, files, explicit in manifest_sources(dcfg):
+        if not explicit and not next(iter(files.values())).parent.exists():
+            log(f"  (skip) {next(iter(files.values())).parent} not found")
             continue
-        for split in splits:
-            rows = read_manifest(d / f"{split}.jsonl", dcfg["pair"],
-                                 dcfg["max_per_source"] if split == "train" else None, rng)
+        for split, path in files.items():
+            if explicit and not path.exists():
+                log(f"  (missing) {name} {split}: {path}")
+                continue
+            rows = read_manifest(path, dcfg["pair"],
+                                 dcfg["max_per_source"] if split == "train" else None, rng, name)
             splits[split] += rows
             if rows:
-                log(f"  {d.name:<20} {split:<5} {len(rows):>10,} {dcfg['pair']} pairs")
+                log(f"  {name:<20} {split:<5} {len(rows):>10,} {dcfg['pair']} pairs")
     held = {r["source"].lower() for s in ("dev", "test") for r in splits[s]}
     before = len(splits["train"])
     splits["train"] = [r for r in splits["train"] if r["source"].lower() not in held]
@@ -331,7 +350,7 @@ def main():
             log(line)
         if n_gpu > 1 and world == 1:
             log(f"  NOTE: {n_gpu} GPUs found but only 1 is used. For all of them run:\n"
-                f"        torchrun --nproc_per_node=gpu scripts/train_nmt.py --config {args.config}")
+                f"        torchrun --nproc_per_node=gpu train_nmt.py --config {args.config}")
     bf16 = bool(tcfg["bf16"]) and cuda and torch.cuda.is_bf16_supported()
     if tcfg["bf16"] and cuda and not bf16:
         log("  this GPU has no bf16 -> using fp16")
@@ -354,7 +373,7 @@ def main():
     log("\nLoading manifests ...")
     data = load_data(dcfg, int(tcfg["seed"]), log)
     if not data["train"]:
-        sys.exit(f"No '{dcfg['pair']}' rows in {dcfg['dirs']}. Check data.dirs / data.pair.")
+        sys.exit(f"No '{dcfg['pair']}' train rows found. Check data.root / data.manifests / data.dirs / data.pair.")
     log(f"  train {len(data['train']):,} | dev {len(data['dev']):,} | test {len(data['test']):,}")
     log("  train sources: " + ", ".join(f"{k} {v:,}" for k, v in Counter(r["origin"] for r in data["train"]).most_common()))
 
