@@ -1,31 +1,23 @@
 # riva_test
 
-Tests how well a Riva-Translate model translates **uz → ru** and **ru → uz**.
-It scores chrF / BLEU and checks the output script. Scores and every translation go to one JSON file.
+Checks how a Riva-Translate model translates **Uzbek → Russian**.
+Each test sentence becomes one row in a JSONL file: source, reference target, and the model's translation.
 
 ```sh
 cd ttt/riva_test
-python gpu_clean.py                                          # check the GPUs are free
-python riva_test.py                                          # base model, both directions
+python gpu_clean.py                                                  # check the GPUs are free
+python riva_test.py                                                  # base model, 200 sentences
 python riva_test.py --test-file /data/til_uz-ru/test.jsonl --samples 500
-python riva_test.py --model ../outputs/riva-uz-ru/final --out results/finetuned.json
-python riva_test.py --directions ru-uz                       # one direction only
+python riva_test.py --model ../outputs/riva-uz-ru/final --out results/finetuned.jsonl
 ```
 
-The test file is JSONL with `{"pair": "uz-ru", "source": <uz>, "target": <ru>}`. Every row is used
-for both directions: ru → uz swaps source and target.
+The test file is JSONL with `{"pair": "uz-ru", "source": <uz>, "target": <ru>}`.
 
-## Result file (`--out`, default `results/riva_test.json`)
+## Result file (`--out`, default `results/riva_uz_ru.jsonl`)
 
+One line per sentence:
 ```json
-{
-  "model": "...", "test_file": "...", "date": "...",
-  "scores": {
-    "uz-ru": {"chrf": 0.0, "bleu": 0.0, "target_script_pct": 0.0, "copied_input": 0, "empty": 0, "samples": 200, "seconds": 0.0},
-    "ru-uz": {"...": "..."}
-  },
-  "translations": [{"direction": "uz-ru", "source": "...", "reference": "...", "hypothesis": "...", "origin": "..."}]
-}
+{"source": "Men har kuni ertalab kitob o'qiyman.", "target": "Я каждое утро читаю книгу.", "translation": "<model output>"}
 ```
 
 ## GPU cleaner (`gpu_clean.py`)
