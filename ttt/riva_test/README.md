@@ -4,11 +4,11 @@ Zero-shot test of `nvidia/Riva-Translate-4B-Instruct-v2` on uz -> ru, with **no 
 It scores chrF / BLEU and saves every translation to `results/riva_zero_shot/`.
 
 ```sh
-cd riva_test
+cd ttt/riva_test
 python gpu_clean.py                          # check the GPUs are free
 python riva_test.py 2>&1 | tee riva_test.log # 200 sentences from test_data/test.jsonl
 python riva_test.py --samples 500 --test-file /data/til_uz-ru/test.jsonl
-python riva_test.py --model ../ttt/outputs/riva-uz-ru/final   # test a fine-tuned model
+python riva_test.py --model ../outputs/riva-uz-ru/final   # test a fine-tuned model
 ```
 
 ## GPU cleaner (`gpu_clean.py`)

@@ -14,7 +14,7 @@ pip check
 ```
 
 # Riva zero-shot test
-See [riva_test/README.md](riva_test/README.md).
+See [ttt/riva_test/README.md](ttt/riva_test/README.md).
 ```sh
-cd riva_test && python riva_test.py 2>&1 | tee riva_test.log
+cd ttt/riva_test && python riva_test.py 2>&1 | tee riva_test.log
 ```

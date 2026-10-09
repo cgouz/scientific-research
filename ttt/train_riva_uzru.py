@@ -3,7 +3,7 @@ Fine-tune nvidia/Riva-Translate-4B-Instruct-v2 on Uzbek -> Russian.
 Defaults are in CONFIG below; a YAML file (default configs/riva_uz_ru.yaml) overrides them,
 and --set overrides both. Manifest paths: data.root + data.manifests / data.dirs (see the YAML).
 
-Prompt (identical to ../riva_test/riva_test.py, so before/after scores are comparable):
+Prompt (identical to riva_test/riva_test.py, so before/after scores are comparable):
     <s>System\nYou are an expert at translating text from Uzbek to Russian.</s>\n
     <s>User\nWhat is the Russian translation of the sentence: {uzbek}</s>\n
     <s>Assistant\n{russian}</s>
@@ -21,7 +21,7 @@ Usage:
   torchrun --nproc_per_node=gpu train_riva_uzru.py                   # several GPUs
 
 Output (CONFIG["output"]["dir"], default outputs/riva-uz-ru/):
-  final/     full model (method full) or merged model (method lora)  -> ../riva_test/riva_test.py --model
+  final/     full model (method full) or merged model (method lora)  -> riva_test/riva_test.py --model
   adapter/   the LoRA adapter (method lora)
   test_results.json, test_predictions.csv, config_used.json
 
@@ -686,7 +686,7 @@ def main():
     for s, r, h in list(zip(test_src, test_ref, hyp))[:3]:
         log(f"  uz  : {s[:100]}\n  ref : {r[:100]}\n  riva: {h[:100]}\n")
     if final.exists():
-        log(f"Test again any time:  python riva_test.py --model {final} --test-file test_data/test.jsonl")
+        log(f"Test again any time:  python riva_test/riva_test.py --model {final}")
 
 
 if __name__ == "__main__":
