@@ -20,6 +20,7 @@ import argparse
 import json
 import random
 import sys
+import time
 from pathlib import Path
 
 from gpu_clean import free_gpu
@@ -53,38 +54,64 @@ def load_rows(path, pairs, n, seed):
     return rows
 
 
-def load_model(model_id):
+def load_model(model_id, gpu):
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
     cuda = torch.cuda.is_available()
-    if not cuda:
-        print("WARNING: no CUDA GPU — this will be very slow (try --samples 20).")
+    if cuda:
+        device = torch.device(f"cuda:{gpu}")
+        torch.backends.cuda.matmul.allow_tf32 = True
+        props = torch.cuda.get_device_properties(device)
+        print(f"GPU {gpu}: {props.name}, {props.total_memory / 1024**3:.0f} GB  "
+              f"(torch {torch.__version__}, CUDA {torch.version.cuda})")
+    else:
+        device = torch.device("cpu")
+        print("WARNING: no CUDA GPU — running on CPU, this will be very slow. Check nvidia-smi and torch install.")
     tok = AutoTokenizer.from_pretrained(model_id)
     tok.padding_side = "left"
     if tok.pad_token is None:
         tok.pad_token = tok.eos_token
-    dtype = torch.bfloat16 if cuda and torch.cuda.is_bf16_supported() else (torch.float16 if cuda else torch.float32)
-    model = AutoModelForCausalLM.from_pretrained(model_id, dtype=dtype, device_map="auto" if cuda else None)
+    dtype = torch.bfloat16 if cuda else torch.float32
+    # whole model on ONE GPU: a 4B model fits easily; device_map="auto" would split it across GPUs (slow)
+    model = AutoModelForCausalLM.from_pretrained(model_id, dtype=dtype, attn_implementation="sdpa").to(device)
     model.eval()
     return tok, model
+
+
+def stop_ids(tok):
+    """Token ids that end an answer: the tokenizer's EOS plus Riva's </s> / <s> turn markers."""
+    ids = {tok.eos_token_id}
+    for marker in ("</s>", "<s>"):
+        i = tok.convert_tokens_to_ids(marker)
+        if isinstance(i, int) and i != tok.unk_token_id:
+            ids.add(i)
+    return sorted(i for i in ids if i is not None)
 
 
 def translate(tok, model, texts, pair, batch_size, max_new_tokens):
     import torch
 
-    outs = []
+    # longest first, similar lengths per batch: less padding, no batch waits on one long sentence
+    order = sorted(range(len(texts)), key=lambda i: len(texts[i]), reverse=True)
+    outs = [None] * len(texts)
+    eos = stop_ids(tok)
+    t0, done = time.time(), 0
     with torch.inference_mode():
-        for i in range(0, len(texts), batch_size):
+        for b in range(0, len(order), batch_size):
+            idx = order[b:b + batch_size]
             # the prompt already has its <s> markers -> no extra BOS
-            enc = tok([build_prompt(t, pair) for t in texts[i:i + batch_size]], return_tensors="pt",
+            enc = tok([build_prompt(texts[i], pair) for i in idx], return_tensors="pt",
                       padding=True, add_special_tokens=False).to(model.device)
             gen = model.generate(**enc, max_new_tokens=max_new_tokens, do_sample=False,
-                                 pad_token_id=tok.pad_token_id, eos_token_id=tok.eos_token_id)
+                                 pad_token_id=tok.pad_token_id, eos_token_id=eos)
             new = gen[:, enc["input_ids"].shape[1]:]
-            outs += [t.split("</s>")[0].split("<s>")[0].strip()
-                     for t in tok.batch_decode(new, skip_special_tokens=True)]
-            print(f"  {min(i + batch_size, len(texts))}/{len(texts)}")
+            for i, t in zip(idx, tok.batch_decode(new, skip_special_tokens=True)):
+                outs[i] = t.split("</s>")[0].split("<s>")[0].strip()
+            done += len(idx)
+            secs = time.time() - t0
+            print(f"  {done}/{len(texts)}  {secs:.0f}s  {done / secs:.1f} sent/s  "
+                  f"(batch: {new.shape[1]} new tokens)")
     return outs
 
 
@@ -94,7 +121,8 @@ def main():
     ap.add_argument("--test-file", default=str(HERE / "test_data" / "test.jsonl"))
     ap.add_argument("--pairs", nargs="+", default=["uz-ru", "ru-uz"], choices=["uz-ru", "ru-uz"])
     ap.add_argument("--samples", type=int, default=200, help="rows per direction")
-    ap.add_argument("--batch-size", type=int, default=16)
+    ap.add_argument("--batch-size", type=int, default=128, help="sentences per batch (B200: 128-512)")
+    ap.add_argument("--gpu", type=int, default=0, help="GPU index to use")
     ap.add_argument("--max-new-tokens", type=int, default=256)
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--out", default=str(HERE / "results" / "riva_test.json"), help="result file (.json or .jsonl)")
@@ -110,7 +138,7 @@ def main():
         sys.exit(f"No {' / '.join(args.pairs)} rows in {test_path}")
 
     print(f"Loading {args.model} ...")
-    tok, model = load_model(args.model)
+    tok, model = load_model(args.model, args.gpu)
     results = []
     try:
         for pair, rs in rows.items():
