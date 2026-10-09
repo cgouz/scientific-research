@@ -18,13 +18,14 @@ train:
   scheduler: cosine
   warmup_ratio: 0.03
   weight_decay: 0.0
-  batch_size: 32                # per GPU (B200: 32-64 at max_len 384)
-  grad_accum: 2                 # sentences per step = batch_size x grad_accum x GPUs
-  grad_checkpointing: true      # less memory, ~30% slower; false if memory allows
+  batch_size: auto              # per GPU; auto = largest batch that fits (probed with the longest examples)
+  memory_fraction: 0.92         # auto batch may use this share of GPU memory (incl. optimizer)
+  target_batch: 256             # sentences per optimizer step; grad_accum = target / (batch_size x GPUs), min 1
+  grad_checkpointing: false     # true = far less memory but ~30% slower (only if the model barely fits)
   eval_steps: 1000              # eval loss on dev + save checkpoint every N steps
   save_total_limit: 2           # best + latest
   logging_steps: 25
-  num_workers: 8
+  num_workers: 8                # dataloader processes per GPU
   seed: 42
 
 output:

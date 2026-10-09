@@ -157,6 +157,46 @@ class Collator:
         return {"input_ids": ids, "attention_mask": mask, "labels": labels}
 
 
+def probe_batch_size(model, collator, examples, fraction, log):
+    """Largest per-GPU batch whose forward+backward on the LONGEST examples, plus the AdamW states
+    (allocated later by the optimizer), fits in `fraction` of GPU memory."""
+    device = next(model.parameters()).device
+    total = torch.cuda.get_device_properties(device).total_memory
+    optim_bytes = 8 * sum(p.numel() for p in model.parameters() if p.requires_grad)  # exp_avg + exp_avg_sq, fp32
+    model.train()
+
+    def fits(bs):
+        batch = collator((examples * math.ceil(bs / len(examples)))[:bs])
+        batch = {k: v.to(device) for k, v in batch.items()}
+        loss = None
+        try:
+            torch.cuda.empty_cache()
+            torch.cuda.reset_peak_memory_stats(device)
+            with torch.autocast("cuda", dtype=torch.bfloat16):
+                loss = model(**batch).loss
+            loss.backward()
+            need = torch.cuda.max_memory_allocated(device) + optim_bytes
+            ok = need <= fraction * total
+            log(f"  batch {bs:>4}: {need / 1024**3:5.0f} / {total / 1024**3:.0f} GB  {'ok' if ok else 'too big'}")
+            return ok
+        except torch.cuda.OutOfMemoryError:
+            log(f"  batch {bs:>4}: out of memory")
+            return False
+        finally:
+            del batch, loss
+            model.zero_grad(set_to_none=True)
+            torch.cuda.empty_cache()
+
+    bs = 512
+    while bs >= 1 and not fits(bs):
+        bs //= 2
+    if bs < 1:
+        sys.exit("Even batch 1 does not fit: set train.grad_checkpointing=true or lower data.max_len")
+    if bs >= 2 and bs < 512 and fits(bs * 3 // 2):  # between bs and the failed 2*bs
+        bs = bs * 3 // 2
+    return bs
+
+
 def make_trainer(lengths, **kwargs):
     from transformers import Trainer
     from transformers.trainer_pt_utils import LengthGroupedSampler
@@ -247,8 +287,17 @@ def main():
         model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
         model.config.use_cache = False
     log(f"  training all {sum(p.numel() for p in model.parameters()) / 1e9:.2f}B parameters (bf16 mixed precision)")
+    model.to(torch.device("cuda", int(os.environ.get("LOCAL_RANK", 0))))
+    collator = Collator(tok.pad_token_id)
 
-    bs, accum = int(tcfg["batch_size"]), int(tcfg["grad_accum"])
+    if str(tcfg["batch_size"]).lower() == "auto":
+        log("\nFinding the largest batch that fits (longest examples) ...")
+        longest = sorted(range(len(lengths)), key=lengths.__getitem__, reverse=True)[:64]
+        examples = [{k: train_ds[i][k] for k in ("input_ids", "labels")} for i in longest]
+        bs = probe_batch_size(model, collator, examples, float(tcfg["memory_fraction"]), log)
+    else:
+        bs = int(tcfg["batch_size"])
+    accum = max(1, round(int(tcfg["target_batch"]) / (bs * world)))
     per_step = bs * accum * world
     steps = math.ceil(len(train_ds) / per_step * float(tcfg["epochs"]))
     log(f"  {bs} x {accum} accum x {world} GPU = {per_step} sentences/step, {steps:,} steps")
@@ -265,10 +314,12 @@ def main():
         logging_steps=int(tcfg["logging_steps"]), logging_first_step=True, report_to="none",
         seed=int(tcfg["seed"]), remove_unused_columns=False,
         dataloader_num_workers=int(tcfg["num_workers"]), dataloader_pin_memory=True,
+        dataloader_persistent_workers=int(tcfg["num_workers"]) > 0,
+        dataloader_prefetch_factor=4 if int(tcfg["num_workers"]) > 0 else None,
         ddp_find_unused_parameters=False if world > 1 else None,
     )
     trainer = make_trainer(lengths, model=model, args=targs, train_dataset=train_ds, eval_dataset=dev_ds,
-                           data_collator=Collator(tok.pad_token_id), processing_class=tok)
+                           data_collator=collator, processing_class=tok)
 
     # ---------- train ----------
     log("\nTraining ...")

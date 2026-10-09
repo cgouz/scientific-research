@@ -124,7 +124,7 @@ def main():
     ap.add_argument("--test-file", default=str(HERE / "test_data" / "test.jsonl"))
     ap.add_argument("--pairs", nargs="+", default=["uz-ru", "ru-uz"], choices=["uz-ru", "ru-uz"])
     ap.add_argument("--samples", type=int, default=200, help="rows per direction")
-    ap.add_argument("--batch-size", type=int, default=128, help="sentences per batch (B200: 128-512)")
+    ap.add_argument("--batch-size", type=int, default=256, help="sentences per batch (B200: 256-512)")
     ap.add_argument("--gpu", type=int, default=0, help="GPU index to use")
     ap.add_argument("--max-new-tokens", type=int, default=256)
     ap.add_argument("--seed", type=int, default=42)

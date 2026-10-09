@@ -3,6 +3,10 @@
 Fine-tunes `nvidia/Riva-Translate-4B-Instruct-v2` on **Uzbek → Russian** and **Russian → Uzbek**.
 All weights are trained in bf16, and the best checkpoint is chosen by dev loss.
 
+To use the GPU fully, the script finds the largest batch that fits before training starts. It tests with the longest sentences and counts the
+optimizer's memory too (`batch_size: auto`, `memory_fraction: 0.92`). Gradient checkpointing is off for speed. To train faster with
+several GPUs, run `bash run.sh`, which starts `torchrun` on all of them.
+
 Data: `/data/datasets/ttt/uz-ru/{train,dev,test}.jsonl`. Each row looks like `{"pair": "uz-ru" | "ru-uz", "source": ..., "target": ...}`
 and is trained in the direction given by its `pair`. To change paths and settings, edit [config.yaml](config.yaml).
 
