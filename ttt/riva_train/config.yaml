@@ -1,0 +1,31 @@
+# Fine-tune Riva-Translate on Uzbek <-> Russian (train.py).
+# Relative paths are taken from this folder (ttt/riva_train/). Override any key: --set train.lr=5e-6
+
+model: nvidia/Riva-Translate-4B-Instruct-v2
+
+data:
+  train: /data/datasets/ttt/uz-ru/train.jsonl
+  dev: /data/datasets/ttt/uz-ru/dev.jsonl
+  test: /data/datasets/ttt/uz-ru/test.jsonl   # only used to drop train rows that also appear in test
+  pairs: [uz-ru, ru-uz]                       # directions to train on
+  max_len: 384                                # tokens per example (prompt + translation); longer is cut
+  max_train_rows: null                        # e.g. 100000 for a quick run (null = all)
+  dev_samples: 2000                           # dev rows used for eval loss
+
+train:
+  epochs: 2
+  lr: 1.0e-5
+  scheduler: cosine
+  warmup_ratio: 0.03
+  weight_decay: 0.0
+  batch_size: 32                # per GPU (B200: 32-64 at max_len 384)
+  grad_accum: 2                 # sentences per step = batch_size x grad_accum x GPUs
+  grad_checkpointing: true      # less memory, ~30% slower; false if memory allows
+  eval_steps: 1000              # eval loss on dev + save checkpoint every N steps
+  save_total_limit: 2           # best + latest
+  logging_steps: 25
+  num_workers: 8
+  seed: 42
+
+output:
+  dir: ../outputs/riva-uz-ru    # ttt/outputs/riva-uz-ru; final model in <dir>/final
