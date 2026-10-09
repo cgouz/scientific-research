@@ -28,4 +28,4 @@ train:
   seed: 42
 
 output:
-  dir: ../outputs/riva-uz-ru    # ttt/outputs/riva-uz-ru; final model in <dir>/final
+  dir: /data/experiments/riva   # checkpoint-*/, final/, logs/, config_used.yaml

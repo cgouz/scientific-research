@@ -19,6 +19,6 @@ pip check
 - `ttt/til_to_manifest.py`, `ttt/uzlpc_to_manifest.py`: build train/dev/test JSONL manifests
 
 ```sh
-cd ttt/riva_train && python train.py
-cd ttt/riva_test && python riva_test.py --test-file /data/datasets/ttt/uz-ru/test.jsonl --out results/base.json
+cd ttt/riva_train && bash run.sh          # nohup; checkpoints + model -> /data/experiments/riva
+cd ttt/riva_test && bash run.sh --test-file /data/datasets/ttt/uz-ru/test.jsonl --out base.json
 ```

@@ -16,9 +16,11 @@ Usage:
   torchrun --nproc_per_node=gpu train.py                       # all GPUs
   python train.py --set data.max_train_rows=20000 train.eval_steps=100   # quick test
   python train.py --resume                                     # continue from the last checkpoint
+  bash run.sh                                                  # in the background with nohup (all GPUs)
 
-Output (output.dir, default ttt/outputs/riva-uz-ru):
+Output (output.dir, default /data/experiments/riva):
   final/             trained model + tokenizer  ->  python ../riva_test/riva_test.py --model <dir>/final
+  logs/              nohup logs from run.sh
   checkpoint-*/      best + latest checkpoints
   config_used.yaml   the settings of this run
 
@@ -283,7 +285,7 @@ def main():
         tok.save_pretrained(str(final))
         log(f"\nSaved best model (dev loss {trainer.state.best_metric:.4f}) to {final}")
         log(f"Test it:  cd ../riva_test && python riva_test.py --model {final} "
-            f"--test-file {resolve(dcfg['test'])} --out results/finetuned.json")
+            f"--test-file {resolve(dcfg['test'])} --out finetuned.json")
 
 
 if __name__ == "__main__":

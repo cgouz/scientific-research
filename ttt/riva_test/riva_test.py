@@ -5,12 +5,14 @@ Test file: JSONL rows {"pair": "uz-ru" | "ru-uz", "source": .., "target": ..}. E
 translated in the direction of its own "pair". Result: one row per sentence,
     {"pair": "uz-ru", "source": .., "target": <reference>, "translation": <model output>}
 written as a JSON list (--out *.json) or one row per line (--out *.jsonl).
+A relative --out goes under /data/experiments/riva/results/.
 
 Usage:
-  python riva_test.py --test-file /data/datasets/ttt/uz-ru/test.jsonl --out results/base.json
+  python riva_test.py --test-file /data/datasets/ttt/uz-ru/test.jsonl --out base.json
   python riva_test.py --test-file ... --samples 500                  # 500 rows per direction
   python riva_test.py --test-file ... --pairs ru-uz                  # one direction only
-  python riva_test.py --model ../outputs/riva-uz-ru/final --test-file ... --out results/finetuned.json
+  python riva_test.py --model /data/experiments/riva/final --test-file ... --out finetuned.json
+  bash run.sh --test-file ... --out base.json                      # same, in the background (nohup)
 
 The prompt is identical to train_riva_uzru.py, so base and fine-tuned outputs are comparable.
 Requires: torch transformers
@@ -26,6 +28,7 @@ from pathlib import Path
 from gpu_clean import free_gpu
 
 HERE = Path(__file__).resolve().parent
+RESULTS_DIR = Path("/data/experiments/riva/results")
 MODEL_ID = "nvidia/Riva-Translate-4B-Instruct-v2"
 LANG_NAMES = {"uz": "Uzbek", "ru": "Russian"}
 
@@ -125,7 +128,8 @@ def main():
     ap.add_argument("--gpu", type=int, default=0, help="GPU index to use")
     ap.add_argument("--max-new-tokens", type=int, default=256)
     ap.add_argument("--seed", type=int, default=42)
-    ap.add_argument("--out", default=str(HERE / "results" / "riva_test.json"), help="result file (.json or .jsonl)")
+    ap.add_argument("--out", default="riva_test.json",
+                    help=f"result file (.json or .jsonl); relative paths go under {RESULTS_DIR}")
     args = ap.parse_args()
 
     test_path = Path(args.test_file)
@@ -154,7 +158,7 @@ def main():
         print("Releasing GPU memory ...")
         free_gpu()
 
-    out = Path(args.out)
+    out = Path(args.out) if Path(args.out).is_absolute() else RESULTS_DIR / args.out
     out.parent.mkdir(parents=True, exist_ok=True)
     with open(out, "w", encoding="utf-8") as f:
         if out.suffix == ".jsonl":

@@ -6,15 +6,20 @@ Each test row is translated in the direction given by its `pair`. Each result ro
 ```sh
 cd ttt/riva_test
 python gpu_clean.py                                                  # check the GPUs are free
-python riva_test.py --test-file /data/datasets/ttt/uz-ru/test.jsonl --out results/base.json
-python riva_test.py --test-file /data/datasets/ttt/uz-ru/test.jsonl --samples 500   # 500 per direction
-python riva_test.py --test-file /data/datasets/ttt/uz-ru/test.jsonl --pairs ru-uz   # one direction
-python riva_test.py --model ../outputs/riva-uz-ru/final --test-file /data/datasets/ttt/uz-ru/test.jsonl --out results/finetuned.json
+python riva_test.py --test-file /data/datasets/ttt/uz-ru/test.jsonl --out base.json   # foreground
+bash run.sh --test-file /data/datasets/ttt/uz-ru/test.jsonl --out base.json           # background (nohup)
+bash run.sh --model /data/experiments/riva/final --test-file /data/datasets/ttt/uz-ru/test.jsonl --out finetuned.json
+tail -f /data/experiments/riva/logs/test.log
 ```
+
+A relative `--out` is saved under `/data/experiments/riva/results/`. Options:
+- `--samples 500`: rows per direction
+- `--pairs ru-uz`: one direction only
+- `--batch-size 256`
 
 The test file is JSONL with rows `{"pair": "uz-ru" | "ru-uz", "source": ..., "target": ...}`.
 
-## Result file (`--out`)
+## Result file (`--out`, default `/data/experiments/riva/results/riva_test.json`)
 
 `.json` gives one JSON list; `.jsonl` gives one row per line:
 ```json
