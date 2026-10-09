@@ -14,11 +14,11 @@ recommended training directions are uz -> en and uz -> ru (the model learns to p
 human side). Add en-uz / ru-uz with --directions if you want them anyway.
 
 Usage:
-  python scripts/uzlpc_to_manifest.py                              # download + convert (uz-en, uz-ru)
-  python scripts/uzlpc_to_manifest.py --directions uz-en uz-ru en-uz ru-uz
-  python scripts/uzlpc_to_manifest.py --langs en                   # only the English part
-  python scripts/uzlpc_to_manifest.py --csv data.csv               # already downloaded
-  python scripts/uzlpc_to_manifest.py --wiki-uzbek reference --min-confidence 0.8
+  python uzlpc_to_manifest.py                              # download + convert (uz-en, uz-ru)
+  python uzlpc_to_manifest.py --directions uz-en uz-ru en-uz ru-uz
+  python uzlpc_to_manifest.py --langs en                   # only the English part
+  python uzlpc_to_manifest.py --csv data.csv               # already downloaded
+  python uzlpc_to_manifest.py --wiki-uzbek reference --min-confidence 0.8
                                          # Wikipedia rows: use the real Uzbek reference, LaBSE >= 0.8
 
 Output (default data/external/uzlpc/): train.jsonl dev.jsonl test.jsonl stats.json

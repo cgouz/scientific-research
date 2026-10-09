@@ -11,21 +11,16 @@
 
 # --- Deep learning core (stt + ttt) -------------------------------------
 torch>=2.4
-transformers>=4.51           # models, tokenizers, Trainer (ttt/train_nmt.py, train_riva_uzru.py, riva_test.py)
-accelerate>=1.0              # Trainer / multi-GPU via torchrun
-peft>=0.17                   # LoRA adapters (train_riva_uzru.py method=lora)
-sentencepiece>=0.2           # NLLB / MADLAD tokenizers (train_nmt.py)
+transformers>=4.51           # models, tokenizers, Trainer (ttt/riva_train, ttt/riva_test)
+accelerate>=1.0              # Trainer / multi-GPU via torchrun (ttt/riva_train)
+sentencepiece>=0.2           # tokenizer fallback for some models
 protobuf>=4.25               # needed by some sentencepiece tokenizers
 
 # --- Data ---------------------------------------------------------------
-datasets>=3.0                # tokenizing datasets (train_nmt.py, train_riva_uzru.py)
+datasets>=3.0                # tokenizing training data (ttt/riva_train)
 huggingface_hub>=0.30        # downloads + `hf` CLI (uzlpc_to_manifest.py, hugging_face/setup.md)
-pandas>=2.0                  # CSV read/write (uzlpc_to_manifest.py, riva_test.py)
-pyyaml>=6.0                  # YAML configs (ttt/configs/*.yaml)
-requests>=2.32               # server / Ollama backends (riva_test.py)
-
-# --- Evaluation ---------------------------------------------------------
-sacrebleu>=2.4               # BLEU / chrF scores
+pandas>=2.0                  # CSV reading (uzlpc_to_manifest.py)
+pyyaml>=6.0                  # config (ttt/riva_train/config.yaml)
 
 # --- Speech-to-text (stt/) ----------------------------------------------
 nemo_toolkit[asr]>=2.0       # ASR models (stt/train_nemotron.py, stt/test.py); brings lightning + omegaconf

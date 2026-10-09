@@ -17,11 +17,11 @@ What it does
   5. writes {"pair": "uz-ru", "source": ..., "target": ..., "origin": "til"} JSONL
 
 Usage:
-    python scripts/til_to_manifest.py --data-dir data/uz-ru
-    python scripts/til_to_manifest.py --data-dir data/uz-ru --directions uz-ru      # one direction
-    python scripts/til_to_manifest.py --data-dir data/uz-ru --labse 0.75            # + meaning filter
-    python scripts/til_to_manifest.py --data-dir data/uz-en                         # any TIL pair
-    python scripts/til_to_manifest.py --data-dir data/uz-ru --limit 1000 --show 10  # quick look
+    python til_to_manifest.py --data-dir data/uz-ru
+    python til_to_manifest.py --data-dir data/uz-ru --directions uz-ru      # one direction
+    python til_to_manifest.py --data-dir data/uz-ru --labse 0.75            # + meaning filter
+    python til_to_manifest.py --data-dir data/uz-en                         # any TIL pair
+    python til_to_manifest.py --data-dir data/uz-ru --limit 1000 --show 10  # quick look
 
 Output (default data/external/til_<pair>/): train.jsonl dev.jsonl test.jsonl stats.json
 License of TIL: CC BY-NC-SA 4.0 (non-commercial, share-alike).
