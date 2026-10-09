@@ -41,6 +41,9 @@ wandb/
 lightning_logs/
 runs/
 
+# Results
+results/
+
 # Logs
 *.log
 

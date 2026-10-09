@@ -14,7 +14,7 @@ Three ways to run the model (--backend):
 
 Usage:
   python riva_test.py                                   # hf, 200 sentences from TIL uz-ru test
-  python riva_test.py --samples 500 --test-file data/external/uzlpc/test.jsonl
+  python riva_test.py --samples 500 --test-file /data/uzlpc/test.jsonl
   python riva_test.py --backend server --url http://localhost:8080          # llama-server / vLLM
   python riva_test.py --backend ollama --ollama-model riva-uz-ru            # Ollama
   python riva_test.py --pair en-ru --test-file my_en_ru_test.jsonl          # an official pair
@@ -23,6 +23,9 @@ Why a custom prompt for uz-ru: Riva only knows tags like "en-ru". For an unknown
 template drops the system message, so this script builds the prompt in the model's exact format:
     <s>System\nYou are an expert at translating text from Uzbek to Russian.</s>\n
     <s>User\nWhat is the Russian translation of the sentence: ...</s>\n<s>Assistant\n
+
+After the run the model is unloaded and CUDA memory released (gpu_clean.free_gpu).
+Leftover processes still holding VRAM:  python gpu_clean.py --kill
 
 Requires: pip install torch transformers sacrebleu pandas requests
 """
@@ -35,7 +38,9 @@ import sys
 import time
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parent  # everything lives inside riva_train/
+from gpu_clean import free_gpu
+
+PROJECT_ROOT = Path(__file__).resolve().parent  # everything lives inside riva_test/
 MODEL_ID = "nvidia/Riva-Translate-4B-Instruct-v2"
 LANG_NAMES = {"uz": "Uzbek", "ru": "Russian", "en": "English", "kk": "Kazakh", "tr": "Turkish",
               "de": "German", "fr": "French", "zh": "Simplified Chinese", "ky": "Kyrgyz", "tg": "Tajik"}
@@ -85,8 +90,15 @@ def hf_backend(model_id, batch_size, max_new_tokens):
             new = gen[:, enc["input_ids"].shape[1]:]
             outs += [clean_output(t) for t in tok.batch_decode(new, skip_special_tokens=True)]
             print(f"  {min(i + batch_size, len(prompts))}/{len(prompts)}")
+            del enc, gen, new
         return outs
 
+    def close():
+        nonlocal model
+        model = None
+        free_gpu()
+
+    run.close = close
     return run
 
 
@@ -183,17 +195,22 @@ def main():
     else:
         run = ollama_backend(args.ollama_url, args.ollama_model, args.max_new_tokens)
 
-    # ---- quick sanity check on an official pair: proves the setup works ----
-    print("\nSanity check (official en->ru pair):")
-    check = run([build_prompt("The weather is very good today.", "en", "ru")])[0]
-    print(f"  'The weather is very good today.' -> {check}")
-    if not CYRILLIC.search(check or ""):
-        print("  WARNING: the official pair did not return Russian — check the backend/model setup.")
+    try:
+        # ---- quick sanity check on an official pair: proves the setup works ----
+        print("\nSanity check (official en->ru pair):")
+        check = run([build_prompt("The weather is very good today.", "en", "ru")])[0]
+        print(f"  'The weather is very good today.' -> {check}")
+        if not CYRILLIC.search(check or ""):
+            print("  WARNING: the official pair did not return Russian — check the backend/model setup.")
 
-    print(f"\nTranslating {len(rows)} sentences {src} -> {tgt} ...")
-    t0 = time.time()
-    hyps = run([build_prompt(r["source"], src, tgt) for r in rows])
-    secs = time.time() - t0
+        print(f"\nTranslating {len(rows)} sentences {src} -> {tgt} ...")
+        t0 = time.time()
+        hyps = run([build_prompt(r["source"], src, tgt) for r in rows])
+        secs = time.time() - t0
+    finally:
+        if hasattr(run, "close"):
+            print("\nReleasing GPU memory ...")
+            run.close()
     refs = [r["target"] for r in rows]
 
     # ---- scores + simple checks ----

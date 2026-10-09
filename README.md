@@ -13,7 +13,8 @@ pip install -r requirements.txt
 pip check
 ```
 
+# Riva zero-shot test
+See [riva_test/README.md](riva_test/README.md).
 ```sh
-mkdir -p results
-python riva_test.py --test-file test_data/test.jsonl 2>&1 | tee results/riva_test.log
+cd riva_test && python riva_test.py 2>&1 | tee riva_test.log
 ```
