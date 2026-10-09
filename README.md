@@ -16,5 +16,5 @@ pip check
 # Riva zero-shot test
 See [ttt/riva_test/README.md](ttt/riva_test/README.md).
 ```sh
-cd ttt/riva_test && python riva_test.py --out results/riva_uz_ru.jsonl
+cd ttt/riva_test && python riva_test.py --test-file /data/datasets/ttt/uz-ru/test.jsonl --out results/base.json
 ```
