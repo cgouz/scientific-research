@@ -4,9 +4,17 @@
 #   bash run.sh --resume                 # continue from the last checkpoint
 #   bash run.sh --set train.epochs=1     # any train.py arguments
 # Log: <output.dir>/logs/train_<time>.log  (latest: <output.dir>/logs/train.log)
-# Stop: kill $(cat <output.dir>/train.pid)
+# Stop: pkill -f "python.* train.py|torchrun.* train.py"
+# Refuses to start while another training run is still alive.
 set -euo pipefail
 cd "$(dirname "$0")"
+
+RUNNING=$(pgrep -f "python.* train.py|torchrun.* train.py" || true)
+if [ -n "$RUNNING" ]; then
+  echo "Training is already running (pid: $(echo $RUNNING | tr '\n' ' ')). Not starting another one."
+  echo "Stop it first:  pkill -f 'python.* train.py|torchrun.* train.py'"
+  exit 1
+fi
 
 OUT=$(python -c "import yaml; print(yaml.safe_load(open('config.yaml'))['output']['dir'])")
 mkdir -p "$OUT/logs"
@@ -24,4 +32,4 @@ PYTHONUNBUFFERED=1 nohup "${CMD[@]}" > "$LOG" 2>&1 &
 echo $! > "$OUT/train.pid"
 echo "Started on $NGPU GPU(s), pid $(cat "$OUT/train.pid"): ${CMD[*]}"
 echo "Log:   tail -f $OUT/logs/train.log"
-echo "Stop:  kill \$(cat $OUT/train.pid)"
+echo "Stop:  pkill -f 'python.* train.py|torchrun.* train.py'"

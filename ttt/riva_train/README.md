@@ -17,7 +17,7 @@ python train.py --set data.max_train_rows=20000 train.eval_steps=100   # quick t
 bash run.sh                                                            # full training in background (nohup, all GPUs)
 bash run.sh --resume                                                   # continue from the last checkpoint
 tail -f /data/experiments/riva/logs/train.log                          # watch progress
-kill $(cat /data/experiments/riva/train.pid)                           # stop
+pkill -f "python.* train.py|torchrun.* train.py"          # stop (all runs)
 ```
 
 Everything goes to `/data/experiments/riva/` (`output.dir` in config.yaml):
