@@ -38,6 +38,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 os.environ.setdefault("HF_DATASETS_CACHE", str(HERE / ".cache" / "datasets"))
+os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")  # less memory fragmentation
 
 import torch
 import yaml
@@ -158,11 +159,12 @@ class Collator:
 
 
 def probe_batch_size(model, collator, examples, fraction, log):
-    """Largest per-GPU batch whose forward+backward on the LONGEST examples, plus the AdamW states
-    (allocated later by the optimizer), fits in `fraction` of GPU memory."""
+    """Largest per-GPU batch (multiple of 8) whose full training step on the LONGEST examples
+    (forward + backward + AdamW step) stays within `fraction` of GPU memory.
+    The probe optimizer uses lr=0, so the weights are not changed."""
     device = next(model.parameters()).device
     total = torch.cuda.get_device_properties(device).total_memory
-    optim_bytes = 8 * sum(p.numel() for p in model.parameters() if p.requires_grad)  # exp_avg + exp_avg_sq, fp32
+    opt = torch.optim.AdamW([p for p in model.parameters() if p.requires_grad], lr=0.0, weight_decay=0.0, fused=True)
     model.train()
 
     def fits(bs):
@@ -175,7 +177,8 @@ def probe_batch_size(model, collator, examples, fraction, log):
             with torch.autocast("cuda", dtype=torch.bfloat16):
                 loss = model(**batch).loss
             loss.backward()
-            need = torch.cuda.max_memory_allocated(device) + optim_bytes
+            opt.step()
+            need = torch.cuda.max_memory_allocated(device)
             ok = need <= fraction * total
             log(f"  batch {bs:>4}: {need / 1024**3:5.0f} / {total / 1024**3:.0f} GB  {'ok' if ok else 'too big'}")
             return ok
@@ -184,17 +187,27 @@ def probe_batch_size(model, collator, examples, fraction, log):
             return False
         finally:
             del batch, loss
-            model.zero_grad(set_to_none=True)
+            opt.zero_grad(set_to_none=True)
             torch.cuda.empty_cache()
 
-    bs = 512
-    while bs >= 1 and not fits(bs):
-        bs //= 2
-    if bs < 1:
-        sys.exit("Even batch 1 does not fit: set train.grad_checkpointing=true or lower data.max_len")
-    if bs >= 2 and bs < 512 and fits(bs * 3 // 2):  # between bs and the failed 2*bs
-        bs = bs * 3 // 2
-    return bs
+    try:
+        lo, bs = 0, 8                      # grow 8, 16, 32 ... until it doesn't fit
+        while bs <= 512 and fits(bs):
+            lo, bs = bs, bs * 2
+        hi = bs
+        if lo == 0:                        # not even 8: try 4, 2, 1
+            lo = next((b for b in (4, 2, 1) if fits(b)), 0)
+            if lo == 0:
+                sys.exit("Even batch 1 does not fit: set train.grad_checkpointing=true or lower data.max_len")
+            return lo
+        while hi - lo > 8:                 # then narrow down in steps of 8
+            mid = (lo + hi) // 2 // 8 * 8
+            lo, hi = (mid, hi) if fits(mid) else (lo, mid)
+        return lo
+    finally:
+        opt.state.clear()
+        del opt
+        torch.cuda.empty_cache()
 
 
 def make_trainer(lengths, **kwargs):
