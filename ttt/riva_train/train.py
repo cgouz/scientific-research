@@ -37,11 +37,14 @@ import time
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parents[1]))  # repo root, for general/
 os.environ.setdefault("HF_DATASETS_CACHE", str(HERE / ".cache" / "datasets"))
 os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")  # less memory fragmentation
 
 import torch
 import yaml
+
+from general.config import load_config
 
 LANG_NAMES = {"uz": "Uzbek", "ru": "Russian"}
 
@@ -49,20 +52,6 @@ LANG_NAMES = {"uz": "Uzbek", "ru": "Russian"}
 # ---------------------------------------------------------------------------
 # Config
 # ---------------------------------------------------------------------------
-def load_config(path, overrides):
-    cfg = yaml.safe_load(Path(path).read_text(encoding="utf-8"))
-    for item in overrides:  # --set train.lr=5e-6 data.max_train_rows=1000
-        key, sep, val = item.partition("=")
-        *parents, leaf = key.split(".")
-        node = cfg
-        for part in parents:
-            node = node.get(part) if isinstance(node, dict) else None
-        if not sep or not isinstance(node, dict) or leaf not in node:
-            sys.exit(f"--set: unknown setting '{key}' (see config.yaml)")
-        node[leaf] = yaml.safe_load(val)
-    return cfg
-
-
 def resolve(p):
     p = Path(p)
     return p if p.is_absolute() else (HERE / p).resolve()

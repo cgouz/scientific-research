@@ -3,12 +3,12 @@ GPU / CUDA cleaner: shows what holds GPU memory and frees it.
 
 Two uses:
   1. From the shell, before or after a run (leftover processes from crashed runs keep VRAM busy):
-       python gpu_clean.py                  # report: GPUs, memory, processes using them
-       python gpu_clean.py --kill           # stop YOUR processes that hold GPU memory (asks first)
-       python gpu_clean.py --kill --yes     # same, no question
-       python gpu_clean.py --kill --gpu 0   # only processes on GPU 0
+       python general/gpu_clean.py                  # report: GPUs, memory, processes using them
+       python general/gpu_clean.py --kill           # stop YOUR processes that hold GPU memory (asks first)
+       python general/gpu_clean.py --kill --yes     # same, no question
+       python general/gpu_clean.py --kill --gpu 0   # only processes on GPU 0
   2. Inside a script, to release memory the current process holds:
-       from gpu_clean import free_gpu
+       from general.gpu_clean import free_gpu   # repo root on sys.path
        del model; free_gpu()
 
 Only processes owned by you are stopped (SIGTERM, then SIGKILL after --timeout seconds).

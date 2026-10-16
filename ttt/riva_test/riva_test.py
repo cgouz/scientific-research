@@ -25,9 +25,9 @@ import sys
 import time
 from pathlib import Path
 
-from gpu_clean import free_gpu
-
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parents[1]))  # repo root, for general/
+from general.gpu_clean import free_gpu
 RESULTS_DIR = Path("/data/experiments/riva/results")
 MODEL_ID = "nvidia/Riva-Translate-4B-Instruct-v2"
 LANG_NAMES = {"uz": "Uzbek", "ru": "Russian"}

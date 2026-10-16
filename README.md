@@ -7,6 +7,7 @@ Experiments with speech and translation models for Uzbek and nearby languages:
 | [stt/](stt/) | Speech-to-text (ASR): fine-tune and benchmark | `nvidia/nemotron-3.5-asr-streaming-0.6b` (NeMo) |
 | [ttt/](ttt/) | Text-to-text translation, Uzbek ↔ Russian | `nvidia/Riva-Translate-4B-Instruct-v2` (transformers) |
 | [tts/](tts/) | Text-to-speech | not started yet |
+| [general/](general/README.md) | Shared helpers: GPU cleaner, config loading with `--set`, JSONL read/write | – |
 | [hugging_face/](hugging_face/setup.md) | Notes on the `hf` CLI: login, browsing and downloading datasets | – |
 
 Datasets and experiment outputs are kept outside the repo, under `/data/` (see [Data layout](#data-layout)).
@@ -31,33 +32,25 @@ If CUDA shows `False`, reinstall torch with the command for your CUDA version fr
 [pytorch.org](https://pytorch.org/get-started/locally/). To download gated models and datasets,
 log in with `hf auth login` (see [hugging_face/setup.md](hugging_face/setup.md)).
 
-## STT: Nemotron ASR
-
-[stt/train_nemotron.py](stt/train_nemotron.py) fine-tunes Nemotron ASR on several languages at once:
-English, Uzbek, Russian, Karakalpak and Korean. All settings are in the `SOZLAMALAR` block at the top of
-the file (batch duration, LR, epochs, languages, share of rows trained with the `auto` language prompt, and so on).
-Before training it checks that the tokenizer gives no `<unk>` and can fix the manifests itself (`AUTO_FIX`).
-
-[stt/test.py](stt/test.py) transcribes audio files, or measures WER for each language on dev/test
-(CER for zh/ja/ko).
+## STT: Nemotron ASR (multilingual)
+- [stt/nemotron_train/](stt/nemotron_train/README.md): fine-tune on English, Uzbek, Russian, Karakalpak and Korean from
+  `/data/datasets/stt`. It checks and fixes the tokenizer, mixes languages by temperature, trains mostly with the `auto`
+  prompt so the model detects the language itself, uses all GPUs and runs in the background.
+- [stt/nemotron_test/](stt/nemotron_test/README.md): transcribe audio files, or measure WER/CER per language for the
+  base or fine-tuned model
 
 ```sh
-cd stt
-python train_nemotron.py                                       # outputs -> /data/experiments/nemotron-multi
-
-python test.py --audio a.wav b.wav --lang uz-UZ                # transcribe files
-python test.py --bench --root /data/datasets/stt --split dev --n 200 --auto --json wer.json
+bash stt/nemotron_train/run.sh                                         # nohup, all GPUs -> /data/experiments/nemotron
+bash stt/nemotron_test/run.sh --bench --split test --prompt both --out finetuned.json
+python stt/nemotron_test/nemotron_test.py --audio a.wav               # language detected automatically
 ```
-
-`test.py` loads `/data/experiments/nemotron-multi/nemotron-multi-best.nemo` by default (change it with `--model`).
-Its default `--root` is `/data/datasets/sst`, while training reads `/data/datasets/stt`, so pass `--root` explicitly.
 
 ## TTT: Riva-Translate Uzbek ↔ Russian
 
 | Path | What it does |
 |---|---|
 | [ttt/riva_train/](ttt/riva_train/README.md) | Fine-tunes on both directions. Finds the batch size automatically, uses all GPUs via `torchrun` and runs in the background |
-| [ttt/riva_test/](ttt/riva_test/README.md) | Translates a test set with the base or fine-tuned model. Also has `gpu_clean.py` to see and free GPU memory |
+| [ttt/riva_test/](ttt/riva_test/README.md) | Translates a test set with the base or fine-tuned model. |
 | [ttt/til_to_manifest.py](ttt/til_to_manifest.py) | TIL corpus → JSONL: detokenizes, cleans, removes train/test overlap, optional LaBSE filter |
 | [ttt/uzlpc_to_manifest.py](ttt/uzlpc_to_manifest.py) | [blinoff/UzLPC](https://huggingface.co/datasets/blinoff/UzLPC) (en/ru → uz) → JSONL |
 | `ttt/third_party/llama.cpp` | git submodule: [llama.cpp](https://github.com/ggml-org/llama.cpp) |
@@ -70,7 +63,7 @@ python ttt/til_to_manifest.py --data-dir data/uz-ru
 
 # 2. Baseline
 cd ttt/riva_test
-python gpu_clean.py
+python ../../general/gpu_clean.py
 bash run.sh --test-file /data/datasets/ttt/uz-ru/test.jsonl --out base.json
 
 # 3. Fine-tune (edit ttt/riva_train/config.yaml first)
@@ -97,6 +90,6 @@ Not in git (see [.gitignore](.gitignore)):
 ```
 /data/datasets/stt/<language>/{train,dev}.jsonl     # NeMo ASR manifests, language in the `locale` field
 /data/datasets/ttt/uz-ru/{train,dev,test}.jsonl     # translation manifests
-/data/experiments/nemotron-multi/                   # ASR checkpoints, .nemo, TensorBoard logs
+/data/experiments/nemotron/                         # final.nemo, last.nemo, checkpoints/, tb/, logs/, results/
 /data/experiments/riva/                             # checkpoint-*/, final/, logs/, results/
 ```

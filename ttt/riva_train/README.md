@@ -12,7 +12,7 @@ and is trained in the direction given by its `pair`. To change paths and setting
 
 ```sh
 cd ttt/riva_train
-python ../riva_test/gpu_clean.py                                       # check the GPUs are free
+python ../../general/gpu_clean.py                                     # check the GPUs are free
 python train.py --set data.max_train_rows=20000 train.eval_steps=100   # quick test first (foreground)
 bash run.sh                                                            # full training in background (nohup, all GPUs)
 bash run.sh --resume                                                   # continue from the last checkpoint

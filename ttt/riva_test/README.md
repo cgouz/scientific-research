@@ -5,7 +5,7 @@ Each test row is translated in the direction given by its `pair`. Each result ro
 
 ```sh
 cd ttt/riva_test
-python gpu_clean.py                                                  # check the GPUs are free
+python ../../general/gpu_clean.py                                    # check the GPUs are free
 python riva_test.py --test-file /data/datasets/ttt/uz-ru/test.jsonl --out base.json   # foreground
 bash run.sh --test-file /data/datasets/ttt/uz-ru/test.jsonl --out base.json           # background (nohup)
 bash run.sh --model /data/experiments/riva/final --test-file /data/datasets/ttt/uz-ru/test.jsonl --out finetuned.json
@@ -29,13 +29,7 @@ The test file is JSONL with rows `{"pair": "uz-ru" | "ru-uz", "source": ..., "ta
 ]
 ```
 
-## GPU cleaner (`gpu_clean.py`)
+## GPU memory
 
-```sh
-python gpu_clean.py                  # GPUs, memory used, which processes hold it
-python gpu_clean.py --kill           # stop your processes holding GPU memory (asks first)
-python gpu_clean.py --kill --gpu 0 -y
-```
-
-It only stops processes you own: SIGTERM first, then SIGKILL after 10 s.
-`riva_test.py` frees its own CUDA memory when it finishes, even after an error.
+`riva_test.py` frees its own CUDA memory when it finishes, even after an error. To see or stop other processes
+holding the GPUs, use [general/gpu_clean.py](../../general/README.md#gpu-cleaner-gpu_cleanpy).

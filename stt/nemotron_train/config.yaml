@@ -1,0 +1,47 @@
+# Fine-tune Nemotron ASR on several languages (train.py).
+# Relative paths are taken from this folder (stt/nemotron_train/). Override any key: --set train.lr=5e-5
+
+model: nvidia/nemotron-3.5-asr-streaming-0.6b
+
+data:
+  root: /data/datasets/stt          # <root>/<language>/{train,dev}.jsonl (NeMo manifests)
+  langs: [english, uzbek, russian, karakalpak, korean]
+  lang_field: locale                # manifest field that picks the language prompt (model default: target_lang)
+  temperature: 2.0                  # language mix: p ~ (hours / total) ** (1/T); 1 = natural, higher = small languages more often
+  dev_max_per_lang: 400             # dev rows per language for val WER (every N-th row, same on every run); 0 = all
+  dev_prompt: auto                  # prompt for dev rows, which picks the best checkpoint: auto (best language detector) | locale | both
+  min_duration: 0.5                 # seconds; shorter audio breaks the RNNT loss
+  max_duration: 35.0                # seconds; longer audio is dropped
+  auto_lang_ratio: 0.7              # share of each language trained with the `auto` prompt (model detects the language itself);
+                                    # the rest keeps its own locale, so a language can still be forced. 1 = auto only, 0 = off
+  auto_locale: auto                 # name of the auto prompt in the model's prompt dictionary
+  extra_prompts: auto               # prompt ids for languages the model doesn't know: auto = free ids, {kaa-UZ: 63} = fixed, {} = none
+
+tokenizer:
+  check_unk: true                   # stop before training if many rows tokenize to <unk>
+  sample: 300                       # train rows checked per language
+  max_unk_rate: 0.01                # fewer <unk> rows than this is only a warning
+  auto_fix: true                    # find a character map, rewrite manifests (originals kept as *.jsonl.bak)
+
+train:
+  epochs: 5                         # passes over the data; max_steps is computed from it
+  max_steps: null                   # set to override epochs
+  lr: 1.0e-4                        # peak LR of the cosine schedule
+  warmup_steps: 1000                # never 0: without warmup the first steps damage the pretrained weights
+  weight_decay: 1.0e-3
+  batch_duration: 600               # seconds of audio per batch per GPU (Lhotse); OOM -> 300, spare memory -> 900
+  quadratic_duration: 30            # makes long audio "cost" more in a batch
+  num_buckets: 30                   # group audio of similar length
+  num_workers: 32                   # dataloader processes per GPU
+  fused_batch_size: 4               # RNNT joint computed in chunks; this is why large batches fit, keep it
+  freeze_encoder: false             # true only for a single small language
+  val_every: 2000                   # dev WER + checkpoint every N steps
+  save_top_k: 3                     # best checkpoints by val_wer (plus last.ckpt)
+  gpus: all                         # all, or a number
+  log_every: 100                    # short progress line every N steps
+  log_every_nemo: 500               # NeMo computes train WER (greedy decoding = GPU time) every N steps
+  quiet_logs: true                  # no per-sample predictions or progress bar
+  seed: 42
+
+output:
+  dir: /data/experiments/nemotron   # final.nemo, last.nemo, checkpoints/, tb/, logs/, config_used.yaml

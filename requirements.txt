@@ -23,10 +23,10 @@ pandas>=2.0                  # CSV reading (uzlpc_to_manifest.py)
 pyyaml>=6.0                  # config (ttt/riva_train/config.yaml)
 
 # --- Speech-to-text (stt/) ----------------------------------------------
-nemo_toolkit[asr]>=2.0       # ASR models (stt/train_nemotron.py, stt/test.py); brings lightning + omegaconf
-lightning>=2.0               # trainer, checkpoints, loggers (stt/train_nemotron.py)
-omegaconf>=2.3               # NeMo model configs (stt/train_nemotron.py)
-tensorboard>=2.15            # TensorBoardLogger (stt/train_nemotron.py)
+nemo_toolkit[asr]>=2.0       # ASR models (stt/nemotron_train, stt/nemotron_test); brings lightning + omegaconf
+lightning>=2.0               # trainer, checkpoints, loggers (stt/nemotron_train)
+omegaconf>=2.3               # NeMo model configs (stt/nemotron_train)
+tensorboard>=2.15            # TensorBoardLogger (stt/nemotron_train)
 
 # --- Optional -----------------------------------------------------------
 # sentence-transformers>=3.0 # LaBSE filter: til_to_manifest.py --labse 0.75
