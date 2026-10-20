@@ -102,9 +102,12 @@ Options are passed to `train.py`, e.g. `bash run.sh --set train.epochs=1 data.ma
 ### 6. Stop / resume
 
 ```sh
-pkill -f "(python|torchrun).* /workspace/scientific-research/ttt/riva_multilingual_train/train.py"   # stop (run.sh prints this)
+bash stop.sh                                   # stop this folder's training (asks first; -y to skip), workers included
 bash run.sh --resume                           # continue from the latest checkpoint-*/
 ```
+
+`stop.sh` finds runs started by `run.sh`, `torchrun` or `python train.py` in this folder, and leaves `ttt/riva_train` and `stt` runs alone.
+It sends SIGTERM, kills anything still alive after 30 s, then shows GPU memory.
 
 Resume with the same settings: changing the data or batch settings makes the step count no longer match the checkpoint.
 
