@@ -83,9 +83,19 @@ It prints the pid, the log path and the stop command. Watch it:
 
 ```sh
 tail -f /data/experiments/riva_multilingual/logs/train.log
+grep "\[time\]" /data/experiments/riva_multilingual/logs/train.log | tail -1   # how long it still takes
 grep -E "eval_loss" /data/experiments/riva_multilingual/logs/train.log      # dev loss over time
 watch -n 5 nvidia-smi                                                        # GPU use and memory
 ```
+
+Every `logging_steps` (25) steps the log gets a time line next to the loss:
+```
+{'loss': 1.234, 'grad_norm': 0.9, 'learning_rate': 9.8e-06, 'epoch': 0.12}
+[time] step 1,400/11,719 (11.9%)  elapsed 1h05m  2.79 s/step  left ~8h00m  ends ~10-22 03:10
+```
+`left` is (steps still to go) × (average s/step so far), so it includes the time spent on evals and checkpoints.
+The first lines overestimate a little (the first steps are slower); after a few hundred steps it is steady.
+After `--resume`, the average starts over from the resumed step. At the end: `Training time: 9h12m`.
 
 Options are passed to `train.py`, e.g. `bash run.sh --set train.epochs=1 data.max_rows_per_pair=1000000`.
 

@@ -301,8 +301,13 @@ def probe_batch_size(model, collator, examples, fraction, amp_dtype, log):
         torch.cuda.empty_cache()
 
 
+def hours(sec):
+    sec = int(sec)
+    return f"{sec // 3600}h{sec % 3600 // 60:02d}m" if sec >= 3600 else f"{sec // 60}m{sec % 60:02d}s"
+
+
 def make_trainer(lengths, **kwargs):
-    from transformers import Trainer
+    from transformers import Trainer, TrainerCallback
     from transformers.trainer_pt_utils import LengthGroupedSampler
 
     class RivaTrainer(Trainer):
@@ -312,7 +317,25 @@ def make_trainer(lengths, **kwargs):
             return LengthGroupedSampler(self.args.train_batch_size * self.args.gradient_accumulation_steps,
                                         lengths=lengths)
 
-    return RivaTrainer(**kwargs)
+    class TimeLeft(TrainerCallback):
+        """With every log line: elapsed time, s/step and time left (eval + checkpoint time included, since it is
+        averaged over the steps so far). The first few lines overestimate: the first steps are slower."""
+
+        def on_train_begin(self, args, state, control, **kw):
+            self.t0, self.step0 = time.time(), state.global_step  # step0 > 0 after --resume
+
+        def on_log(self, args, state, control, logs=None, **kw):
+            done = state.global_step - self.step0
+            if not state.is_world_process_zero or done <= 0 or not state.max_steps:
+                return
+            elapsed = time.time() - self.t0
+            left = (state.max_steps - state.global_step) * elapsed / done
+            end = time.strftime("%m-%d %H:%M", time.localtime(time.time() + left))
+            print(f"[time] step {state.global_step:,}/{state.max_steps:,} ({state.global_step / state.max_steps:.1%})"
+                  f"  elapsed {hours(elapsed)}  {elapsed / done:.2f} s/step  left ~{hours(left)}  ends ~{end}",
+                  flush=True)
+
+    return RivaTrainer(callbacks=[TimeLeft()], **kwargs)
 
 
 def training_args(**kw):
@@ -435,6 +458,7 @@ def main():
         save_strategy="steps", save_steps=int(tcfg["eval_steps"]), save_total_limit=int(tcfg["save_total_limit"]),
         load_best_model_at_end=True, metric_for_best_model="eval_loss", greater_is_better=False,
         logging_steps=int(tcfg["logging_steps"]), logging_first_step=True, report_to="none",
+        disable_tqdm=not sys.stderr.isatty(),  # nohup log: no progress bar, [time] lines show the ETA instead
         seed=int(tcfg["seed"]), remove_unused_columns=False,
         dataloader_num_workers=int(tcfg["num_workers"]), dataloader_pin_memory=True,
         dataloader_persistent_workers=int(tcfg["num_workers"]) > 0,
@@ -448,7 +472,7 @@ def main():
     log("\nTraining ...")
     t0 = time.time()
     trainer.train(resume_from_checkpoint=True if args.resume else None)
-    log(f"Training time: {(time.time() - t0) / 3600:.2f} h")
+    log(f"Training time: {hours(time.time() - t0)}")
 
     # ---------- save the best model ----------
     if trainer.is_world_process_zero():
