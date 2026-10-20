@@ -1,0 +1,36 @@
+# Fine-tune Riva-Translate on uz / ru / en in every direction (train.py).
+# Relative paths are taken from this folder (ttt/riva_multilingual_train/). Override any key: --set train.lr=5e-6
+# `auto` values are filled in at start and written to <output.dir>/config_used.yaml.
+
+model: nvidia/Riva-Translate-4B-Instruct-v2
+
+data:
+  train: /data/datasets/ttt/multilingual/train.jsonl
+  dev: /data/datasets/ttt/multilingual/dev.jsonl
+  test: /data/datasets/ttt/multilingual/test.jsonl   # only used to drop train rows that also appear in test
+  pairs: auto                   # auto = every direction in the train file; or a list, e.g. [uz-ru, ru-uz, uz-en, en-uz]
+  script_filter: true           # drop rows in the wrong alphabet (e.g. "uz-en" with a Russian target)
+  max_len: auto                 # tokens per example (prompt + translation); auto = 99.5% of rows fit; longer is cut
+  max_train_rows: null          # e.g. 100000 for a quick run (null = all)
+  max_rows_per_pair: null       # cap each direction, e.g. 1000000, so one big direction doesn't dominate (null = all)
+  dev_samples_per_pair: 500     # dev rows per direction used for eval loss
+
+train:
+  epochs: 2
+  lr: 1.0e-5
+  scheduler: cosine
+  warmup_ratio: 0.03
+  weight_decay: 0.0
+  precision: auto               # auto = bf16 on Ampere+ (A100, H100, B200, RTX 30xx/40xx), fp16 on older; or bf16 / fp16
+  batch_size: auto              # per GPU; auto = largest batch that fits (probed with the longest examples)
+  memory_fraction: 0.85         # auto batch: share of GPU memory a full training step may use
+  target_batch: 256             # sentences per optimizer step; grad_accum = target / (batch_size x GPUs), min 1
+  grad_checkpointing: false     # true = far less memory but ~30% slower (only if the model barely fits)
+  eval_steps: 1000              # eval loss on dev + save checkpoint every N steps
+  save_total_limit: 2           # best + latest
+  logging_steps: 25
+  num_workers: auto             # dataloader processes per GPU; auto = CPU cores / GPUs, at most 8
+  seed: 42
+
+output:
+  dir: /data/experiments/riva_multilingual   # checkpoint-*/, final/, logs/, config_used.yaml

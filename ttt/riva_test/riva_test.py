@@ -11,6 +11,7 @@ Usage:
   python riva_test.py --test-file /data/datasets/ttt/uz-ru/test.jsonl --out base.json
   python riva_test.py --test-file ... --samples 500                  # 500 rows per direction
   python riva_test.py --test-file ... --pairs ru-uz                  # one direction only
+  python riva_test.py --test-file /data/datasets/ttt/multilingual/test.jsonl --pairs uz-ru ru-uz uz-en en-uz en-ru ru-en
   python riva_test.py --model /data/experiments/riva/final --test-file ... --out finetuned.json
   bash run.sh --test-file ... --out base.json                      # same, in the background (nohup)
 
@@ -30,7 +31,8 @@ sys.path.insert(0, str(HERE.parents[1]))  # repo root, for general/
 from general.gpu_clean import free_gpu
 RESULTS_DIR = Path("/data/experiments/riva/results")
 MODEL_ID = "nvidia/Riva-Translate-4B-Instruct-v2"
-LANG_NAMES = {"uz": "Uzbek", "ru": "Russian"}
+LANG_NAMES = {"uz": "Uzbek", "ru": "Russian", "en": "English"}
+PAIRS = ["uz-ru", "ru-uz", "uz-en", "en-uz", "en-ru", "ru-en"]
 
 
 def build_prompt(text, pair):
@@ -122,7 +124,7 @@ def main():
     ap = argparse.ArgumentParser(description="Translate uz->ru and ru->uz test sentences with Riva-Translate.")
     ap.add_argument("--model", default=MODEL_ID, help="HF id or local folder (e.g. a fine-tuned final/)")
     ap.add_argument("--test-file", default=str(HERE / "test_data" / "test.jsonl"))
-    ap.add_argument("--pairs", nargs="+", default=["uz-ru", "ru-uz"], choices=["uz-ru", "ru-uz"])
+    ap.add_argument("--pairs", nargs="+", default=["uz-ru", "ru-uz"], choices=PAIRS)
     ap.add_argument("--samples", type=int, default=200, help="rows per direction")
     ap.add_argument("--batch-size", type=int, default=256, help="sentences per batch (B200: 256-512)")
     ap.add_argument("--gpu", type=int, default=0, help="GPU index to use")

@@ -50,6 +50,7 @@ python stt/nemotron_test/nemotron_test.py --audio a.wav               # language
 | Path | What it does |
 |---|---|
 | [ttt/riva_train/](ttt/riva_train/README.md) | Fine-tunes on both directions. Finds the batch size automatically, uses all GPUs via `torchrun` and runs in the background |
+| [ttt/riva_multilingual_train/](ttt/riva_multilingual_train/README.md) | Same, for uz / ru / en in all 6 directions (`/data/datasets/ttt/multilingual`). Pairs, max length, batch size, precision and workers are `auto` |
 | [ttt/riva_test/](ttt/riva_test/README.md) | Translates a test set with the base or fine-tuned model. |
 | [ttt/til_to_manifest.py](ttt/til_to_manifest.py) | TIL corpus → JSONL: detokenizes, cleans, removes train/test overlap, optional LaBSE filter |
 | [ttt/uzlpc_to_manifest.py](ttt/uzlpc_to_manifest.py) | [blinoff/UzLPC](https://huggingface.co/datasets/blinoff/UzLPC) (en/ru → uz) → JSONL |
