@@ -338,13 +338,16 @@ def make_trainer(lengths, **kwargs):
     return RivaTrainer(callbacks=[TimeLeft()], **kwargs)
 
 
-def training_args(**kw):
-    """TrainingArguments with only the keys this transformers version knows."""
+def training_args(log, **kw):
+    """TrainingArguments with only the keys this transformers version knows (dropped ones are printed)."""
     import inspect
 
     from transformers import TrainingArguments
 
     known = inspect.signature(TrainingArguments.__init__).parameters
+    dropped = [k for k, v in kw.items() if k not in known and v is not None]
+    if dropped:
+        log(f"  not supported by this transformers version, ignored: {', '.join(dropped)}")
     return TrainingArguments(**{k: v for k, v in kw.items() if k in known and v is not None})
 
 
@@ -444,15 +447,17 @@ def main():
     accum = max(1, round(int(tcfg["target_batch"]) / (bs * world)))
     per_step = bs * accum * world
     steps = math.ceil(len(train_ds) / per_step * float(tcfg["epochs"]))
-    log(f"  {bs} x {accum} accum x {world} GPU = {per_step} sentences/step, {steps:,} steps")
+    # warmup as a step count: newer transformers dropped warmup_ratio, and an unknown key is silently skipped
+    warmup = math.ceil(float(tcfg["warmup_ratio"]) * steps)
+    log(f"  {bs} x {accum} accum x {world} GPU = {per_step} sentences/step, {steps:,} steps, {warmup:,} warmup")
     if is_main:
         (out_dir / "config_used.yaml").write_text(yaml.safe_dump(cfg, sort_keys=False, allow_unicode=True))
 
     targs = training_args(
-        output_dir=str(out_dir), per_device_train_batch_size=bs, per_device_eval_batch_size=bs,
+        log, output_dir=str(out_dir), per_device_train_batch_size=bs, per_device_eval_batch_size=bs,
         gradient_accumulation_steps=accum, num_train_epochs=float(tcfg["epochs"]),
         learning_rate=float(tcfg["lr"]), lr_scheduler_type=tcfg["scheduler"],
-        warmup_ratio=float(tcfg["warmup_ratio"]), weight_decay=float(tcfg["weight_decay"]), max_grad_norm=1.0,
+        warmup_steps=warmup, weight_decay=float(tcfg["weight_decay"]), max_grad_norm=1.0,
         optim="adamw_torch_fused", bf16=precision == "bf16", fp16=precision == "fp16", tf32=tf32 or None,
         eval_strategy="steps", eval_steps=int(tcfg["eval_steps"]),
         save_strategy="steps", save_steps=int(tcfg["eval_steps"]), save_total_limit=int(tcfg["save_total_limit"]),
