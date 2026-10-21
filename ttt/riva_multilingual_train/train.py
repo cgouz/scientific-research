@@ -369,6 +369,12 @@ def main():
 
     if not torch.cuda.is_available():
         sys.exit("No CUDA GPU found (check nvidia-smi and that torch is a CUDA build).")
+    try:  # the Trainer needs torch <-> numpy at every eval: fail now, not after the first eval_steps
+        torch.zeros(1).numpy()
+    except RuntimeError as e:
+        import numpy
+        sys.exit(f"torch can't use numpy {numpy.__version__} ({e}). torch was built for NumPy 1.x: "
+                 f'run  pip install "numpy<2"  in this venv, then start again.')
     for i in range(torch.cuda.device_count()):
         p = torch.cuda.get_device_properties(i)
         log(f"GPU {i}: {p.name}, {p.total_memory / 1024**3:.0f} GB, compute capability {p.major}.{p.minor}")
