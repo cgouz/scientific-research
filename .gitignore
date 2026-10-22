@@ -34,6 +34,7 @@ data/
 *.bin
 *.safetensors
 *.onnx
+*.gguf
 checkpoints/
 outputs/
 nemo_experiments/

@@ -1,0 +1,25 @@
+# Translator web app (app.py) on a local CPU (no NVIDIA GPU):  python3 app.py --config config_cpu.yaml
+# Same keys as config.yaml; differences are marked  # <-.  Relative paths are taken from this folder (translate_app/).
+# Override any key for one run: python app.py --set device=cpu port=8000
+
+model: riva-translate-multilingual-Q4_K_M.gguf   # <- the file in this folder (Q4_K_M: smallest and fastest on a CPU)
+llama_server: ../ttt/third_party/llama.cpp/build/bin/llama-server                 # built with -DGGML_CUDA=ON (see GGUF.md)
+llama_url: null              # use an llama-server that is already running (e.g. http://127.0.0.1:8081) instead of starting one
+
+device: cpu                  # <- no GPU at all
+gpu_layers: 999              # device gpu: layers on the GPU (999 = all; lower it to split a big model between GPU and CPU)
+gpu_index: 0                 # device gpu: which GPU (CUDA_VISIBLE_DEVICES)
+threads: 8                   # <- physical cores of the i7-11700 (hyper-threads don't help here)
+
+parallel: 2                  # <- on a CPU all sentences share the same cores
+ctx_per_slot: 1024           # tokens per slot: prompt (~60) + sentence + translation
+max_new_tokens: 512          # longest translation of one sentence
+max_chars: 5000              # longest input text
+
+detect: rules                # "Detect language" in the UI: rules = detect_lang.py + normal prompt (any model)
+                             #                              model = prompt without the source language (auto-source model only)
+split_sentences: true        # translate long text sentence by sentence (the model was trained on single sentences)
+
+host: 127.0.0.1              # <- only this computer
+port: 7860
+llama_port: 8081             # internal port of the llama-server this app starts

@@ -197,8 +197,11 @@ def make_handler(cfg, llama, translator):
             self.send_response(status)
             self.send_header("Content-Type", "application/json; charset=utf-8")
             self.send_header("Content-Length", str(len(data)))
-            self.end_headers()
-            self.wfile.write(data)
+            try:
+                self.end_headers()
+                self.wfile.write(data)
+            except (BrokenPipeError, ConnectionResetError):
+                pass  # the page cancelled this request (the user kept typing): nobody is waiting for the answer
 
         def do_GET(self):
             if self.path in ("/", "/index.html"):
@@ -243,6 +246,7 @@ def main():
     ap.add_argument("--config", default=str(HERE / "config.yaml"))
     ap.add_argument("--set", nargs="*", default=[], metavar="KEY=VALUE", help="override config, e.g. device=cpu")
     args = ap.parse_args()
+    sys.stdout.reconfigure(line_buffering=True)  # startup lines reach a log file right away (nohup, > app.log)
     cfg = load_config(args.config, args.set)
     if cfg["device"] not in ("gpu", "cpu"):
         sys.exit(f"device must be gpu or cpu, not {cfg['device']}")
