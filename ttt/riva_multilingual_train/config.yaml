@@ -14,6 +14,7 @@ data:
   max_train_rows: null          # e.g. 100000 for a quick run (null = all)
   max_rows_per_pair: null       # cap each direction, e.g. 1000000, so one big direction doesn't dominate (null = all)
   dev_samples_per_pair: 500     # dev rows per direction used for eval loss
+  auto_source_ratio: 0.0        # share of rows whose prompt leaves out the source language (model detects it); see config_auto.yaml
 
 train:
   epochs: 2

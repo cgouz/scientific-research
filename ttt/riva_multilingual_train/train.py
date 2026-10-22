@@ -13,11 +13,15 @@ Auto mode (the `auto` values in config.yaml):
   train.num_workers auto = CPU cores / GPUs, at most 8
   GPUs              run.sh starts torchrun on every GPU nvidia-smi shows
 
+data.auto_source_ratio (e.g. 0.5) trains that share of rows with a prompt that leaves out the source language
+("You are an expert at translating text to {tgt}."), so the model learns to detect the input language itself and
+works with both prompts. config_auto.yaml continues training the finished model this way (bash run.sh --config config_auto.yaml).
+
 data.script_filter drops rows whose text is in the wrong alphabet for its pair, e.g. an "en-uz" row
 whose source is Russian, or a "uz-en" row whose target is Russian.
 
 Prompt (identical to ../riva_test/riva_test.py), loss only on the translation:
-    <s>System\\nYou are an expert at translating text from {src} to {tgt}.</s>\\n
+    <s>System\\nYou are an expert at translating text from {src} to {tgt}.</s>\\n     (auto source: "...text to {tgt}.")
     <s>User\\nWhat is the {tgt} translation of the sentence: {source}</s>\\n
     <s>Assistant\\n{target}</s>
 
@@ -86,9 +90,12 @@ def pick_precision(setting):
 # ---------------------------------------------------------------------------
 # Data
 # ---------------------------------------------------------------------------
-def build_prompt(text, pair):
+def build_prompt(text, pair, auto=False):
+    """auto=True: the source language is left out of the prompt, so the model has to detect it from the text."""
     s, t = (LANG_NAMES[x] for x in pair.split("-"))
-    return (f"<s>System\nYou are an expert at translating text from {s} to {t}.</s>\n"
+    system = f"You are an expert at translating text to {t}." if auto else \
+        f"You are an expert at translating text from {s} to {t}."
+    return (f"<s>System\n{system}</s>\n"
             f"<s>User\nWhat is the {t} translation of the sentence: {text.strip()}</s>\n"
             "<s>Assistant\n")
 
@@ -193,15 +200,24 @@ def load_data(dcfg, seed, log):
         if picked[r["pair"]] <= per_pair:
             kept.append(r)
     dev = kept
+
+    # auto source: this share of rows (train and dev) gets the prompt without the source language
+    ratio = float(dcfg["auto_source_ratio"] or 0)
+    for rows in (train, dev):
+        for r in rows:
+            r["auto"] = rng.random() < ratio
     for name, rows in (("train", train), ("dev", dev)):
         log(f"  {name:<5} {len(rows):>10,} rows  {count_pairs(rows, pairs)}")
+    if ratio:
+        log(f"  auto source prompt (no source language): {sum(r['auto'] for r in train):,} train, "
+            f"{sum(r['auto'] for r in dev):,} dev rows ({ratio:.0%})")
     return train, dev, pairs
 
 
 def auto_max_len(rows, tok, log, n=20000, pct=0.995):
     """Token length (prompt + target + </s>) that covers `pct` of a random sample of train rows."""
     sample = random.Random(0).sample(rows, min(n, len(rows)))
-    p = tok([build_prompt(r["source"], r["pair"]) for r in sample], add_special_tokens=False)["input_ids"]
+    p = tok([build_prompt(r["source"], r["pair"], r["auto"]) for r in sample], add_special_tokens=False)["input_ids"]
     t = tok([r["target"] for r in sample], add_special_tokens=False)["input_ids"]
     lens = sorted(len(a) + len(b) + 1 for a, b in zip(p, t))
     v = lens[min(len(lens) - 1, int(pct * len(lens)))]
@@ -219,7 +235,7 @@ class Encoder:
         self.end = end if isinstance(end, int) and end != tok.unk_token_id else tok.eos_token_id
 
     def __call__(self, batch):
-        prompts = [build_prompt(s, p) for s, p in zip(batch["source"], batch["pair"])]
+        prompts = [build_prompt(s, p, a) for s, p, a in zip(batch["source"], batch["pair"], batch["auto"])]
         p_ids = self.tok(prompts, add_special_tokens=False)["input_ids"]
         t_ids = self.tok(batch["target"], add_special_tokens=False)["input_ids"]
         out = {"input_ids": [], "labels": [], "length": []}
@@ -418,9 +434,9 @@ def main():
     log(f"Tokenizing (answer ends with token id {enc.end}) ...")
     with PartialState().main_process_first():
         train_ds = Dataset.from_list(train_rows).map(
-            enc, batched=True, remove_columns=["pair", "source", "target"],
+            enc, batched=True, remove_columns=["pair", "source", "target", "auto"],
             num_proc=min(32, os.cpu_count() or 1) if len(train_rows) > 50_000 else None, desc="tokenize train")
-        dev_ds = Dataset.from_list(dev_rows).map(enc, batched=True, remove_columns=["pair", "source", "target"])
+        dev_ds = Dataset.from_list(dev_rows).map(enc, batched=True, remove_columns=["pair", "source", "target", "auto"])
     del train_rows
     lengths = train_ds["length"]
     lengths = list(lengths) if not isinstance(lengths, list) else lengths
@@ -494,7 +510,8 @@ def main():
         tok.save_pretrained(str(final))
         log(f"\nSaved best model (dev loss {trainer.state.best_metric:.4f}) to {final}")
         log(f"Test it:  cd ../riva_test && python riva_test.py --model {final} "
-            f"--test-file {resolve(dcfg['test'])} --pairs {' '.join(pairs)} --out multilingual.json")
+            f"--test-file {resolve(dcfg['test'])} --pairs {' '.join(pairs)} --out multilingual.json"
+            + (" --prompt both" if float(dcfg["auto_source_ratio"] or 0) else ""))
 
 
 if __name__ == "__main__":

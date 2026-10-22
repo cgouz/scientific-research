@@ -128,16 +128,23 @@ ls -lh $OUT/*.gguf
 Paste this helper into the shell (bash). It builds the training prompt for any of the 6 directions:
 
 ```sh
-riva() {  # riva <src|auto> <tgt> "<text>" [model.gguf]     e.g. riva uz en "Salom!"   riva auto en "Salom!"
+riva() {  # riva <src|auto|detect> <tgt> "<text>" [model.gguf]     e.g. riva uz en "Salom!"   riva auto en "Salom!"
   declare -A L=([uz]=Uzbek [ru]=Russian [en]=English)
-  local src=$1 m=${4:-$OUT/riva-translate-multilingual-Q8_0.gguf}
-  if [ "$src" = auto ]; then
+  local src=$1 m=${4:-$OUT/riva-translate-multilingual-Q8_0.gguf} sys
+  if [ "$src" = detect ]; then            # detect_lang.py picks the source, then the normal prompt
     src=$(python3 /workspace/scientific-research/ttt/riva_multilingual_train/detect_lang.py "$3")
     echo "[$src -> $2]" >&2
   fi
-  if [ -z "${L[$src]}" ] || [ -z "${L[$2]}" ]; then echo "languages: uz ru en (source also: auto)" >&2; return 1; fi
+  if { [ "$src" != auto ] && [ -z "${L[$src]}" ]; } || [ -z "${L[$2]}" ]; then
+    echo "source: uz ru en auto detect, target: uz ru en" >&2; return 1
+  fi
   if [ "$src" = "$2" ]; then echo "$3"; return; fi          # already in the target language
-  local p="<s>System"$'\n'"You are an expert at translating text from ${L[$src]} to ${L[$2]}.</s>"$'\n'
+  if [ "$src" = auto ]; then              # no source language in the prompt: the model detects it
+    sys="You are an expert at translating text to ${L[$2]}."
+  else
+    sys="You are an expert at translating text from ${L[$src]} to ${L[$2]}."
+  fi
+  local p="<s>System"$'\n'"$sys</s>"$'\n'
   p+="<s>User"$'\n'"What is the ${L[$2]} translation of the sentence: $3</s>"$'\n'"<s>Assistant"$'\n'
   $LLAMA/build/bin/llama-completion -m "$m" -ngl 999 -no-cnv --temp 0 -n 256 --no-display-prompt \
     --override-kv tokenizer.ggml.add_bos_token=bool:false -p "$p" 2>/dev/null \
@@ -153,14 +160,20 @@ riva() {  # riva <src|auto> <tgt> "<text>" [model.gguf]     e.g. riva uz en "Sal
 - The `sed` part removes llama.cpp's `[end of text]` marker (printed when the model stops at `</s>` by itself) and empty lines,
   so only the translation is printed. A translation without that marker in the raw output hit the `-n 256` limit.
 
-`auto` as the source detects the input language with [detect_lang.py](detect_lang.py) (alphabet plus Uzbek / English
-letters and words; no model, instant) and prints it as `[uz -> en]`. If the input is already in the target language,
-it is printed unchanged. For very short or mixed text (`OK`, names, numbers) give the source language explicitly.
+Two ways to leave out the source language:
+- `auto`: the prompt has **no source language** (`You are an expert at translating text to English.`) and the model
+  detects it itself. This needs a model trained with that prompt: the one from `config_auto.yaml`
+  (section 10). The first multilingual model never saw this prompt.
+- `detect`: [detect_lang.py](detect_lang.py) guesses the source (alphabet plus Uzbek / English letters and words; no
+  model, instant), prints it as `[uz -> en]`, and uses the normal prompt. Works with every model. For very short or
+  mixed text (`OK`, names, numbers) give the source language explicitly.
+
+If the input is already in the target language, `detect` prints it unchanged.
 ```sh
-riva auto en "Bugun havo juda yaxshi."          # [uz -> en]
-riva auto uz "Сегодня очень хорошая погода."    # [ru -> uz]
-riva auto ru "I drank a cup of tea this morning."   # [en -> ru]
-riva auto ru "Бугун ҳаво жуда яхши."            # [uz -> ru]  (Uzbek in Cyrillic)
+riva auto en "Bugun havo juda yaxshi."          # model detects Uzbek (auto-source model)
+riva detect en "Bugun havo juda yaxshi."        # [uz -> en], any model
+riva detect uz "Сегодня очень хорошая погода."  # [ru -> uz]
+riva detect ru "Бугун ҳаво жуда яхши."          # [uz -> ru]  (Uzbek in Cyrillic)
 python3 /workspace/scientific-research/ttt/riva_multilingual_train/detect_lang.py -v "Salom, qalaysiz?"   # only detect, with scores
 ```
 
@@ -215,3 +228,27 @@ du -sh $OUT/checkpoint-*        # ~45-50 GB each
 rm -rf $OUT/checkpoint-*        # keep final/ (HF model) and the .gguf files
 rm -f $OUT/train.pid
 ```
+
+## 10. The auto-source model (the model detects the input language)
+
+`config_auto.yaml` continues training `final/` so that it also works with a prompt **without** the source language
+(see [README.md](README.md)). Its output is `/data/experiments/riva_multilingual_auto/final`. Convert it the same way,
+with other paths and file names:
+
+```sh
+MODEL=/data/experiments/riva_multilingual_auto/final
+OUT=/data/experiments/riva_multilingual_auto
+# step 3 (tokenizer fix), then:
+env -u LD_LIBRARY_PATH python convert_hf_to_gguf.py $MODEL --outfile $OUT/riva-translate-multilingual-f16.gguf --outtype f16
+./build/bin/llama-quantize $OUT/riva-translate-multilingual-f16.gguf $OUT/riva-translate-multilingual-Q8_0.gguf Q8_0
+```
+The file names are the same as before but in the new folder, so the `riva` helper picks this model once `OUT` points there.
+Then:
+```sh
+riva auto en "Bugun havo juda yaxshi."
+riva auto uz "Сегодня очень хорошая погода."
+riva auto ru "I drank a cup of tea this morning."
+riva uz en "Bugun havo juda yaxshi."            # the normal prompt still works
+```
+For the HTTP server, leave the source language out of the System line the same way:
+`"prompt": "<s>System\nYou are an expert at translating text to English.</s>\n<s>User\nWhat is the English translation of the sentence: ...</s>\n<s>Assistant\n"`.

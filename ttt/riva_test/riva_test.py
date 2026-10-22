@@ -43,9 +43,12 @@ LANG_NAMES = {"uz": "Uzbek", "ru": "Russian", "en": "English"}
 PAIRS = ["uz-ru", "ru-uz", "uz-en", "en-uz", "en-ru", "ru-en"]
 
 
-def build_prompt(text, pair):
+def build_prompt(text, pair, auto=False):
+    """auto=True: the source language is left out of the prompt, so the model has to detect it from the text."""
     s, t = (LANG_NAMES[x] for x in pair.split("-"))
-    return (f"<s>System\nYou are an expert at translating text from {s} to {t}.</s>\n"
+    system = f"You are an expert at translating text to {t}." if auto else \
+        f"You are an expert at translating text from {s} to {t}."
+    return (f"<s>System\n{system}</s>\n"
             f"<s>User\nWhat is the {t} translation of the sentence: {text.strip()}</s>\n"
             "<s>Assistant\n")
 
@@ -102,7 +105,7 @@ def stop_ids(tok):
     return sorted(i for i in ids if i is not None)
 
 
-def translate(tok, model, texts, pair, batch_size, max_new_tokens):
+def translate(tok, model, texts, pair, batch_size, max_new_tokens, auto=False):
     import torch
 
     # longest first, similar lengths per batch: less padding, no batch waits on one long sentence
@@ -114,7 +117,7 @@ def translate(tok, model, texts, pair, batch_size, max_new_tokens):
         for b in range(0, len(order), batch_size):
             idx = order[b:b + batch_size]
             # the prompt already has its <s> markers -> no extra BOS
-            enc = tok([build_prompt(texts[i], pair) for i in idx], return_tensors="pt",
+            enc = tok([build_prompt(texts[i], pair, auto) for i in idx], return_tensors="pt",
                       padding=True, add_special_tokens=False).to(model.device)
             gen = model.generate(**enc, max_new_tokens=max_new_tokens, do_sample=False,
                                  pad_token_id=tok.pad_token_id, eos_token_id=eos)
@@ -137,32 +140,35 @@ def score(results):
         return None
     by_pair = {}
     for r in results:
-        by_pair.setdefault(r["pair"], []).append(r)
+        key = r["pair"] + (" auto" if r.get("prompt") == "auto" else "")   # auto-source rows are scored separately
+        by_pair.setdefault(key, []).append(r)
     scores = {}
     for pair, rs in by_pair.items():
         hyp, ref = [r["translation"] or "" for r in rs], [[r["target"] for r in rs]]
         scores[pair] = {"rows": len(rs),
                         "bleu": round(sacrebleu.corpus_bleu(hyp, ref).score, 2),
                         "chrf": round(sacrebleu.corpus_chrf(hyp, ref, word_order=2).score, 2)}
-    if len(scores) > 1:  # unweighted mean over directions
-        scores["mean"] = {k: round(sum(s[k] for s in scores.values()) / len(scores), 2) for k in ("bleu", "chrf")}
-        scores["mean"]["rows"] = sum(s["rows"] for p, s in scores.items() if p != "mean")
+    for suffix in ("", " auto"):  # unweighted mean over directions, separately for each prompt type
+        group = [s for k, s in scores.items() if k.endswith(" auto") == (suffix == " auto")]
+        if len(group) > 1:
+            scores["mean" + suffix] = {k: round(sum(s[k] for s in group) / len(group), 2) for k in ("bleu", "chrf")}
+            scores["mean" + suffix]["rows"] = sum(s["rows"] for s in group)
     return scores
 
 
 def print_scores(named):
     """Table of {name: scores}; with two result sets, the last column is the change from the first to the second."""
     names = list(named)
-    pairs = sorted({p for s in named.values() for p in s if p != "mean"})
-    pairs += ["mean"] if any("mean" in s for s in named.values()) else []
+    pairs = sorted({p for s in named.values() for p in s if not p.startswith("mean")})
+    pairs += [m for m in ("mean", "mean auto") if any(m in s for s in named.values())]
     delta = len(names) == 2
     cols = names + (["change"] if delta else [])
-    print("\n" + f"{'':7}{'rows':>6}" + "".join(f" | {n[:15]:^15}" for n in cols))
-    print(f"{'':13}" + " | {:>6} {:>8}".format("BLEU", "chrF++") * len(cols))
+    print("\n" + f"{'':12}{'rows':>6}" + "".join(f" | {n[:15]:^15}" for n in cols))
+    print(f"{'':18}" + " | {:>6} {:>8}".format("BLEU", "chrF++") * len(cols))
     for p in pairs:
         cells = [named[n].get(p) for n in names]
         rows = next((c["rows"] for c in cells if c), 0)
-        line = f"{p:<7}{rows:>6}"
+        line = f"{p:<12}{rows:>6}"
         for c in cells:
             line += f" | {c['bleu']:>6.1f} {c['chrf']:>8.1f}" if c else f" | {'-':>6} {'-':>8}"
         if delta and all(cells):
@@ -199,6 +205,9 @@ def main():
     ap.add_argument("--batch-size", type=int, default=256, help="sentences per batch (B200: 256-512)")
     ap.add_argument("--gpu", type=int, default=0, help="GPU index to use")
     ap.add_argument("--max-new-tokens", type=int, default=256)
+    ap.add_argument("--prompt", choices=["explicit", "auto", "both"], default="explicit",
+                    help="explicit: prompt names the source language; auto: it doesn't (model detects it, needs a model "
+                         "trained with data.auto_source_ratio); both: run both and score them separately")
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--out", default="riva_test.json",
                     help=f"result file (.json or .jsonl); relative paths go under {RESULTS_DIR}")
@@ -221,14 +230,16 @@ def main():
     tok, model = load_model(args.model, args.gpu)
     results = []
     try:
-        for pair, rs in rows.items():
-            if not rs:
-                continue
-            print(f"Translating {len(rs)} sentences {pair.replace('-', ' -> ')} ...")
-            translations = translate(tok, model, [r["source"] for r in rs], pair,
-                                     args.batch_size, args.max_new_tokens)
-            results += [{"pair": pair, "source": r["source"], "target": r["target"], "translation": t}
-                        for r, t in zip(rs, translations)]
+        modes = ["explicit", "auto"] if args.prompt == "both" else [args.prompt]
+        for mode in modes:
+            for pair, rs in rows.items():
+                if not rs:
+                    continue
+                print(f"Translating {len(rs)} sentences {pair.replace('-', ' -> ')} ({mode} prompt) ...")
+                translations = translate(tok, model, [r["source"] for r in rs], pair,
+                                         args.batch_size, args.max_new_tokens, auto=mode == "auto")
+                results += [{"pair": pair, "prompt": mode, "source": r["source"], "target": r["target"],
+                             "translation": t} for r, t in zip(rs, translations)]
     finally:
         del model
         print("Releasing GPU memory ...")

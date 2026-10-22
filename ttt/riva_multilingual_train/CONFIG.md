@@ -32,6 +32,7 @@ The weights are loaded in fp32 and trained with mixed precision (`train.precisio
 | `max_train_rows` | `null` | use only N random train rows (for quick tests) |
 | `max_rows_per_pair` | `null` | keep at most N random rows per direction, so one large direction doesn't dominate |
 | `dev_samples_per_pair` | `500` | dev rows per direction used for eval loss |
+| `auto_source_ratio` | `0.0` | share of train and dev rows whose prompt leaves out the source language (`You are an expert at translating text to English.`), so the model learns to detect it. `config_auto.yaml` uses `0.5` |
 
 Row format: `{"pair": "uz-en", "source": "...", "target": "...", "origin": "..."}`. Only `pair`, `source` and `target`
 are used. Rows with an empty source/target, broken JSON, or an unknown pair (e.g. `uz-zh`) are skipped; the log shows how many per pair.
@@ -48,6 +49,7 @@ are used. Rows with an empty source/target, broken JSON, or an unknown pair (e.g
 3. **Overlap removal**: a train row is dropped if its source (lower-cased) equals any source or target in dev or test.
 4. Shuffle train (seed `train.seed`), then apply `max_rows_per_pair`, then `max_train_rows`.
 5. Dev: shuffle and keep `dev_samples_per_pair` rows of each direction.
+6. **Auto source** (`auto_source_ratio` > 0): that share of train and dev rows, chosen at random (seed), gets the prompt without the source language. Dev loss then covers both prompts.
 
 The log prints the row count per direction for train and dev, so you can check the mix.
 

@@ -128,6 +128,35 @@ tail -f /data/experiments/riva/logs/test.log
 
 `--samples 500` sets rows per direction (default 200).
 
+## Auto source: the model detects the input language
+
+The first model always needs the source language in the prompt (`...translating text from Uzbek to English.`).
+[config_auto.yaml](config_auto.yaml) continues training it so it also works **without** it
+(`...translating text to English.`): half of the rows (`data.auto_source_ratio: 0.5`) get that prompt, so the model
+learns to recognize the input language from the text and still works with the normal prompt.
+
+```sh
+cd /workspace/scientific-research/ttt/riva_multilingual_train
+ls /data/experiments/riva_multilingual/final           # the starting model must exist
+bash run.sh --config config_auto.yaml                  # ~0.5 epoch, lr 5e-6, ~6 h on one B200
+tail -f /data/experiments/riva_multilingual_auto/logs/train.log
+```
+The log shows `auto source prompt (no source language): ... train, ... dev rows (50%)`. Output:
+`/data/experiments/riva_multilingual_auto/` (the first model stays untouched).
+
+If loading the tokenizer fails (the GGUF guide changed `final/tokenizer_config.json`), restore the original first:
+`cp /data/experiments/riva_multilingual/final/tokenizer_config.json.bak /data/experiments/riva_multilingual/final/tokenizer_config.json`.
+
+Test both prompts and compare with the first model:
+```sh
+cd ../riva_test
+T=/data/datasets/ttt/multilingual/test.jsonl; P="uz-ru ru-uz uz-en en-uz en-ru ru-en"
+bash run.sh --model /data/experiments/riva_multilingual_auto/final --test-file $T --pairs $P --samples 500 --prompt both --out multi_auto.json
+python riva_test.py --score multi_finetuned.json multi_auto.json
+```
+Rows ending in ` auto` are the prompt without the source language. Good result: the normal rows stay about as good as
+the first model's, and the ` auto` rows come close to them. GGUF: [GGUF.md](GGUF.md) section 10, then `riva auto en "..."`.
+
 ## Output
 
 Everything goes to `/data/experiments/riva_multilingual/` (`output.dir`):

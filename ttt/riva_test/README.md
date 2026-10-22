@@ -16,6 +16,9 @@ A relative `--out` is saved under `/data/experiments/riva/results/`. Options:
 - `--samples 500`: rows per direction
 - `--pairs ru-uz`: one direction only
 - `--batch-size 256`
+- `--prompt auto`: leave the source language out of the prompt (the model has to detect it; for a model trained with
+  `data.auto_source_ratio`, see `ttt/riva_multilingual_train/config_auto.yaml`). `--prompt both` runs both; the
+  score table then has extra rows like `uz-en auto` and `mean auto`.
 
 The test file is JSONL with rows `{"pair": "uz-ru" | "ru-uz", "source": ..., "target": ...}`. All six uz / ru / en
 directions work (`--pairs uz-ru ru-uz uz-en en-uz en-ru ru-en`).

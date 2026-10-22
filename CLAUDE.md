@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Research scripts (not a package) for fine-tuning and benchmarking NVIDIA speech/translation models for Uzbek and nearby languages:
 
 - `stt/` — ASR with `nvidia/nemotron-3.5-asr-streaming-0.6b` (NeMo + Lightning). Multilingual: en, uz, ru, Karakalpak, ko.
-- `ttt/` — translation with `nvidia/Riva-Translate-4B-Instruct-v2` (transformers). `riva_train/` is Uzbek ↔ Russian; `riva_multilingual_train/` is a copy of it for uz/ru/en in all 6 directions with `auto` settings (pairs, max_len, batch size, bf16/fp16 by GPU arch, workers) and an alphabet filter for mislabeled rows.
+- `ttt/` — translation with `nvidia/Riva-Translate-4B-Instruct-v2` (transformers). `riva_train/` is Uzbek ↔ Russian; `riva_multilingual_train/` is a copy of it for uz/ru/en in all 6 directions with `auto` settings (pairs, max_len, batch size, bf16/fp16 by GPU arch, workers) and an alphabet filter for mislabeled rows. `data.auto_source_ratio` (used by its `config_auto.yaml`, which continues from the finished model) trains part of the rows with a prompt that omits the source language, so the model detects it; `riva_test.py --prompt auto|both` evaluates that.
 - `tts/` — empty placeholder.
 - `general/` — shared helpers (`config.py`, `jsonl.py`, `gpu_clean.py`).
 
