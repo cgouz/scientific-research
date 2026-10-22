@@ -134,8 +134,8 @@ riva() {  # riva <src> <tgt> "<text>" [model.gguf]     e.g. riva uz en "Salom, q
   local p="<s>System"$'\n'"You are an expert at translating text from ${L[$1]} to ${L[$2]}.</s>"$'\n'
   p+="<s>User"$'\n'"What is the ${L[$2]} translation of the sentence: $3</s>"$'\n'"<s>Assistant"$'\n'
   $LLAMA/build/bin/llama-completion -m "$m" -ngl 999 -no-cnv --temp 0 -n 256 --no-display-prompt \
-    --override-kv tokenizer.ggml.add_bos_token=bool:false -p "$p" 2>/dev/null
-  echo
+    --override-kv tokenizer.ggml.add_bos_token=bool:false -p "$p" 2>/dev/null \
+    | sed 's/ *\[end of text\]//' | sed '/^$/d'
 }
 ```
 
@@ -144,6 +144,8 @@ riva() {  # riva <src> <tgt> "<text>" [model.gguf]     e.g. riva uz en "Salom, q
 - `--temp 0`: greedy decoding, the same as `riva_test.py` (`do_sample=False`).
 - Generation stops at `</s>` (the EOS token), so there is no need for `--ignore-eos` or a reverse prompt.
 - `2>/dev/null` hides the loading log; remove it when something goes wrong.
+- The `sed` part removes llama.cpp's `[end of text]` marker (printed when the model stops at `</s>` by itself) and empty lines,
+  so only the translation is printed. A translation without that marker in the raw output hit the `-n 256` limit.
 
 Test every direction:
 ```sh
