@@ -7,6 +7,7 @@ Experiments with speech and translation models for Uzbek and nearby languages:
 | [stt/](stt/) | Speech-to-text (ASR): fine-tune and benchmark | `nvidia/nemotron-3.5-asr-streaming-0.6b` (NeMo) |
 | [ttt/](ttt/) | Text-to-text translation, Uzbek ↔ Russian | `nvidia/Riva-Translate-4B-Instruct-v2` (transformers) |
 | [tts/](tts/) | Text-to-speech | not started yet |
+| [translate_app/](translate_app/README.md) | Google Translate-style web page for the GGUF model (llama.cpp, GPU or CPU) | Riva GGUF |
 | [general/](general/README.md) | Shared helpers: GPU cleaner, config loading with `--set`, JSONL read/write | – |
 | [hugging_face/](hugging_face/setup.md) | Notes on the `hf` CLI: login, browsing and downloading datasets | – |
 
