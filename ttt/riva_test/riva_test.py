@@ -7,16 +7,22 @@ translated in the direction of its own "pair". Result: one row per sentence,
 written as a JSON list (--out *.json) or one row per line (--out *.jsonl).
 A relative --out goes under /data/experiments/riva/results/.
 
-Usage:
-  python riva_test.py --test-file /data/datasets/ttt/uz-ru/test.jsonl --out base.json
-  python riva_test.py --test-file ... --samples 500                  # 500 rows per direction
-  python riva_test.py --test-file ... --pairs ru-uz                  # one direction only
-  python riva_test.py --test-file /data/datasets/ttt/multilingual/test.jsonl --pairs uz-ru ru-uz uz-en en-uz en-ru ru-en
-  python riva_test.py --model /data/experiments/riva/final --test-file ... --out finetuned.json
-  bash run.sh --test-file ... --out base.json                      # same, in the background (nohup)
-  python riva_test.py --score base.json finetuned.json              # only compare existing results (no GPU)
+Usage (uz <-> ru model from ../riva_train):
+  python riva_test.py --test-file /data/datasets/ttt/uz-ru/test.jsonl --out base.json                 # base model
+  python riva_test.py --model /data/experiments/riva/final --test-file /data/datasets/ttt/uz-ru/test.jsonl --out finetuned.json
+  python riva_test.py --test-file /data/datasets/ttt/uz-ru/test.jsonl --samples 500 --pairs ru-uz    # 500 rows, one direction
 
-The prompt is identical to train_riva_uzru.py, so base and fine-tuned outputs are comparable.
+Usage (multilingual model from ../riva_multilingual_train, all 6 directions):
+  python riva_test.py --test-file /data/datasets/ttt/multilingual/test.jsonl --pairs uz-ru ru-uz uz-en en-uz en-ru ru-en \
+      --samples 500 --out multi_base.json
+  python riva_test.py --model /data/experiments/riva_multilingual/final --test-file /data/datasets/ttt/multilingual/test.jsonl \
+      --pairs uz-ru ru-uz uz-en en-uz en-ru ru-en --samples 500 --out multi_finetuned.json
+
+  bash run.sh <same arguments>                                      # same, in the background (nohup)
+  python riva_test.py --score multi_base.json multi_finetuned.json  # only compare existing results (no GPU)
+
+The prompt is identical to ../riva_train/train.py and ../riva_multilingual_train/train.py,
+so base and fine-tuned outputs are comparable.
 BLEU and chrF++ (sacrebleu) are printed per direction and saved to <out>.scores.json.
 Requires: torch transformers sacrebleu
 """

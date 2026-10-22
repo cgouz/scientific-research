@@ -2,6 +2,12 @@
 
 This guide continues from `riva_translate_4b_to_gguf_guide.md`.
 
+> **Correction (later finding):** sections 4–7 below used `llama-cli` with free-form prompts. In this llama.cpp version
+> `llama-cli` is a chat client that wraps every prompt in the GGUF's chat template, and the prompt also lacked the
+> training System line. That explains the weak results there (e.g. "choy" → "кофе"). For real tests use
+> `llama-completion -no-cnv` with the exact training prompt (sections 9–11 and the quick command summary).
+> The multilingual model has its own guide: `ttt/riva_multilingual_train/GGUF.md`.
+
 At this point the converted model already exists:
 
 ```text
@@ -55,6 +61,7 @@ Important binaries:
 
 ```text
 llama-cli
+llama-completion
 llama-server
 llama-quantize
 ```
@@ -176,9 +183,11 @@ cd /workspace/scientific-research/ttt
 grep -nE   'apply_chat_template|system|user|assistant|source|target|pair|prompt|messages'   riva_train/train.py
 ```
 
-The training script revealed the exact prompt structure:
+The training script revealed the exact prompt structure (`build_prompt` in `riva_train/train.py`):
 
 ```text
+<s>System
+You are an expert at translating text from {source_language} to {target_language}.</s>
 <s>User
 What is the {target_language} translation of the sentence: {source}</s>
 <s>Assistant
@@ -200,6 +209,8 @@ Translate this into Russian: ...
 It was trained on:
 
 ```text
+<s>System
+You are an expert at translating text from Uzbek to Russian.</s>
 <s>User
 What is the Russian translation of the sentence: {source}</s>
 <s>Assistant
@@ -208,6 +219,8 @@ What is the Russian translation of the sentence: {source}</s>
 For Uzbek → Russian:
 
 ```text
+<s>System
+You are an expert at translating text from Uzbek to Russian.</s>
 <s>User
 What is the Russian translation of the sentence: Bugun havo juda yaxshi.</s>
 <s>Assistant
@@ -216,6 +229,8 @@ What is the Russian translation of the sentence: Bugun havo juda yaxshi.</s>
 For Russian → Uzbek:
 
 ```text
+<s>System
+You are an expert at translating text from Russian to Uzbek.</s>
 <s>User
 What is the Uzbek translation of the sentence: Сегодня очень хорошая погода.</s>
 <s>Assistant
@@ -224,15 +239,16 @@ What is the Uzbek translation of the sentence: Сегодня очень хор�
 ## 10. Correct Uzbek → Russian test
 
 ```bash
-./build/bin/llama-cli   -m /data/experiments/riva/riva-translate-uz-ru-f16.gguf   -ngl 999   -st   --temp 0   -n 512   -p $'<s>User\nWhat is the Russian translation of the sentence: Bugun ertalab odatdagidan ancha erta uyg‘ondim. Tashqariga chiqqanimda havo salqin, osmon esa juda tiniq edi. Ishga ketishdan oldin bir piyola choy ichdim va kun davomida bajarishim kerak bo‘lgan ishlarni rejalashtirdim. Hozir yangi loyiha ustida ishlayapman. Bu loyiha o‘zbek va rus tillari o‘rtasida nutqni avtomatik tarjima qilishga mo‘ljallangan.</s>\n<s>Assistant\n'
+./build/bin/llama-completion   -m /data/experiments/riva/riva-translate-uz-ru-f16.gguf   -ngl 999   -no-cnv   --temp 0   --override-kv tokenizer.ggml.add_bos_token=bool:false   -n 512   -p $'<s>System\nYou are an expert at translating text from Uzbek to Russian.</s>\n<s>User\nWhat is the Russian translation of the sentence: Bugun ertalab odatdagidan ancha erta uyg‘ondim. Tashqariga chiqqanimda havo salqin, osmon esa juda tiniq edi. Ishga ketishdan oldin bir piyola choy ichdim va kun davomida bajarishim kerak bo‘lgan ishlarni rejalashtirdim. Hozir yangi loyiha ustida ishlayapman. Bu loyiha o‘zbek va rus tillari o‘rtasida nutqni avtomatik tarjima qilishga mo‘ljallangan.</s>\n<s>Assistant\n'
 ```
 
-The `$'...'` Bash syntax converts `\n` into real newline characters.
+The `$'...'` Bash syntax converts `\n` into real newline characters. `-no-cnv` sends the prompt as is (no chat template),
+and `--override-kv tokenizer.ggml.add_bos_token=bool:false` stops llama.cpp from adding a second `<s>` in front, as in training.
 
 ## 11. Correct Russian → Uzbek test
 
 ```bash
-./build/bin/llama-cli   -m /data/experiments/riva/riva-translate-uz-ru-f16.gguf   -ngl 999   -st   --temp 0   -n 256   -p $'<s>User\nWhat is the Uzbek translation of the sentence: Сегодня очень хорошая погода.</s>\n<s>Assistant\n'
+./build/bin/llama-completion   -m /data/experiments/riva/riva-translate-uz-ru-f16.gguf   -ngl 999   -no-cnv   --temp 0   --override-kv tokenizer.ggml.add_bos_token=bool:false   -n 256   -p $'<s>System\nYou are an expert at translating text from Russian to Uzbek.</s>\n<s>User\nWhat is the Uzbek translation of the sentence: Сегодня очень хорошая погода.</s>\n<s>Assistant\n'
 ```
 
 ## 12. Why exact prompt matching matters
@@ -240,15 +256,15 @@ The `$'...'` Bash syntax converts `\n` into real newline characters.
 During fine-tuning, the model repeatedly saw:
 
 ```text
+<s>System
+You are an expert at translating text from Uzbek to Russian.</s>
 <s>User
-What is the Russian translation of the sentence: ...
-</s>
+What is the Russian translation of the sentence: ...</s>
 <s>Assistant
-...
-</s>
+...</s>
 ```
 
-So for reliable evaluation, inference should use the same structure as:
+So for reliable evaluation, inference should use the same structure (including the System line) as:
 
 ```text
 riva_train/train.py
@@ -321,7 +337,7 @@ Confirmed:
 - CUDA inference works
 - Uzbek → Russian works
 - Russian → Uzbek is supported by training
-- exact fine-tuning prompt format is known
+- exact fine-tuning prompt format is known (System + User + Assistant, run with `llama-completion -no-cnv`)
 
 ## 15. Recommended next steps
 
@@ -367,11 +383,11 @@ cd /workspace/scientific-research/ttt/third_party/llama.cpp
 Uzbek → Russian:
 
 ```bash
-./build/bin/llama-cli   -m /data/experiments/riva/riva-translate-uz-ru-f16.gguf   -ngl 999   -st   --temp 0   -n 256   -p $'<s>User\nWhat is the Russian translation of the sentence: Men har kuni ertalab kitob o‘qiyman.</s>\n<s>Assistant\n'
+./build/bin/llama-completion   -m /data/experiments/riva/riva-translate-uz-ru-f16.gguf   -ngl 999   -no-cnv   --temp 0   --override-kv tokenizer.ggml.add_bos_token=bool:false   -n 256   -p $'<s>System\nYou are an expert at translating text from Uzbek to Russian.</s>\n<s>User\nWhat is the Russian translation of the sentence: Men har kuni ertalab kitob o‘qiyman.</s>\n<s>Assistant\n'
 ```
 
 Russian → Uzbek:
 
 ```bash
-./build/bin/llama-cli   -m /data/experiments/riva/riva-translate-uz-ru-f16.gguf   -ngl 999   -st   --temp 0   -n 256   -p $'<s>User\nWhat is the Uzbek translation of the sentence: Я каждое утро читаю книгу.</s>\n<s>Assistant\n'
+./build/bin/llama-completion   -m /data/experiments/riva/riva-translate-uz-ru-f16.gguf   -ngl 999   -no-cnv   --temp 0   --override-kv tokenizer.ggml.add_bos_token=bool:false   -n 256   -p $'<s>System\nYou are an expert at translating text from Russian to Uzbek.</s>\n<s>User\nWhat is the Uzbek translation of the sentence: Я каждое утро читаю книгу.</s>\n<s>Assistant\n'
 ```

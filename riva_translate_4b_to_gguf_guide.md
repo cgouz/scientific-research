@@ -577,6 +577,10 @@ ru-uz
 
 Since the model was trained for Uzbek ↔ Russian, the exact inference prompt/chat-template behavior should be tested before considering deployment complete.
 
+Later finding: the chat template is not used for this model. Run it with `llama-completion -no-cnv` and the exact
+training prompt (with the System line); see `riva_translate_4b_gguf_run_and_test_guide.md`. The multilingual model
+(uz / ru / en) is converted with `ttt/riva_multilingual_train/GGUF.md`.
+
 ---
 
 # Next Steps

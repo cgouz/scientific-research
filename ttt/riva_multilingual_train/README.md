@@ -14,7 +14,7 @@ but more is detected automatically:
 | GPUs | `run.sh` starts `torchrun` on every GPU that `nvidia-smi` shows |
 
 The values that were picked are written to `<output.dir>/config_used.yaml`. Every setting, and how epochs turn into
-steps, is explained in [CONFIG.md](CONFIG.md).
+steps, is explained in [CONFIG.md](CONFIG.md). Converting the trained model to GGUF (llama.cpp): [GGUF.md](GGUF.md).
 
 ## How to run
 
