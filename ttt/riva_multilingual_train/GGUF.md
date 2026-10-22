@@ -26,16 +26,34 @@ LLAMA=/workspace/scientific-research/ttt/third_party/llama.cpp
 
 ```sh
 source /workspace/gguf-venv/bin/activate
-unset PIP_CONSTRAINT LD_LIBRARY_PATH          # NVIDIA container variables that break the converter's CPU torch
+unset PIP_CONSTRAINT
 cd /workspace/scientific-research/ttt/third_party/llama.cpp
-python convert_hf_to_gguf.py --help | head -3   # must print the usage, no error
+env -u LD_LIBRARY_PATH python convert_hf_to_gguf.py --help | head -3   # must print the usage, no error
 ls build/bin/llama-completion build/bin/llama-quantize build/bin/llama-server
 ```
 
-If the `build/bin` files are missing, build once (~10 min):
+`LD_LIBRARY_PATH` is removed **only for the Python converter** (`env -u LD_LIBRARY_PATH python ...`): it points the
+converter's CPU torch at the container's NVIDIA torch libraries. Keep it for the llama.cpp binaries: in the NVIDIA
+container it also points to the CUDA libraries they need. If you already ran `unset LD_LIBRARY_PATH` in this shell,
+open a new shell for building and running llama.cpp.
+
+### Build llama.cpp with CUDA (once, if `build/bin` is missing)
+
+In a fresh shell (no `unset LD_LIBRARY_PATH`), ~5–10 min:
 ```sh
-cmake -B build -DGGML_CUDA=ON -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release -j$(nproc)
+cd /workspace/scientific-research/ttt/third_party/llama.cpp
+nvcc --version || export PATH=/usr/local/cuda/bin:$PATH     # nvcc must be found
+nvidia-smi --query-gpu=name,compute_cap --format=csv         # B200: 10.0 -> architecture 100
+
+cmake -B build -DGGML_CUDA=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_CUDA_ARCHITECTURES=100 \
+      -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_EXAMPLES=OFF
+cmake --build build --config Release -j$(nproc) --target llama-completion llama-quantize llama-server llama-cli
+ls build/bin
 ```
+- `CMAKE_CUDA_ARCHITECTURES=100` compiles only for the B200, which is much faster than all architectures. On another GPU
+  use its `compute_cap` without the dot (H100: `90`, A100: `80`), or leave the option out.
+- If cmake stops at OpenSSL, add `-DLLAMA_OPENSSL=OFF` (only needed for downloading models over HTTPS).
+- Check that CUDA is used: `./build/bin/llama-completion --list-devices` should list the B200.
 
 ## 2. Check the model
 
@@ -65,7 +83,7 @@ cfg["tokenizer_class"] = "PreTrainedTokenizerFast"
 json.dump(cfg, open(p, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
 print("new:", cfg["tokenizer_class"])
 PY
-python -c "
+env -u LD_LIBRARY_PATH python -c "
 from transformers import AutoTokenizer
 t = AutoTokenizer.from_pretrained('$MODEL', local_files_only=True)
 print(type(t).__name__, len(t), t.bos_token_id, t.eos_token_id, t.encode('Salom dunyo'))"
@@ -80,8 +98,8 @@ with `cp $MODEL/tokenizer_config.json.bak $MODEL/tokenizer_config.json` before H
 ```sh
 df -h /data                     # need ~25 GB free for F16 + Q8_0 + Q4_K_M
 
-python convert_hf_to_gguf.py $MODEL --outfile $OUT/riva-translate-multilingual-f16.gguf --outtype f16 --dry-run
-python convert_hf_to_gguf.py $MODEL --outfile $OUT/riva-translate-multilingual-f16.gguf --outtype f16
+env -u LD_LIBRARY_PATH python convert_hf_to_gguf.py $MODEL --outfile $OUT/riva-translate-multilingual-f16.gguf --outtype f16 --dry-run
+env -u LD_LIBRARY_PATH python convert_hf_to_gguf.py $MODEL --outfile $OUT/riva-translate-multilingual-f16.gguf --outtype f16
 ls -lh $OUT/*.gguf              # ~7.8G
 ```
 The dry run should end with `n_tensors = 308, total_size = 8.4G` and `Dry run, not writing files`.
