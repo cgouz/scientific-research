@@ -18,6 +18,7 @@ protobuf>=4.25               # needed by some sentencepiece tokenizers
 
 # --- Data ---------------------------------------------------------------
 datasets>=3.0                # tokenizing training data (ttt/riva_train)
+sacrebleu>=2.4               # BLEU / chrF++ scores (ttt/riva_test)
 huggingface_hub>=0.30        # downloads + `hf` CLI (uzlpc_to_manifest.py, hugging_face/setup.md)
 pandas>=2.0                  # CSV reading (uzlpc_to_manifest.py)
 pyyaml>=6.0                  # config (ttt/riva_train/config.yaml)

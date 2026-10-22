@@ -14,9 +14,11 @@ Usage:
   python riva_test.py --test-file /data/datasets/ttt/multilingual/test.jsonl --pairs uz-ru ru-uz uz-en en-uz en-ru ru-en
   python riva_test.py --model /data/experiments/riva/final --test-file ... --out finetuned.json
   bash run.sh --test-file ... --out base.json                      # same, in the background (nohup)
+  python riva_test.py --score base.json finetuned.json              # only compare existing results (no GPU)
 
 The prompt is identical to train_riva_uzru.py, so base and fine-tuned outputs are comparable.
-Requires: torch transformers
+BLEU and chrF++ (sacrebleu) are printed per direction and saved to <out>.scores.json.
+Requires: torch transformers sacrebleu
 """
 
 import argparse
@@ -120,8 +122,70 @@ def translate(tok, model, texts, pair, batch_size, max_new_tokens):
     return outs
 
 
+def score(results):
+    """{pair: {"rows", "bleu", "chrf"}}: sacrebleu corpus BLEU and chrF++ per direction, or None without sacrebleu."""
+    try:
+        import sacrebleu
+    except ImportError:
+        print('Scores skipped: pip install sacrebleu   (then: python riva_test.py --score <result files>)')
+        return None
+    by_pair = {}
+    for r in results:
+        by_pair.setdefault(r["pair"], []).append(r)
+    scores = {}
+    for pair, rs in by_pair.items():
+        hyp, ref = [r["translation"] or "" for r in rs], [[r["target"] for r in rs]]
+        scores[pair] = {"rows": len(rs),
+                        "bleu": round(sacrebleu.corpus_bleu(hyp, ref).score, 2),
+                        "chrf": round(sacrebleu.corpus_chrf(hyp, ref, word_order=2).score, 2)}
+    if len(scores) > 1:  # unweighted mean over directions
+        scores["mean"] = {k: round(sum(s[k] for s in scores.values()) / len(scores), 2) for k in ("bleu", "chrf")}
+        scores["mean"]["rows"] = sum(s["rows"] for p, s in scores.items() if p != "mean")
+    return scores
+
+
+def print_scores(named):
+    """Table of {name: scores}; with two result sets, the last column is the change from the first to the second."""
+    names = list(named)
+    pairs = sorted({p for s in named.values() for p in s if p != "mean"})
+    pairs += ["mean"] if any("mean" in s for s in named.values()) else []
+    delta = len(names) == 2
+    cols = names + (["change"] if delta else [])
+    print("\n" + f"{'':7}{'rows':>6}" + "".join(f" | {n[:15]:^15}" for n in cols))
+    print(f"{'':13}" + " | {:>6} {:>8}".format("BLEU", "chrF++") * len(cols))
+    for p in pairs:
+        cells = [named[n].get(p) for n in names]
+        rows = next((c["rows"] for c in cells if c), 0)
+        line = f"{p:<7}{rows:>6}"
+        for c in cells:
+            line += f" | {c['bleu']:>6.1f} {c['chrf']:>8.1f}" if c else f" | {'-':>6} {'-':>8}"
+        if delta and all(cells):
+            line += f" | {cells[1]['bleu'] - cells[0]['bleu']:>+6.1f} {cells[1]['chrf'] - cells[0]['chrf']:>+8.1f}"
+        print(line)
+    print()
+
+
+def result_path(p):
+    p = Path(p)
+    return p if p.is_absolute() or p.exists() else RESULTS_DIR / p
+
+
+def score_files(paths):
+    named = {}
+    for p in map(result_path, paths):
+        if not p.exists():
+            sys.exit(f"Result file not found: {p}")
+        text = p.read_text(encoding="utf-8")
+        results = [json.loads(l) for l in text.splitlines() if l.strip()] if p.suffix == ".jsonl" else json.loads(text)
+        s = score(results)
+        if s is None:
+            sys.exit(1)
+        named[p.stem] = s
+    print_scores(named)
+
+
 def main():
-    ap = argparse.ArgumentParser(description="Translate uz->ru and ru->uz test sentences with Riva-Translate.")
+    ap = argparse.ArgumentParser(description="Translate test sentences with Riva-Translate and score them (BLEU, chrF++).")
     ap.add_argument("--model", default=MODEL_ID, help="HF id or local folder (e.g. a fine-tuned final/)")
     ap.add_argument("--test-file", default=str(HERE / "test_data" / "test.jsonl"))
     ap.add_argument("--pairs", nargs="+", default=["uz-ru", "ru-uz"], choices=PAIRS)
@@ -132,7 +196,11 @@ def main():
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--out", default="riva_test.json",
                     help=f"result file (.json or .jsonl); relative paths go under {RESULTS_DIR}")
+    ap.add_argument("--score", nargs="+", metavar="RESULT",
+                    help="only score existing result files (no model), e.g. --score multi_base.json multi_finetuned.json")
     args = ap.parse_args()
+    if args.score:
+        return score_files(args.score)
 
     test_path = Path(args.test_file)
     if not test_path.exists():
@@ -168,6 +236,14 @@ def main():
         else:
             json.dump(results, f, indent=2, ensure_ascii=False)
     print(f"Saved {len(results)} rows: {out}")
+
+    scores = score(results)
+    if scores:
+        print_scores({out.stem: scores})
+        s_out = out.with_name(out.stem + ".scores.json")
+        s_out.write_text(json.dumps({"model": args.model, "test_file": str(test_path), "scores": scores},
+                                    indent=2, ensure_ascii=False), encoding="utf-8")
+        print(f"Saved scores: {s_out}")
 
 
 if __name__ == "__main__":
