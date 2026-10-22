@@ -128,10 +128,16 @@ ls -lh $OUT/*.gguf
 Paste this helper into the shell (bash). It builds the training prompt for any of the 6 directions:
 
 ```sh
-riva() {  # riva <src> <tgt> "<text>" [model.gguf]     e.g. riva uz en "Salom, qalaysiz?"
+riva() {  # riva <src|auto> <tgt> "<text>" [model.gguf]     e.g. riva uz en "Salom!"   riva auto en "Salom!"
   declare -A L=([uz]=Uzbek [ru]=Russian [en]=English)
-  local m=${4:-$OUT/riva-translate-multilingual-Q8_0.gguf}
-  local p="<s>System"$'\n'"You are an expert at translating text from ${L[$1]} to ${L[$2]}.</s>"$'\n'
+  local src=$1 m=${4:-$OUT/riva-translate-multilingual-Q8_0.gguf}
+  if [ "$src" = auto ]; then
+    src=$(python3 /workspace/scientific-research/ttt/riva_multilingual_train/detect_lang.py "$3")
+    echo "[$src -> $2]" >&2
+  fi
+  if [ -z "${L[$src]}" ] || [ -z "${L[$2]}" ]; then echo "languages: uz ru en (source also: auto)" >&2; return 1; fi
+  if [ "$src" = "$2" ]; then echo "$3"; return; fi          # already in the target language
+  local p="<s>System"$'\n'"You are an expert at translating text from ${L[$src]} to ${L[$2]}.</s>"$'\n'
   p+="<s>User"$'\n'"What is the ${L[$2]} translation of the sentence: $3</s>"$'\n'"<s>Assistant"$'\n'
   $LLAMA/build/bin/llama-completion -m "$m" -ngl 999 -no-cnv --temp 0 -n 256 --no-display-prompt \
     --override-kv tokenizer.ggml.add_bos_token=bool:false -p "$p" 2>/dev/null \
@@ -146,6 +152,17 @@ riva() {  # riva <src> <tgt> "<text>" [model.gguf]     e.g. riva uz en "Salom, q
 - `2>/dev/null` hides the loading log; remove it when something goes wrong.
 - The `sed` part removes llama.cpp's `[end of text]` marker (printed when the model stops at `</s>` by itself) and empty lines,
   so only the translation is printed. A translation without that marker in the raw output hit the `-n 256` limit.
+
+`auto` as the source detects the input language with [detect_lang.py](detect_lang.py) (alphabet plus Uzbek / English
+letters and words; no model, instant) and prints it as `[uz -> en]`. If the input is already in the target language,
+it is printed unchanged. For very short or mixed text (`OK`, names, numbers) give the source language explicitly.
+```sh
+riva auto en "Bugun havo juda yaxshi."          # [uz -> en]
+riva auto uz "Сегодня очень хорошая погода."    # [ru -> uz]
+riva auto ru "I drank a cup of tea this morning."   # [en -> ru]
+riva auto ru "Бугун ҳаво жуда яхши."            # [uz -> ru]  (Uzbek in Cyrillic)
+python3 /workspace/scientific-research/ttt/riva_multilingual_train/detect_lang.py -v "Salom, qalaysiz?"   # only detect, with scores
+```
 
 Test every direction:
 ```sh
