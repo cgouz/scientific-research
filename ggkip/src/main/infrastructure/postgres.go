@@ -59,14 +59,17 @@ func OpenPostgres(ctx context.Context, cfg DBConfig, log *slog.Logger) (*sql.DB,
 	}
 }
 
-// InTx runs fn in a transaction, rolling back when fn returns an error.
+// InTx runs fn in a transaction, rolling back when fn returns an error or
+// panics. The panic goes on to the caller, but the connection is back in
+// the pool: callers recover panics, so a leaked transaction would hold its
+// locks and connection until the process ends.
 func InTx(ctx context.Context, db *sql.DB, fn func(tx *sql.Tx) error) error {
 	tx, err := db.BeginTx(ctx, nil)
 	if err != nil {
 		return fmt.Errorf("begin tx: %w", err)
 	}
+	defer tx.Rollback() // no-op (sql.ErrTxDone) after a successful Commit
 	if err := fn(tx); err != nil {
-		tx.Rollback()
 		return err
 	}
 	if err := tx.Commit(); err != nil {
