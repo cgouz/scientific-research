@@ -15,6 +15,7 @@ import (
 
 	"golang.org/x/time/rate"
 
+	"ggkip/src/main/infrastructure"
 	"ggkip/src/main/modules/crawler/model"
 )
 
@@ -106,15 +107,22 @@ func (c *Crawler) Crawl(ctx context.Context, target model.Target, handle Handler
 				if !ok {
 					return
 				}
-				res := fetcher.FetchPage(ctx, it.url)
-				res.Depth = it.depth
-				if ctx.Err() == nil {
-					links := handle(ctx, res)
-					if ref, err := url.Parse(res.FinalURL); err == nil {
-						for _, l := range links {
-							enqueue(l, ref, it.depth+1)
+				// A panic (a broken page, a bug in the handler) fails only this URL: the
+				// worker goes on and f.done() still runs, so the crawl cannot hang.
+				err := infrastructure.Protect(func() {
+					res := fetcher.FetchPage(ctx, it.url)
+					res.Depth = it.depth
+					if ctx.Err() == nil {
+						links := handle(ctx, res)
+						if ref, err := url.Parse(res.FinalURL); err == nil {
+							for _, l := range links {
+								enqueue(l, ref, it.depth+1)
+							}
 						}
 					}
+				})
+				if err != nil {
+					infrastructure.LogPanic(c.log, "crawl worker panicked, url skipped", err, "url", it.url)
 				}
 				f.done()
 			}

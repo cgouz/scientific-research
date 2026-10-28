@@ -112,9 +112,10 @@ func run() error {
 		DB: db, Sites: sites, Countries: countries, Organizations: organizations, Categories: categories,
 		Crawler: crawler, Normalizer: normalizer, TaxonomySettings: settings.Taxonomy,
 		Filter:     extractorservice.Filter{MinChars: settings.Crawler.MinTextChars, MinWords: settings.Crawler.MinTextWords},
-		LLMWorkers: cfg.LLM.Workers, MaxSites: cfg.Scheduler.MaxSites, Log: log,
+		LLMWorkers: cfg.LLM.Workers, MaxSites: cfg.Crawl.MaxSites, Log: log,
 	})
 	crawls := crawlservice.New(crawlrepo.New(db), sites, runner)
+	batches := crawlservice.NewBatchService(ctx, crawlrepo.NewBatchRepo(db), sites, runner, cfg.Crawl.MaxSitesPerCountry, log)
 
 	// HTTP API.
 	mux := http.NewServeMux()
@@ -125,21 +126,25 @@ func run() error {
 	categoryhandler.New(categories, log).Register(mux)
 	sitehandler.New(sites, log).Register(mux)
 	pagehandler.New(pages, log).Register(mux)
-	crawlhandler.New(crawls, log).Register(mux)
+	crawlhandler.New(crawls, batches, log).Register(mux)
 	recordhandler.New(records, log).Register(mux)
 
 	log.Info("ggkip starting", "env", cfg.AppEnv, "llm_runtime", llmClient.Runtime(), "llm_model", llmClient.Model(),
-		"scheduler", cfg.Scheduler.Enabled)
+		"scheduler", cfg.Scheduler.Enabled, "crawl_max_sites", cfg.Crawl.MaxSites,
+		"crawl_max_sites_per_country", cfg.Crawl.MaxSitesPerCountry)
 
 	var wg sync.WaitGroup
 	if cfg.Scheduler.Enabled {
 		scheduler := app.NewScheduler(sites, runner, cfg.Scheduler.Interval, cfg.Scheduler.MaxSites, log)
 		wg.Go(func() { scheduler.Run(ctx) })
 	}
-	serverErr := app.RunServer(ctx, cfg.HTTPAddr(), app.WithLogging(mux, log), log)
+	serverErr := app.RunServer(ctx, cfg.HTTPAddr(), app.WithLogging(app.WithRecovery(mux, log), log), log)
 	stop() // the server can also stop on its own (e.g. port in use); stop everything else too
 
+	// Order matters: the server is down (no new batch can start), then the
+	// scheduler, then a running batch, then the runs started outside a batch.
 	wg.Wait()
+	batches.Wait()
 	runner.Wait()
 	log.Info("ggkip stopped")
 	return serverErr
@@ -173,6 +178,11 @@ func prepareDatabase(ctx context.Context, cfg infrastructure.Config, db *sql.DB,
 		return err
 	} else if n > 0 {
 		log.Warn("closed crawl runs interrupted by a previous stop", "count", n)
+	}
+	if n, err := crawlrepo.NewBatchRepo(db).FailInterrupted(ctx); err != nil {
+		return err
+	} else if n > 0 {
+		log.Warn("closed crawl batches interrupted by a previous stop", "count", n)
 	}
 	return nil
 }

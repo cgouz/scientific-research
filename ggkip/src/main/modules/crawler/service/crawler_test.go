@@ -260,3 +260,46 @@ func TestCrawlStopsWhenRobotsUnavailable(t *testing.T) {
 }
 
 func unlimited() *rate.Limiter { return rate.NewLimiter(rate.Inf, 1) }
+
+func TestCrawlSurvivesPanickingHandler(t *testing.T) {
+	srv, _ := testSite(t)
+	u, _ := url.Parse(srv.URL)
+	var mu sync.Mutex
+	seen := map[string]bool{}
+	done := make(chan error, 1)
+	go func() {
+		_, err := newTestCrawler().Crawl(context.Background(), model.Target{Domain: u.Hostname(), BaseURL: srv.URL + "/"},
+			func(ctx context.Context, res *model.FetchResult) []string {
+				path := strings.TrimPrefix(res.URL, srv.URL)
+				mu.Lock()
+				seen[path] = true
+				mu.Unlock()
+				if path == "/a" {
+					var m map[string]int
+					m[path]++ // a handler bug on one page
+				}
+				var links []string
+				for _, m := range hrefRe.FindAllStringSubmatch(string(res.Body), -1) {
+					links = append(links, m[1])
+				}
+				return links
+			})
+		done <- err
+	}()
+	select {
+	case err := <-done:
+		if err != nil {
+			t.Fatal(err)
+		}
+	case <-time.After(5 * time.Second):
+		t.Fatal("crawl hangs after a handler panic: the worker must still mark its URL done")
+	}
+	for _, path := range []string{"/", "/a", "/b", "/from-sitemap"} {
+		if !seen[path] {
+			t.Errorf("%s not crawled: one panicking page must not stop the others", path)
+		}
+	}
+	if seen["/deep"] {
+		t.Error("/deep is linked only from the page that panicked, so it must not be reached")
+	}
+}

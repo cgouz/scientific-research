@@ -9,6 +9,7 @@ import (
 type CrawlRunResponse struct {
 	ID             int64      `json:"id"`
 	SiteID         int64      `json:"site_id"`
+	BatchID        *int64     `json:"batch_id"`
 	Status         string     `json:"status"`
 	StartedAt      *time.Time `json:"started_at"`
 	FinishedAt     *time.Time `json:"finished_at"`
@@ -27,7 +28,7 @@ type CrawlRunResponse struct {
 func FromModel(r model.CrawlRun) CrawlRunResponse {
 	c := r.Counters
 	return CrawlRunResponse{
-		ID: r.ID, SiteID: r.SiteID, Status: r.Status, StartedAt: r.StartedAt, FinishedAt: r.FinishedAt,
+		ID: r.ID, SiteID: r.SiteID, BatchID: r.BatchID, Status: r.Status, StartedAt: r.StartedAt, FinishedAt: r.FinishedAt,
 		PagesFound: c.PagesFound, PagesNew: c.PagesNew, PagesChanged: c.PagesChanged,
 		PagesUnchanged: c.PagesUnchanged, PagesSkipped: c.PagesSkipped, PagesFailed: c.PagesFailed,
 		RecordsCreated: c.RecordsCreated, RecordsUpdated: c.RecordsUpdated, ErrorMessage: r.ErrorMessage,

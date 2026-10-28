@@ -71,6 +71,26 @@ func TestConfigEnvFileAndPrecedence(t *testing.T) {
 	}
 }
 
+func TestConfigCrawlLimits(t *testing.T) {
+	cfg, err := loadConfig(nil, lookup(map[string]string{"SCHEDULER_MAX_SITES": "3"}))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if cfg.Crawl.MaxSites != 3 || cfg.Crawl.MaxSitesPerCountry != 4 {
+		t.Fatalf("CRAWL_MAX_SITES must default to SCHEDULER_MAX_SITES (old setups): %+v", cfg.Crawl)
+	}
+	cfg, err = loadConfig(nil, lookup(map[string]string{"CRAWL_MAX_SITES": "16", "CRAWL_MAX_SITES_PER_COUNTRY": "8"}))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if cfg.Crawl.MaxSites != 16 || cfg.Crawl.MaxSitesPerCountry != 8 {
+		t.Fatalf("crawl limits not read: %+v", cfg.Crawl)
+	}
+	if _, err := loadConfig(nil, lookup(map[string]string{"CRAWL_MAX_SITES_PER_COUNTRY": "0"})); err == nil {
+		t.Fatal("expected error for CRAWL_MAX_SITES_PER_COUNTRY=0")
+	}
+}
+
 func TestConfigRejectsBadValues(t *testing.T) {
 	if _, err := loadConfig(nil, lookup(map[string]string{"HTTP_PORT": "abc"})); err == nil {
 		t.Fatal("expected error for non-integer HTTP_PORT")

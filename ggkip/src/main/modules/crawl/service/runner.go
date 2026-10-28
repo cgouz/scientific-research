@@ -98,36 +98,82 @@ func NewRunner(ctx context.Context, deps RunnerDeps) *Runner {
 // Start creates the crawl run row and crawls the site in the background.
 // It returns ErrAlreadyRunning or ErrBusy instead of waiting.
 func (r *Runner) Start(site sitemodel.Site) (model.CrawlRun, error) {
-	r.mu.Lock()
-	if r.running[site.ID] {
-		r.mu.Unlock()
-		return model.CrawlRun{}, ErrAlreadyRunning
+	release, err := r.acquire(r.ctx, site.ID, false)
+	if err != nil {
+		return model.CrawlRun{}, err
 	}
-	select {
-	case r.sem <- struct{}{}:
-	default:
-		r.mu.Unlock()
-		return model.CrawlRun{}, ErrBusy
-	}
-	r.running[site.ID] = true
-	r.mu.Unlock()
-
-	release := func() {
-		r.mu.Lock()
-		delete(r.running, site.ID)
-		r.mu.Unlock()
-		<-r.sem
-	}
-	run, err := r.runs.Create(r.ctx, site.ID, time.Now())
+	run, err := r.runs.Create(r.ctx, site.ID, nil, time.Now())
 	if err != nil {
 		release()
 		return run, err
 	}
 	r.wg.Go(func() {
 		defer release()
-		r.execute(site, run)
+		r.execute(r.ctx, site, run)
 	})
 	return run, nil
+}
+
+// Run crawls the site in the calling goroutine and returns the finished run.
+// Unlike Start it waits for a free crawl slot (until ctx ends), and ctx also
+// cancels the crawl itself. batchID links the run to a crawl batch.
+func (r *Runner) Run(ctx context.Context, site sitemodel.Site, batchID *int64) (model.CrawlRun, error) {
+	release, err := r.acquire(ctx, site.ID, true)
+	if err != nil {
+		return model.CrawlRun{}, err
+	}
+	defer release()
+	run, err := r.runs.Create(ctx, site.ID, batchID, time.Now())
+	if err != nil {
+		return run, err
+	}
+	return r.execute(ctx, site, run), nil
+}
+
+// acquire marks the site as running and takes one of the MaxSites crawl
+// slots. With wait it queues for a slot until ctx ends; without, a full
+// runner is ErrBusy. The site stays marked while it waits, so nothing else
+// starts it meanwhile. release frees both.
+func (r *Runner) acquire(ctx context.Context, siteID int64, wait bool) (release func(), err error) {
+	r.mu.Lock()
+	if r.running[siteID] {
+		r.mu.Unlock()
+		return nil, ErrAlreadyRunning
+	}
+	r.running[siteID] = true
+	r.mu.Unlock()
+
+	unmark := func() {
+		r.mu.Lock()
+		delete(r.running, siteID)
+		r.mu.Unlock()
+	}
+	if wait {
+		took := false
+		select {
+		case r.sem <- struct{}{}:
+			took = true
+		case <-ctx.Done():
+		}
+		if err := ctx.Err(); err != nil { // select picks at random when both are ready
+			if took {
+				<-r.sem
+			}
+			unmark()
+			return nil, err
+		}
+	} else {
+		select {
+		case r.sem <- struct{}{}:
+		default:
+			unmark()
+			return nil, ErrBusy
+		}
+	}
+	return func() {
+		unmark()
+		<-r.sem
+	}, nil
 }
 
 // Wait blocks until every started run has finished.
@@ -153,31 +199,45 @@ type run struct {
 	jobs     chan pageJob
 }
 
-func (r *Runner) execute(site sitemodel.Site, crawlRun model.CrawlRun) {
-	ctx := r.ctx
+// execute crawls one site and closes its run row; it never panics. Panics
+// are handled in three layers: a page (handlePageSafe, and the crawler's own
+// worker guard) fails only that page, an LLM job (processJob) fails only that
+// page, and anything else in the crawl (crawlSite) fails the run. The guard
+// here covers the bookkeeping, so a run row can never stay 'running'.
+func (r *Runner) execute(ctx context.Context, site sitemodel.Site, crawlRun model.CrawlRun) model.CrawlRun {
 	log := r.deps.Log.With("site_id", site.ID, "crawl_run_id", crawlRun.ID, "domain", site.Domain)
+	result := crawlRun
+	closed := false
+	err := infrastructure.Protect(func() { result = r.executeRun(ctx, site, crawlRun, log, &closed) })
+	if err == nil {
+		return result
+	}
+	infrastructure.LogPanic(log, "crawl run panicked", err)
+	if !closed {
+		finishCtx, cancel := context.WithTimeout(context.WithoutCancel(ctx), 15*time.Second)
+		defer cancel()
+		now, msg := time.Now(), err.Error()
+		ferr := infrastructure.Protect(func() {
+			if err := r.runs.Finish(finishCtx, crawlRun.ID, model.StatusFailed, now, result.Counters, &msg); err != nil {
+				log.Error("could not finish crawl run", "error", err)
+			}
+		})
+		if ferr != nil {
+			infrastructure.LogPanic(log, "closing a panicked crawl run panicked too", ferr)
+		}
+		result.Status, result.FinishedAt, result.ErrorMessage = model.StatusFailed, &now, &msg
+	}
+	return result
+}
+
+func (r *Runner) executeRun(ctx context.Context, site sitemodel.Site, crawlRun model.CrawlRun, log *slog.Logger, closed *bool) model.CrawlRun {
 	start := time.Now()
 	log.Info("crawl started")
 
-	rn, err := r.prepare(ctx, site, crawlRun.ID)
-	var crawlErr error
-	if err != nil {
-		crawlErr = err
-	} else {
-		var workers sync.WaitGroup
-		for range r.deps.LLMWorkers {
-			workers.Go(func() {
-				for job := range rn.jobs {
-					r.normalizeAndStore(ctx, rn, job, log)
-				}
-			})
-		}
-		_, crawlErr = r.deps.Crawler.Crawl(ctx, crawlermodel.Target{Domain: site.Domain, BaseURL: site.BaseURL},
-			func(ctx context.Context, res *crawlermodel.FetchResult) []string {
-				return r.handlePage(ctx, rn, res, log)
-			})
-		close(rn.jobs)
-		workers.Wait()
+	rn, crawlErr := r.crawlSite(ctx, site, crawlRun.ID, log)
+	var panicErr *infrastructure.PanicError
+	if errors.As(crawlErr, &panicErr) {
+		infrastructure.LogPanic(log, "crawl panicked, run failed", crawlErr)
 	}
 
 	var counters model.Counters
@@ -203,9 +263,13 @@ func (r *Runner) execute(site sitemodel.Site, crawlRun model.CrawlRun) {
 		msg := crawlErr.Error()
 		errMsg = &msg
 	}
-	if err := r.runs.Finish(finishCtx, crawlRun.ID, status, finished, counters, errMsg); err != nil {
+	err := r.runs.Finish(finishCtx, crawlRun.ID, status, finished, counters, errMsg)
+	if err != nil {
 		log.Error("could not finish crawl run", "error", err)
 	}
+	*closed = true // even when Finish failed: a second attempt would fail the same way
+	result := crawlRun
+	result.Status, result.FinishedAt, result.Counters, result.ErrorMessage = status, &finished, counters, errMsg
 	switch status {
 	case model.StatusFailed:
 		err = r.deps.Sites.RecordFailure(finishCtx, site, finished, crawlErr)
@@ -223,6 +287,61 @@ func (r *Runner) execute(site sitemodel.Site, crawlRun model.CrawlRun) {
 		"pages_unchanged", counters.PagesUnchanged, "pages_skipped", counters.PagesSkipped,
 		"pages_failed", counters.PagesFailed, "records_created", counters.RecordsCreated,
 		"records_updated", counters.RecordsUpdated, "error", crawlErr)
+	return result
+}
+
+// crawlSite runs prepare → crawl → LLM workers. A panic in this goroutine
+// (prepare, robots.txt, sitemaps) becomes the run's error; panics in the
+// crawl and LLM workers are handled where they happen and fail one page.
+func (r *Runner) crawlSite(ctx context.Context, site sitemodel.Site, runID int64, log *slog.Logger) (rn *run, err error) {
+	defer infrastructure.RecoverAsError(&err)
+	if rn, err = r.prepare(ctx, site, runID); err != nil {
+		return rn, err
+	}
+	var workers sync.WaitGroup
+	for range r.deps.LLMWorkers {
+		workers.Go(func() {
+			for job := range rn.jobs {
+				r.processJob(ctx, rn, job, log)
+			}
+		})
+	}
+	// Deferred so it also runs after a panic, and before RecoverAsError
+	// (defers run last-in first-out): every LLM worker has exited on return.
+	defer func() {
+		close(rn.jobs)
+		workers.Wait()
+	}()
+	_, err = r.deps.Crawler.Crawl(ctx, crawlermodel.Target{Domain: site.Domain, BaseURL: site.BaseURL},
+		func(ctx context.Context, res *crawlermodel.FetchResult) []string {
+			return r.handlePageSafe(ctx, rn, res, log)
+		})
+	return rn, err
+}
+
+// handlePageSafe is handlePage behind a recover: a page that makes the
+// extractor (or anything else) panic counts as failed and gives no links.
+func (r *Runner) handlePageSafe(ctx context.Context, rn *run, res *crawlermodel.FetchResult, log *slog.Logger) (links []string) {
+	if err := infrastructure.Protect(func() { links = r.handlePage(ctx, rn, res, log) }); err != nil {
+		rn.counters.PagesFailed.Add(1)
+		infrastructure.LogPanic(log, "page handler panicked, page failed", err, "url", res.URL)
+		return nil
+	}
+	return links
+}
+
+// processJob normalizes and stores one page. A panic fails only that page and
+// the worker keeps reading the queue; a dead worker could block the crawl,
+// which waits for room in the queue.
+func (r *Runner) processJob(ctx context.Context, rn *run, job pageJob, log *slog.Logger) {
+	if err := infrastructure.Protect(func() { r.normalizeAndStore(ctx, rn, job, log) }); err != nil {
+		rn.counters.PagesFailed.Add(1)
+		infrastructure.LogPanic(log, "llm worker panicked, page failed", err, "page_id", job.page.ID, "url", job.url)
+		// guarded too: whatever broke may break this call as well, and the worker must survive
+		if err := infrastructure.Protect(func() { r.pages.SetStatus(ctx, job.page.ID, pagemodel.StatusFailed) }); err != nil {
+			infrastructure.LogPanic(log, "could not mark page failed", err, "page_id", job.page.ID)
+		}
+	}
 }
 
 func (r *Runner) prepare(ctx context.Context, site sitemodel.Site, runID int64) (*run, error) {

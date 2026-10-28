@@ -9,6 +9,7 @@ import (
 type CrawlRun struct {
 	ID           int64
 	SiteID       int64
+	BatchID      *int64 // set when the run belongs to a crawl batch
 	Status       string
 	StartedAt    *time.Time
 	FinishedAt   *time.Time
@@ -54,8 +55,9 @@ func (c *LiveCounters) Snapshot() Counters {
 }
 
 type ListFilter struct {
-	SiteID *int64
-	Status *string
-	Cursor int64
-	Limit  int
+	SiteID  *int64
+	BatchID *int64
+	Status  *string
+	Cursor  int64
+	Limit   int
 }

@@ -5,7 +5,10 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+	"strings"
 	"time"
+
+	"github.com/lib/pq"
 
 	"ggkip/src/main/infrastructure"
 	"ggkip/src/main/modules/site/model"
@@ -80,6 +83,32 @@ func (r *Repo) Due(ctx context.Context, now time.Time, limit int) ([]model.Site,
 		  AND (next_crawl_at IS NULL OR next_crawl_at <= $1)
 		ORDER BY next_crawl_at NULLS FIRST, id
 		LIMIT $2`, now, limit)
+}
+
+// Crawlable returns active official sites whose country is active, by country
+// then id, regardless of next_crawl_at. countryIDs narrows it (empty = all).
+func (r *Repo) Crawlable(ctx context.Context, countryIDs []int64) ([]model.Site, error) {
+	q := `
+		SELECT ` + siteColumns("s.") + ` FROM sites s
+		JOIN countries c ON c.id = s.country_id
+		WHERE s.status = 'active'
+		  AND s.is_official = TRUE
+		  AND c.is_active = TRUE`
+	var args []any
+	if len(countryIDs) > 0 {
+		q += ` AND s.country_id = ANY($1)`
+		args = append(args, pq.Array(countryIDs))
+	}
+	return r.query(ctx, q+` ORDER BY s.country_id, s.id`, args...)
+}
+
+// siteColumns is columns with every name prefixed (for queries with a join).
+func siteColumns(prefix string) string {
+	names := strings.Split(columns, ",")
+	for i, n := range names {
+		names[i] = prefix + strings.TrimSpace(n)
+	}
+	return strings.Join(names, ", ")
 }
 
 func (r *Repo) MarkSuccess(ctx context.Context, id int64, at, next time.Time) error {

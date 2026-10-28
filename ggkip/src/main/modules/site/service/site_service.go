@@ -35,6 +35,12 @@ func (s *Service) Due(ctx context.Context, limit int) ([]model.Site, error) {
 	return s.repo.Due(ctx, s.now(), limit)
 }
 
+// Crawlable returns every active official site of an active country,
+// ignoring next_crawl_at. countryIDs narrows it to those countries (empty = all).
+func (s *Service) Crawlable(ctx context.Context, countryIDs []int64) ([]model.Site, error) {
+	return s.repo.Crawlable(ctx, countryIDs)
+}
+
 // RecordSuccess sets last_crawled_at = last_success_at = at and schedules the
 // next crawl one interval later.
 func (s *Service) RecordSuccess(ctx context.Context, site model.Site, at time.Time) error {

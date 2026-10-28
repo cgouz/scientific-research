@@ -6,6 +6,7 @@ import (
 	"log/slog"
 	"time"
 
+	"ggkip/src/main/infrastructure"
 	crawlmodel "ggkip/src/main/modules/crawl/model"
 	crawlservice "ggkip/src/main/modules/crawl/service"
 	sitemodel "ggkip/src/main/modules/site/model"
@@ -38,12 +39,20 @@ func (s *Scheduler) Run(ctx context.Context) {
 	ticker := time.NewTicker(s.interval)
 	defer ticker.Stop()
 	for {
-		s.Tick(ctx)
+		s.safeTick(ctx)
 		select {
 		case <-ctx.Done():
 			return
 		case <-ticker.C:
 		}
+	}
+}
+
+// safeTick is Tick behind a recover: one bad tick is logged and the
+// scheduler keeps running on the next one.
+func (s *Scheduler) safeTick(ctx context.Context) {
+	if err := infrastructure.Protect(func() { s.Tick(ctx) }); err != nil {
+		infrastructure.LogPanic(s.log, "scheduler tick panicked", err)
 	}
 }
 

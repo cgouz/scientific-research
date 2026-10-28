@@ -24,6 +24,17 @@ docker run -d --name ggkip-pg -e POSTGRES_USER=ggkip -e POSTGRES_PASSWORD=ggkip 
 go run ./src/main --env-file src/resources/env/local.env --llm-runtime=vllm
 ```
 
+The [Makefile](Makefile) wraps the usual commands (`make` lists them):
+
+```sh
+make db-up                                        # PostgreSQL in Docker
+make run                                          # foreground, ENV=src/resources/env/local.env
+make start ENV=src/resources/env/llamacpp.env     # background, log in logs/ggkip.log (LOG=)
+make status | make logs | make stop | make restart
+make batch [COUNTRIES=242,1] | make batch-status ID=1 | make batch-cancel ID=1 | make runs BATCH=1
+make check                                        # gofmt, vet, race tests, build
+```
+
 On start the app runs pending migrations, loads the seed data (when
 `SEED_ON_START=true`) and starts the scheduler and the HTTP API on `HTTP_PORT`
 (8090). Stop it with Ctrl-C: running crawls are cancelled and recorded as
@@ -91,7 +102,9 @@ Only repositories run SQL. Handlers call services; services own the business rul
   marked `failed`. It is never stored.
 - **Scheduling.** Success sets `next_crawl_at = now + crawl_interval_sec`.
   Failure stores `last_error` and retries after `SCHEDULER_FAILURE_RETRY_SEC`
-  (capped by the interval). At most `SCHEDULER_MAX_SITES` crawl at once.
+  (capped by the interval). At most `CRAWL_MAX_SITES` sites crawl at once
+  (scheduler, manual triggers and batches together; it defaults to
+  `SCHEDULER_MAX_SITES`), and at most `LLM_WORKERS` pages are at the LLM.
 - **Crawling.** It stays on the site's domain and `www.` host, honours robots.txt
   (a 5xx or unreachable robots.txt stops the crawl, as RFC 9309 says), meta
   `noindex`/`nofollow` and `Crawl-delay`, and stops after `max_pages_per_run`
@@ -101,7 +114,13 @@ Only repositories run SQL. Handlers call services; services own the business rul
   files are the source of truth: a site set inactive by hand becomes active
   again on the next seeded start. Crawl state columns are never touched.
   `states.json` has no table yet and is not loaded.
-- Runs left `running` by a crashed process are closed as `failed` at startup.
+- **Panics never stop the app.** A panic is recovered where it happens, logged
+  with its stack (`stack=`), and fails only the smallest unit: a page in a
+  crawl worker or LLM worker (`pages_failed`), a site's run (`failed`, with
+  `panic: …` in `error_message`), one site of a batch, one scheduler tick, or
+  one HTTP request (500). Every level waits for the goroutines it started, so
+  a crawl cannot hang on a worker that died and no slot leaks.
+- Runs and batches left `running` by a crashed process are closed as `failed` at startup.
   The "already running" check is in memory, so run one instance at a time.
 
 ## HTTP API
@@ -115,7 +134,10 @@ Only repositories run SQL. Handlers call services; services own the business rul
 | `GET /v1/categories` `/{id}` | `?parent_id`, `?top_level=true`, `?tree=true` |
 | `GET /v1/sites` `/{id}` | `?country_id`, `?organization_id`, `?status` |
 | `POST /v1/sites/{id}/crawl` | 202 + crawl run; 409 if running, 503 if at capacity |
-| `GET /v1/crawl-runs` `/{id}` | `?site_id`, `?status` |
+| `POST /v1/crawl-batches` | crawl every active country at once (see below); body `{"country_ids": [...]}` is optional; 202 + batch, 409 if a batch runs, 400 if no sites |
+| `GET /v1/crawl-batches` `/{id}` | `?status`; the detail adds `runs` (crawl runs per status) and `sites_pending` |
+| `POST /v1/crawl-batches/{id}/cancel` | 202; waiting sites are not started, running crawls end `cancelled`; 409 if finished |
+| `GET /v1/crawl-runs` `/{id}` | `?site_id`, `?batch_id`, `?status` |
 | `GET /v1/pages` | `?site_id`, `?status` |
 | `GET /v1/records` `/{id}` | `?country_id`, `?organization_id`, `?site_id`, `?category_id`, `?subcategory_id`, `?record_type`, `?language`, `?published_from`, `?published_to` |
 
@@ -127,6 +149,34 @@ names and the full content):
 Lists return `{"items": [...], "next_cursor": N}`. Pass `?cursor=N` to get the
 next page and `?limit=` to set the page size. Records, pages and crawl runs are
 newest first.
+
+## Crawling all active countries
+
+`POST /v1/crawl-batches` crawls every active official site of every active
+country, ignoring `next_crawl_at`:
+
+```text
+POST /v1/crawl-batches
+  ├── goroutine: country UZ ──► its sites, up to CRAWL_MAX_SITES_PER_COUNTRY at once
+  ├── goroutine: country JP ──► …
+  └── goroutine: country GB ──► …
+        every site also waits for one of CRAWL_MAX_SITES global slots
+        every page waits for one of LLM_WORKERS LLM slots (shared by all sites)
+```
+
+```sh
+curl -s -X POST localhost:8090/v1/crawl-batches                              # all active countries
+curl -s -X POST localhost:8090/v1/crawl-batches -d '{"country_ids": [242]}'   # only these
+curl -s localhost:8090/v1/crawl-batches/1           # runs per status, sites_pending
+curl -s "localhost:8090/v1/crawl-runs?batch_id=1"   # one row per site
+curl -s -X POST localhost:8090/v1/crawl-batches/1/cancel
+```
+
+The per-country limit keeps one country with many sites from taking every
+slot. One batch runs at a time. A site that is already being crawled (by the
+scheduler or a manual trigger) is skipped and counted in `sites_skipped`. A
+batch is `completed` when every site was tried, even if some runs failed; the
+per-site outcome is in `runs`. Stopping the app ends the batch as `cancelled`.
 
 ## Tests
 

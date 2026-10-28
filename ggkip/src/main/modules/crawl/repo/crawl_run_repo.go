@@ -19,22 +19,23 @@ func New(db infrastructure.DBTX) *Repo {
 	return &Repo{db: db}
 }
 
-const columns = `id, site_id, status, started_at, finished_at, pages_found, pages_new, pages_changed,
+const columns = `id, site_id, batch_id, status, started_at, finished_at, pages_found, pages_new, pages_changed,
 	pages_unchanged, pages_skipped, pages_failed, records_created, records_updated, error_message, created_at`
 
 func scan(row interface{ Scan(...any) error }) (model.CrawlRun, error) {
 	var r model.CrawlRun
 	c := &r.Counters
-	err := row.Scan(&r.ID, &r.SiteID, &r.Status, &r.StartedAt, &r.FinishedAt, &c.PagesFound, &c.PagesNew,
+	err := row.Scan(&r.ID, &r.SiteID, &r.BatchID, &r.Status, &r.StartedAt, &r.FinishedAt, &c.PagesFound, &c.PagesNew,
 		&c.PagesChanged, &c.PagesUnchanged, &c.PagesSkipped, &c.PagesFailed, &c.RecordsCreated,
 		&c.RecordsUpdated, &r.ErrorMessage, &r.CreatedAt)
 	return r, err
 }
 
-func (r *Repo) Create(ctx context.Context, siteID int64, startedAt time.Time) (model.CrawlRun, error) {
+// Create inserts a 'running' row; batchID is nil for runs outside a batch.
+func (r *Repo) Create(ctx context.Context, siteID int64, batchID *int64, startedAt time.Time) (model.CrawlRun, error) {
 	run, err := scan(r.db.QueryRowContext(ctx, `
-		INSERT INTO crawl_runs (site_id, status, started_at) VALUES ($1, 'running', $2)
-		RETURNING `+columns, siteID, startedAt))
+		INSERT INTO crawl_runs (site_id, batch_id, status, started_at) VALUES ($1, $2, 'running', $3)
+		RETURNING `+columns, siteID, batchID, startedAt))
 	if err != nil {
 		return run, fmt.Errorf("create crawl run for site %d: %w", siteID, err)
 	}
@@ -75,6 +76,9 @@ func (r *Repo) List(ctx context.Context, f model.ListFilter) ([]model.CrawlRun, 
 	}
 	if f.SiteID != nil {
 		w.Add("site_id = ?", *f.SiteID)
+	}
+	if f.BatchID != nil {
+		w.Add("batch_id = ?", *f.BatchID)
 	}
 	if f.Status != nil {
 		w.Add("status = ?", *f.Status)

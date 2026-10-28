@@ -32,6 +32,7 @@ type Config struct {
 	SeedCountries []string
 
 	Scheduler SchedulerConfig
+	Crawl     CrawlConfig
 	Crawler   CrawlerConfig
 	LLM       LLMConfig
 }
@@ -49,8 +50,15 @@ type DBConfig struct {
 type SchedulerConfig struct {
 	Enabled      bool
 	Interval     time.Duration
-	MaxSites     int           // sites crawled at the same time
+	MaxSites     int           // sites started per tick at most (also CRAWL_MAX_SITES' default)
 	FailureRetry time.Duration // delay before a failed site is retried (capped by its interval)
+}
+
+// CrawlConfig limits how many sites are crawled at the same time, by the
+// scheduler, manual triggers and crawl batches together.
+type CrawlConfig struct {
+	MaxSites           int // all sites at once (a batch site waits for a free slot)
+	MaxSitesPerCountry int // per country inside a crawl batch
 }
 
 type CrawlerConfig struct {
@@ -149,6 +157,11 @@ func loadConfig(args []string, lookup func(string) (string, bool)) (Config, erro
 		},
 	}
 
+	cfg.Crawl = CrawlConfig{
+		MaxSites:           env.int("CRAWL_MAX_SITES", cfg.Scheduler.MaxSites), // older setups only had SCHEDULER_MAX_SITES
+		MaxSitesPerCountry: env.int("CRAWL_MAX_SITES_PER_COUNTRY", 4),
+	}
+
 	if *runtime != "" {
 		cfg.LLM.Runtime = *runtime
 	}
@@ -177,6 +190,8 @@ func (c Config) validate() error {
 	check(c.DB.MaxOpenConns > 0, "DB_MAX_OPEN_CONNS must be > 0")
 	check(c.Scheduler.Interval > 0, "SCHEDULER_INTERVAL_SEC must be > 0")
 	check(c.Scheduler.MaxSites > 0, "SCHEDULER_MAX_SITES must be > 0")
+	check(c.Crawl.MaxSites > 0, "CRAWL_MAX_SITES must be > 0")
+	check(c.Crawl.MaxSitesPerCountry > 0, "CRAWL_MAX_SITES_PER_COUNTRY must be > 0")
 	check(c.Crawler.Workers > 0, "CRAWLER_WORKERS must be > 0")
 	check(c.Crawler.Timeout > 0, "CRAWLER_TIMEOUT_SEC must be > 0")
 	check(c.Crawler.MaxBodyBytes > 0, "CRAWLER_MAX_BODY_BYTES must be > 0")
