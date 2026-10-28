@@ -27,6 +27,9 @@ type Config struct {
 	ResourcesDir   string
 	MigrateOnStart bool
 	SeedOnStart    bool
+	// SeedCountries limits seeded organizations and sites to these ISO2
+	// codes. Empty means all. Countries and categories are always seeded.
+	SeedCountries []string
 
 	Scheduler SchedulerConfig
 	Crawler   CrawlerConfig
@@ -120,6 +123,7 @@ func loadConfig(args []string, lookup func(string) (string, bool)) (Config, erro
 		ResourcesDir:   env.str("RESOURCES_DIR", ""),
 		MigrateOnStart: env.bool("MIGRATE_ON_START", true),
 		SeedOnStart:    env.bool("SEED_ON_START", false),
+		SeedCountries:  env.list("SEED_COUNTRIES"),
 		Scheduler: SchedulerConfig{
 			Enabled:      env.bool("SCHEDULER_ENABLED", true),
 			Interval:     env.seconds("SCHEDULER_INTERVAL_SEC", 60),
@@ -193,6 +197,17 @@ func (e *envReader) str(key, def string) string {
 		return strings.TrimSpace(v)
 	}
 	return def
+}
+
+// list reads a comma-separated value as upper-case items.
+func (e *envReader) list(key string) []string {
+	var out []string
+	for _, v := range strings.Split(e.str(key, ""), ",") {
+		if v = strings.ToUpper(strings.TrimSpace(v)); v != "" {
+			out = append(out, v)
+		}
+	}
+	return out
 }
 
 func (e *envReader) int(key string, def int) int {

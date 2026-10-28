@@ -162,6 +162,9 @@ func prepareDatabase(ctx context.Context, cfg infrastructure.Config, db *sql.DB,
 		if err != nil {
 			return err
 		}
+		if err := data.KeepCountries(cfg.SeedCountries); err != nil {
+			return err
+		}
 		if err := app.ApplySeed(ctx, db, data, log); err != nil {
 			return err
 		}

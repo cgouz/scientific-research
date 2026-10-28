@@ -200,6 +200,41 @@ func (d *SeedData) validate() error {
 	return errors.Join(errs...)
 }
 
+// KeepCountries drops organizations and sites of countries not listed by ISO2
+// code. An empty list keeps everything. Rows already in the database are not
+// deleted.
+func (d *SeedData) KeepCountries(iso2 []string) error {
+	if len(iso2) == 0 {
+		return nil
+	}
+	keep := map[int64]bool{}
+	for _, code := range iso2 {
+		found := false
+		for _, c := range d.Countries {
+			if c.ISO2 == code {
+				keep[c.ID], found = true, true
+			}
+		}
+		if !found {
+			return fmt.Errorf("SEED_COUNTRIES: unknown country %q", code)
+		}
+	}
+	orgs := d.Organizations[:0]
+	for _, o := range d.Organizations {
+		if keep[o.CountryID] {
+			orgs = append(orgs, o)
+		}
+	}
+	sites := d.Sites[:0]
+	for _, s := range d.Sites {
+		if keep[s.CountryID] {
+			sites = append(sites, s)
+		}
+	}
+	d.Organizations, d.Sites = orgs, sites
+	return nil
+}
+
 // parentsFirst orders rows so every parent is inserted before its children.
 func parentsFirst[T any](items []T, key func(T) (int64, *int64)) ([]T, error) {
 	placed := map[int64]bool{}

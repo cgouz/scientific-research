@@ -103,6 +103,28 @@ func TestRealResourcesLoad(t *testing.T) {
 	}
 }
 
+func TestKeepCountries(t *testing.T) {
+	d, err := LoadSeed(os.DirFS("../../resources"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	countries := len(d.Countries)
+	if err := d.KeepCountries([]string{"UZ"}); err != nil {
+		t.Fatal(err)
+	}
+	if len(d.Countries) != countries || len(d.Organizations) == 0 || len(d.Sites) == 0 {
+		t.Fatalf("got %d countries, %d orgs, %d sites", len(d.Countries), len(d.Organizations), len(d.Sites))
+	}
+	for _, s := range d.Sites {
+		if s.CountryID != 242 {
+			t.Fatalf("site %s of country %d kept", s.Domain, s.CountryID)
+		}
+	}
+	if err := d.KeepCountries([]string{"XX"}); err == nil {
+		t.Fatal("unknown country accepted")
+	}
+}
+
 func seedFS(orgs, sites string) fstest.MapFS {
 	return fstest.MapFS{
 		"seed/countries.json": {Data: []byte(`[

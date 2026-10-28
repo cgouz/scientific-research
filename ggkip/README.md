@@ -46,6 +46,11 @@ list and defaults.
 | `--seed=true\|false` | `SEED_ON_START` | load seed JSON on start (default false) |
 | `--env-file=path` | | KEY=VALUE defaults |
 
+`SEED_COUNTRIES=UZ,JP` seeds only those countries' organizations and sites
+(all countries and categories are still seeded). Rows already in the database
+are kept. [llamacpp.env](src/resources/env/llamacpp.env) is a ready test setup:
+llama-server on port 8080, Uzbekistan only, scheduler off.
+
 `RESOURCES_DIR` points at `src/resources` on disk. Without it, the copy
 embedded in the binary is used, so a built binary needs no extra files.
 
