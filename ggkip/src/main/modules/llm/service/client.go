@@ -52,6 +52,10 @@ func NewClient(runtime string, cfg ClientConfig) (Client, error) {
 // 429 and 5xx responses, and replies that were not valid JSON.
 type RetryableError struct{ Err error }
 
+// ErrTruncated means the reply hit max_tokens. Repeating the same request
+// gives the same reply, so the Normalizer retries without the content field.
+var ErrTruncated = errors.New("llm output was cut off at max_tokens")
+
 func (e *RetryableError) Error() string { return e.Err.Error() }
 func (e *RetryableError) Unwrap() error { return e.Err }
 
@@ -123,7 +127,7 @@ func (c chatClient) complete(ctx context.Context, body map[string]any) (string, 
 		return "", &RetryableError{Err: errors.New("llm returned no choices")}
 	}
 	if out.Choices[0].FinishReason == "length" {
-		return "", &RetryableError{Err: errors.New("llm output was cut off at max_tokens")}
+		return "", &RetryableError{Err: ErrTruncated}
 	}
 	return out.Choices[0].Message.Content, nil
 }

@@ -20,6 +20,7 @@ Return ONLY a JSON object with these fields:
 - published_at: publication date if the text states it, as YYYY-MM-DD or RFC 3339; otherwise null.
 - content: the main content of the page as clean plain text in the original language. Keep facts,
   numbers, dates and names. Remove menus, boilerplate and repeated fragments. Do not translate.
+  If the user message has "omit_content": true, return content as an empty string "".
 - summary: one to three sentences summarizing the content, in the language of the page.
 - keywords: 3 to 10 short keywords in the language of the page.
 - confidence: a number from 0 to 1 for how well the category and subcategory fit.

@@ -150,8 +150,12 @@ func fakeServer(t *testing.T, replies ...string) (*httptest.Server, *[]map[strin
 			http.Error(w, "busy", http.StatusServiceUnavailable)
 			return
 		}
+		finish := "stop"
+		if reply == "length" {
+			reply, finish = `{"record_type": "NEWS", "content": "cut`, "length"
+		}
 		json.NewEncoder(w).Encode(map[string]any{
-			"choices": []any{map[string]any{"message": map[string]any{"content": reply}, "finish_reason": "stop"}},
+			"choices": []any{map[string]any{"message": map[string]any{"content": reply}, "finish_reason": finish}},
 		})
 	}))
 	t.Cleanup(srv.Close)
@@ -220,5 +224,26 @@ func TestNormalizerRetriesAndValidates(t *testing.T) {
 	n.retryDelay = time.Millisecond
 	if _, err := n.Normalize(context.Background(), dto.NormalizeInput{}, testTaxonomy(t)); err == nil {
 		t.Fatal("invalid taxonomy output must never be returned as a result")
+	}
+}
+
+func TestNormalizerOmitsContentAfterTruncation(t *testing.T) {
+	short := validOutput()
+	short.Content = ""
+	srv, bodies := fakeServer(t, "length", mustJSON(short))
+	client, _ := NewClient(RuntimeLlamaCpp, ClientConfig{BaseURL: srv.URL + "/v1", Timeout: 5 * time.Second})
+	n := NewNormalizer(client, 1, 2, 1000, slog.New(slog.NewTextHandler(io.Discard, nil)))
+	n.retryDelay = time.Millisecond
+
+	res, err := n.Normalize(context.Background(), dto.NormalizeInput{Content: "long page"}, testTaxonomy(t))
+	if err != nil || res.CategoryID != 1 || res.Content != "" {
+		t.Fatalf("res=%+v err=%v", res, err)
+	}
+	for i, want := range []bool{false, true} {
+		var in dto.NormalizeInput
+		json.Unmarshal([]byte((*bodies)[i]["messages"].([]any)[1].(map[string]any)["content"].(string)), &in)
+		if in.OmitContent != want {
+			t.Errorf("call %d: omit_content = %v, want %v", i+1, in.OmitContent, want)
+		}
 	}
 }

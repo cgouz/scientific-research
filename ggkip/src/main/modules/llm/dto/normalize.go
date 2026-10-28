@@ -10,6 +10,9 @@ type NormalizeInput struct {
 	Content      string             `json:"content"`
 	Categories   []TaxonomyCategory `json:"categories"`
 	RecordTypes  []string           `json:"record_types"`
+	// OmitContent asks for an empty content field; set after a reply was cut
+	// off at max_tokens. The extracted page text is stored instead.
+	OmitContent bool `json:"omit_content,omitempty"`
 }
 
 type NamedRef struct {
