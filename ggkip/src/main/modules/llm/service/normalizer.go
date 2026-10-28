@@ -38,7 +38,8 @@ func (n *Normalizer) Runtime() string { return n.client.Runtime() }
 func (n *Normalizer) Model() string   { return n.client.Model() }
 
 // Normalize calls the LLM and validates the reply. Transport errors, invalid
-// JSON and taxonomy violations are retried up to maxRetries times.
+// JSON and taxonomy violations are retried up to maxRetries times. After a
+// reply cut off at max_tokens, the retries ask for an empty content field.
 func (n *Normalizer) Normalize(ctx context.Context, in dto.NormalizeInput, t *model.Taxonomy) (model.Result, error) {
 	in.Content = truncateRunes(in.Content, n.maxInputChars)
 	in.Categories = t.Categories
@@ -70,6 +71,9 @@ func (n *Normalizer) Normalize(ctx context.Context, in dto.NormalizeInput, t *mo
 			var retryable *RetryableError
 			if !errors.As(err, &retryable) {
 				return model.Result{}, err
+			}
+			if errors.Is(err, ErrTruncated) {
+				in.OmitContent = true
 			}
 			continue
 		}
