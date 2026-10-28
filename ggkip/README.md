@@ -11,6 +11,9 @@ scheduler → due site → crawl run → robots.txt → sitemaps → links
   → SHA-256 → unchanged? stop : LLM → validate taxonomy → store record
 ```
 
+See [docs/GUIDE.md](docs/GUIDE.md) for every `make` command, the full API and
+server sizing (GPU, CPU, RAM, disk).
+
 ## Quick start
 
 ```sh
