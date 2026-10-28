@@ -119,6 +119,11 @@ Only repositories run SQL. Handlers call services; services own the business rul
 | `GET /v1/pages` | `?site_id`, `?status` |
 | `GET /v1/records` `/{id}` | `?country_id`, `?organization_id`, `?site_id`, `?category_id`, `?subcategory_id`, `?record_type`, `?language`, `?published_from`, `?published_to` |
 
+To save records to a JSON file (with category codes, organization and domain
+names and the full content):
+`python3 scripts/export_records.py --site-id 8 --out stat_uz.json`
+(`--help` lists the filters).
+
 Lists return `{"items": [...], "next_cursor": N}`. Pass `?cursor=N` to get the
 next page and `?limit=` to set the page size. Records, pages and crawl runs are
 newest first.
