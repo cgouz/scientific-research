@@ -1,0 +1,292 @@
+[
+  {
+    "id": 1001,
+    "country_id": 242,
+    "organization_type_id": 1,
+    "parent_id": null,
+    "name": "Cabinet of Ministers",
+    "official_name": "Cabinet of Ministers of the Republic of Uzbekistan",
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 1002,
+    "country_id": 242,
+    "organization_type_id": 2,
+    "parent_id": null,
+    "name": "President of Uzbekistan",
+    "official_name": "President of the Republic of Uzbekistan",
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 1003,
+    "country_id": 242,
+    "organization_type_id": 3,
+    "parent_id": null,
+    "name": "Oliy Majlis",
+    "official_name": "Oliy Majlis of the Republic of Uzbekistan",
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 1004,
+    "country_id": 242,
+    "organization_type_id": 4,
+    "parent_id": 1001,
+    "name": "Ministry of Economy and Finance",
+    "official_name": "Ministry of Economy and Finance of the Republic of Uzbekistan",
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 1005,
+    "country_id": 242,
+    "organization_type_id": 6,
+    "parent_id": 1001,
+    "name": "Tax Committee",
+    "official_name": null,
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 1006,
+    "country_id": 242,
+    "organization_type_id": 6,
+    "parent_id": 1001,
+    "name": "Customs Committee",
+    "official_name": null,
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 1007,
+    "country_id": 242,
+    "organization_type_id": 10,
+    "parent_id": null,
+    "name": "Central Bank of Uzbekistan",
+    "official_name": "Central Bank of the Republic of Uzbekistan",
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 1008,
+    "country_id": 242,
+    "organization_type_id": 11,
+    "parent_id": null,
+    "name": "Statistics Agency",
+    "official_name": null,
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 1009,
+    "country_id": 242,
+    "organization_type_id": 4,
+    "parent_id": 1001,
+    "name": "Ministry of Justice",
+    "official_name": "Ministry of Justice of the Republic of Uzbekistan",
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 1010,
+    "country_id": 242,
+    "organization_type_id": 4,
+    "parent_id": 1001,
+    "name": "Ministry of Health",
+    "official_name": "Ministry of Health of the Republic of Uzbekistan",
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 2001,
+    "country_id": 239,
+    "organization_type_id": 1,
+    "parent_id": null,
+    "name": "HM Government",
+    "official_name": "His Majesty's Government",
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 2002,
+    "country_id": 239,
+    "organization_type_id": 15,
+    "parent_id": 2001,
+    "name": "Prime Minister's Office",
+    "official_name": "Prime Minister's Office, 10 Downing Street",
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 2003,
+    "country_id": 239,
+    "organization_type_id": 3,
+    "parent_id": null,
+    "name": "UK Parliament",
+    "official_name": "Parliament of the United Kingdom",
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 2004,
+    "country_id": 239,
+    "organization_type_id": 5,
+    "parent_id": 2001,
+    "name": "HM Revenue & Customs",
+    "official_name": "His Majesty's Revenue and Customs",
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 2005,
+    "country_id": 239,
+    "organization_type_id": 10,
+    "parent_id": null,
+    "name": "Bank of England",
+    "official_name": null,
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 2006,
+    "country_id": 239,
+    "organization_type_id": 11,
+    "parent_id": null,
+    "name": "Office for National Statistics",
+    "official_name": null,
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 2007,
+    "country_id": 239,
+    "organization_type_id": 8,
+    "parent_id": null,
+    "name": "Courts and Tribunals Judiciary",
+    "official_name": null,
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 2008,
+    "country_id": 239,
+    "organization_type_id": 16,
+    "parent_id": null,
+    "name": "Electoral Commission",
+    "official_name": null,
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 2009,
+    "country_id": 239,
+    "organization_type_id": 5,
+    "parent_id": 2001,
+    "name": "The National Archives",
+    "official_name": null,
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 3001,
+    "country_id": 115,
+    "organization_type_id": 1,
+    "parent_id": null,
+    "name": "Cabinet of Japan",
+    "official_name": null,
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 3002,
+    "country_id": 115,
+    "organization_type_id": 15,
+    "parent_id": 3001,
+    "name": "Prime Minister's Office of Japan",
+    "official_name": null,
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 3003,
+    "country_id": 115,
+    "organization_type_id": 3,
+    "parent_id": null,
+    "name": "National Diet",
+    "official_name": null,
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 3004,
+    "country_id": 115,
+    "organization_type_id": 4,
+    "parent_id": 3001,
+    "name": "Ministry of Finance",
+    "official_name": null,
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 3005,
+    "country_id": 115,
+    "organization_type_id": 5,
+    "parent_id": 3004,
+    "name": "National Tax Agency",
+    "official_name": null,
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 3006,
+    "country_id": 115,
+    "organization_type_id": 4,
+    "parent_id": 3001,
+    "name": "Ministry of Health, Labour and Welfare",
+    "official_name": null,
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 3007,
+    "country_id": 115,
+    "organization_type_id": 10,
+    "parent_id": null,
+    "name": "Bank of Japan",
+    "official_name": null,
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 3008,
+    "country_id": 115,
+    "organization_type_id": 4,
+    "parent_id": 3001,
+    "name": "Ministry of Internal Affairs and Communications",
+    "official_name": null,
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 3009,
+    "country_id": 115,
+    "organization_type_id": 11,
+    "parent_id": 3008,
+    "name": "Statistics Bureau of Japan",
+    "official_name": null,
+    "description": null,
+    "status": "active"
+  },
+  {
+    "id": 3010,
+    "country_id": 115,
+    "organization_type_id": 8,
+    "parent_id": null,
+    "name": "Supreme Court of Japan",
+    "official_name": null,
+    "description": null,
+    "status": "active"
+  }
+]

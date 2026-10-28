@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "code": "government",
+    "name": "Government",
+    "created_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 2,
+    "code": "presidency",
+    "name": "Presidency",
+    "created_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 3,
+    "code": "parliament",
+    "name": "Parliament",
+    "created_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 4,
+    "code": "ministry",
+    "name": "Ministry",
+    "created_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 5,
+    "code": "agency",
+    "name": "Agency",
+    "created_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 6,
+    "code": "committee",
+    "name": "Committee",
+    "created_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 7,
+    "code": "inspectorate",
+    "name": "Inspectorate",
+    "created_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 8,
+    "code": "court",
+    "name": "Court",
+    "created_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 9,
+    "code": "prosecutor",
+    "name": "Prosecutor",
+    "created_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 10,
+    "code": "central_bank",
+    "name": "Central Bank",
+    "created_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 11,
+    "code": "statistics_office",
+    "name": "Statistics Office",
+    "created_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 12,
+    "code": "local_government",
+    "name": "Local Government",
+    "created_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 13,
+    "code": "regulator",
+    "name": "Regulator",
+    "created_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 14,
+    "code": "other",
+    "name": "Other",
+    "created_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 15,
+    "code": "prime_minister_office",
+    "name": "Prime Minister Office",
+    "created_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 16,
+    "code": "election_authority",
+    "name": "Election Authority",
+    "created_at": "2026-10-28T00:00:00Z"
+  }
+]

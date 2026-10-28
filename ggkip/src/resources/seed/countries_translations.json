@@ -1,0 +1,6002 @@
+[
+  {
+    "id": 1,
+    "country_id": 1,
+    "locale": "uz",
+    "name": "Afgʻoniston",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 2,
+    "country_id": 1,
+    "locale": "ru",
+    "name": "Афганистан",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 3,
+    "country_id": 1,
+    "locale": "kaa",
+    "name": "Awǵanstan",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 4,
+    "country_id": 2,
+    "locale": "uz",
+    "name": "Aland orollari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 5,
+    "country_id": 2,
+    "locale": "ru",
+    "name": "Аландские острова",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 6,
+    "country_id": 2,
+    "locale": "kaa",
+    "name": "Aland atawları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 7,
+    "country_id": 3,
+    "locale": "uz",
+    "name": "Albaniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 8,
+    "country_id": 3,
+    "locale": "ru",
+    "name": "Албания",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 9,
+    "country_id": 3,
+    "locale": "kaa",
+    "name": "Albaniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 10,
+    "country_id": 4,
+    "locale": "uz",
+    "name": "Jazoir",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 11,
+    "country_id": 4,
+    "locale": "ru",
+    "name": "Алжир",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 12,
+    "country_id": 4,
+    "locale": "kaa",
+    "name": "Aljir",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 13,
+    "country_id": 5,
+    "locale": "uz",
+    "name": "Amerika Samoasi",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 14,
+    "country_id": 5,
+    "locale": "ru",
+    "name": "Американское Самоа",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 15,
+    "country_id": 5,
+    "locale": "kaa",
+    "name": "Amerika Samoası",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 16,
+    "country_id": 6,
+    "locale": "uz",
+    "name": "Andorra",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 17,
+    "country_id": 6,
+    "locale": "ru",
+    "name": "Андорра",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 18,
+    "country_id": 6,
+    "locale": "kaa",
+    "name": "Andorra",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 19,
+    "country_id": 7,
+    "locale": "uz",
+    "name": "Angola",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 20,
+    "country_id": 7,
+    "locale": "ru",
+    "name": "Ангола",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 21,
+    "country_id": 7,
+    "locale": "kaa",
+    "name": "Angola",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 22,
+    "country_id": 8,
+    "locale": "uz",
+    "name": "Angilya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 23,
+    "country_id": 8,
+    "locale": "ru",
+    "name": "Ангвилла",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 24,
+    "country_id": 8,
+    "locale": "kaa",
+    "name": "Angilya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 25,
+    "country_id": 9,
+    "locale": "uz",
+    "name": "Antarktida",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 26,
+    "country_id": 9,
+    "locale": "ru",
+    "name": "Антарктика",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 27,
+    "country_id": 9,
+    "locale": "kaa",
+    "name": "Antarktida",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 28,
+    "country_id": 10,
+    "locale": "uz",
+    "name": "Antigua va Barbuda",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 29,
+    "country_id": 10,
+    "locale": "ru",
+    "name": "Антигуа и Барбуда",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 30,
+    "country_id": 10,
+    "locale": "kaa",
+    "name": "Antigua hám Barbuda",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 31,
+    "country_id": 11,
+    "locale": "uz",
+    "name": "Argentina",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 32,
+    "country_id": 11,
+    "locale": "ru",
+    "name": "Аргентина",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 33,
+    "country_id": 11,
+    "locale": "kaa",
+    "name": "Argentina",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 34,
+    "country_id": 12,
+    "locale": "uz",
+    "name": "Armaniston",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 35,
+    "country_id": 12,
+    "locale": "ru",
+    "name": "Армения",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 36,
+    "country_id": 12,
+    "locale": "kaa",
+    "name": "Armeniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 37,
+    "country_id": 13,
+    "locale": "uz",
+    "name": "Aruba",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 38,
+    "country_id": 13,
+    "locale": "ru",
+    "name": "Аруба",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 39,
+    "country_id": 13,
+    "locale": "kaa",
+    "name": "Aruba",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 40,
+    "country_id": 14,
+    "locale": "uz",
+    "name": "Avstraliya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 41,
+    "country_id": 14,
+    "locale": "ru",
+    "name": "Австралия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 42,
+    "country_id": 14,
+    "locale": "kaa",
+    "name": "Avstraliya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 43,
+    "country_id": 15,
+    "locale": "uz",
+    "name": "Avstriya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 44,
+    "country_id": 15,
+    "locale": "ru",
+    "name": "Австрия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 45,
+    "country_id": 15,
+    "locale": "kaa",
+    "name": "Avstriya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 46,
+    "country_id": 16,
+    "locale": "uz",
+    "name": "Ozarbayjon",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 47,
+    "country_id": 16,
+    "locale": "ru",
+    "name": "Азербайджан",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 48,
+    "country_id": 16,
+    "locale": "kaa",
+    "name": "Ázerbayjan",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 49,
+    "country_id": 17,
+    "locale": "uz",
+    "name": "Bagama orollari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 50,
+    "country_id": 17,
+    "locale": "ru",
+    "name": "Багамы",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 51,
+    "country_id": 17,
+    "locale": "kaa",
+    "name": "Bagama atawları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 52,
+    "country_id": 18,
+    "locale": "uz",
+    "name": "Bahrayn",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 53,
+    "country_id": 18,
+    "locale": "ru",
+    "name": "Бахрейн",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 54,
+    "country_id": 18,
+    "locale": "kaa",
+    "name": "Bahreyn",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 55,
+    "country_id": 19,
+    "locale": "uz",
+    "name": "Bangladesh",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 56,
+    "country_id": 19,
+    "locale": "ru",
+    "name": "Бангладеш",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 57,
+    "country_id": 19,
+    "locale": "kaa",
+    "name": "Bangladesh",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 58,
+    "country_id": 20,
+    "locale": "uz",
+    "name": "Barbados",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 59,
+    "country_id": 20,
+    "locale": "ru",
+    "name": "Барбадос",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 60,
+    "country_id": 20,
+    "locale": "kaa",
+    "name": "Barbados",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 61,
+    "country_id": 21,
+    "locale": "uz",
+    "name": "Belarus",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 62,
+    "country_id": 21,
+    "locale": "ru",
+    "name": "Беларусь",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 63,
+    "country_id": 21,
+    "locale": "kaa",
+    "name": "Belarus",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 64,
+    "country_id": 22,
+    "locale": "uz",
+    "name": "Belgiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 65,
+    "country_id": 22,
+    "locale": "ru",
+    "name": "Бельгия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 66,
+    "country_id": 22,
+    "locale": "kaa",
+    "name": "Belgiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 67,
+    "country_id": 23,
+    "locale": "uz",
+    "name": "Beliz",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 68,
+    "country_id": 23,
+    "locale": "ru",
+    "name": "Белиз",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 69,
+    "country_id": 23,
+    "locale": "kaa",
+    "name": "Beliz",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 70,
+    "country_id": 24,
+    "locale": "uz",
+    "name": "Benin",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 71,
+    "country_id": 24,
+    "locale": "ru",
+    "name": "Бенин",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 72,
+    "country_id": 24,
+    "locale": "kaa",
+    "name": "Benin",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 73,
+    "country_id": 25,
+    "locale": "uz",
+    "name": "Bermuda orollari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 74,
+    "country_id": 25,
+    "locale": "ru",
+    "name": "Бермуды",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 75,
+    "country_id": 25,
+    "locale": "kaa",
+    "name": "Bermuda atawları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 76,
+    "country_id": 26,
+    "locale": "uz",
+    "name": "Butan",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 77,
+    "country_id": 26,
+    "locale": "ru",
+    "name": "Бутан",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 78,
+    "country_id": 26,
+    "locale": "kaa",
+    "name": "Butan",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 79,
+    "country_id": 27,
+    "locale": "uz",
+    "name": "Boliviya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 80,
+    "country_id": 27,
+    "locale": "ru",
+    "name": "Боливия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 81,
+    "country_id": 27,
+    "locale": "kaa",
+    "name": "Boliviya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 82,
+    "country_id": 28,
+    "locale": "uz",
+    "name": "Boneyr, Sint-Estatius va Saba",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 83,
+    "country_id": 28,
+    "locale": "ru",
+    "name": "Бонайре, Синт-Эстатиус и Саба",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 84,
+    "country_id": 28,
+    "locale": "kaa",
+    "name": "Boneyr, Sint-Estatius hám Saba",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 85,
+    "country_id": 29,
+    "locale": "uz",
+    "name": "Bosniya va Gertsegovina",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 86,
+    "country_id": 29,
+    "locale": "ru",
+    "name": "Босния и Герцеговина",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 87,
+    "country_id": 29,
+    "locale": "kaa",
+    "name": "Bosniya hám Gercegovina",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 88,
+    "country_id": 30,
+    "locale": "uz",
+    "name": "Botsvana",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 89,
+    "country_id": 30,
+    "locale": "ru",
+    "name": "Ботсвана",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 90,
+    "country_id": 30,
+    "locale": "kaa",
+    "name": "Botsvana",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 91,
+    "country_id": 31,
+    "locale": "uz",
+    "name": "Buve oroli",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 92,
+    "country_id": 31,
+    "locale": "ru",
+    "name": "Остров Буве",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 93,
+    "country_id": 31,
+    "locale": "kaa",
+    "name": "Buve atawı",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 94,
+    "country_id": 32,
+    "locale": "uz",
+    "name": "Braziliya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 95,
+    "country_id": 32,
+    "locale": "ru",
+    "name": "Бразилия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 96,
+    "country_id": 32,
+    "locale": "kaa",
+    "name": "Braziliya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 97,
+    "country_id": 33,
+    "locale": "uz",
+    "name": "Britaniyaning Hind okeanidagi hududi",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 98,
+    "country_id": 33,
+    "locale": "ru",
+    "name": "Британская территория Индийского океана",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 99,
+    "country_id": 33,
+    "locale": "kaa",
+    "name": "Hind okeanındaǵı Britaniya aymaǵı",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 100,
+    "country_id": 34,
+    "locale": "uz",
+    "name": "AQSH tashqi kichik orollari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 101,
+    "country_id": 34,
+    "locale": "ru",
+    "name": "Внешние малые острова США",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 102,
+    "country_id": 34,
+    "locale": "kaa",
+    "name": "AQSh sırtqı kishi atawları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 103,
+    "country_id": 35,
+    "locale": "uz",
+    "name": "Britaniya Virgin orollari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 104,
+    "country_id": 35,
+    "locale": "ru",
+    "name": "Британские Виргинские острова",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 105,
+    "country_id": 35,
+    "locale": "kaa",
+    "name": "Britaniya Virgin atawları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 106,
+    "country_id": 36,
+    "locale": "uz",
+    "name": "AQSH Virgin orollari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 107,
+    "country_id": 36,
+    "locale": "ru",
+    "name": "Виргинские острова (США)",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 108,
+    "country_id": 36,
+    "locale": "kaa",
+    "name": "AQSh Virgin atawları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 109,
+    "country_id": 37,
+    "locale": "uz",
+    "name": "Bruney",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 110,
+    "country_id": 37,
+    "locale": "ru",
+    "name": "Бруней",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 111,
+    "country_id": 37,
+    "locale": "kaa",
+    "name": "Bruney",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 112,
+    "country_id": 38,
+    "locale": "uz",
+    "name": "Bolgariya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 113,
+    "country_id": 38,
+    "locale": "ru",
+    "name": "Болгария",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 114,
+    "country_id": 38,
+    "locale": "kaa",
+    "name": "Bolgariya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 115,
+    "country_id": 39,
+    "locale": "uz",
+    "name": "Burkina-Faso",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 116,
+    "country_id": 39,
+    "locale": "ru",
+    "name": "Буркина-Фасо",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 117,
+    "country_id": 39,
+    "locale": "kaa",
+    "name": "Burkina-Faso",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 118,
+    "country_id": 40,
+    "locale": "uz",
+    "name": "Burundi",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 119,
+    "country_id": 40,
+    "locale": "ru",
+    "name": "Бурунди",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 120,
+    "country_id": 40,
+    "locale": "kaa",
+    "name": "Burundi",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 121,
+    "country_id": 41,
+    "locale": "uz",
+    "name": "Kambodja",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 122,
+    "country_id": 41,
+    "locale": "ru",
+    "name": "Камбоджа",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 123,
+    "country_id": 41,
+    "locale": "kaa",
+    "name": "Kambodja",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 124,
+    "country_id": 42,
+    "locale": "uz",
+    "name": "Kamerun",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 125,
+    "country_id": 42,
+    "locale": "ru",
+    "name": "Камерун",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 126,
+    "country_id": 42,
+    "locale": "kaa",
+    "name": "Kamerun",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 127,
+    "country_id": 43,
+    "locale": "uz",
+    "name": "Kanada",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 128,
+    "country_id": 43,
+    "locale": "ru",
+    "name": "Канада",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 129,
+    "country_id": 43,
+    "locale": "kaa",
+    "name": "Kanada",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 130,
+    "country_id": 44,
+    "locale": "uz",
+    "name": "Kabo-Verde",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 131,
+    "country_id": 44,
+    "locale": "ru",
+    "name": "Кабо-Верде",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 132,
+    "country_id": 44,
+    "locale": "kaa",
+    "name": "Kabo-Verde",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 133,
+    "country_id": 45,
+    "locale": "uz",
+    "name": "Kayman orollari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 134,
+    "country_id": 45,
+    "locale": "ru",
+    "name": "Каймановы острова",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 135,
+    "country_id": 45,
+    "locale": "kaa",
+    "name": "Kayman atawları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 136,
+    "country_id": 46,
+    "locale": "uz",
+    "name": "Markaziy Afrika Respublikasi",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 137,
+    "country_id": 46,
+    "locale": "ru",
+    "name": "Центральноафриканская Республика",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 138,
+    "country_id": 46,
+    "locale": "kaa",
+    "name": "Oraylıq Afrika Respublikası",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 139,
+    "country_id": 47,
+    "locale": "uz",
+    "name": "Chad",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 140,
+    "country_id": 47,
+    "locale": "ru",
+    "name": "Чад",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 141,
+    "country_id": 47,
+    "locale": "kaa",
+    "name": "Chad",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 142,
+    "country_id": 48,
+    "locale": "uz",
+    "name": "Chili",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 143,
+    "country_id": 48,
+    "locale": "ru",
+    "name": "Чили",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 144,
+    "country_id": 48,
+    "locale": "kaa",
+    "name": "Chili",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 145,
+    "country_id": 49,
+    "locale": "uz",
+    "name": "Xitoy",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 146,
+    "country_id": 49,
+    "locale": "ru",
+    "name": "Китай",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 147,
+    "country_id": 49,
+    "locale": "kaa",
+    "name": "Qıtay",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 148,
+    "country_id": 50,
+    "locale": "uz",
+    "name": "Rojdestvo oroli",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 149,
+    "country_id": 50,
+    "locale": "ru",
+    "name": "Остров Рождества",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 150,
+    "country_id": 50,
+    "locale": "kaa",
+    "name": "Rojdestvo atawı",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 151,
+    "country_id": 51,
+    "locale": "uz",
+    "name": "Kokos (Kiling) orollari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 152,
+    "country_id": 51,
+    "locale": "ru",
+    "name": "Кокосовые острова",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 153,
+    "country_id": 51,
+    "locale": "kaa",
+    "name": "Kokos (Kiling) atawları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 154,
+    "country_id": 52,
+    "locale": "uz",
+    "name": "Kolumbiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 155,
+    "country_id": 52,
+    "locale": "ru",
+    "name": "Колумбия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 156,
+    "country_id": 52,
+    "locale": "kaa",
+    "name": "Kolumbiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 157,
+    "country_id": 53,
+    "locale": "uz",
+    "name": "Komor orollari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 158,
+    "country_id": 53,
+    "locale": "ru",
+    "name": "Коморы",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 159,
+    "country_id": 53,
+    "locale": "kaa",
+    "name": "Komor atawları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 160,
+    "country_id": 54,
+    "locale": "uz",
+    "name": "Kongo Respublikasi",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 161,
+    "country_id": 54,
+    "locale": "ru",
+    "name": "Республика Конго",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 162,
+    "country_id": 54,
+    "locale": "kaa",
+    "name": "Kongo Respublikası",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 163,
+    "country_id": 55,
+    "locale": "uz",
+    "name": "Kongo Demokratik Respublikasi",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 164,
+    "country_id": 55,
+    "locale": "ru",
+    "name": "Демократическая Республика Конго",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 165,
+    "country_id": 55,
+    "locale": "kaa",
+    "name": "Kongo Demokratiyalıq Respublikası",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 166,
+    "country_id": 56,
+    "locale": "uz",
+    "name": "Kuk orollari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 167,
+    "country_id": 56,
+    "locale": "ru",
+    "name": "Острова Кука",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 168,
+    "country_id": 56,
+    "locale": "kaa",
+    "name": "Kuk atawları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 169,
+    "country_id": 57,
+    "locale": "uz",
+    "name": "Kosta-Rika",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 170,
+    "country_id": 57,
+    "locale": "ru",
+    "name": "Коста-Рика",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 171,
+    "country_id": 57,
+    "locale": "kaa",
+    "name": "Kosta-Rika",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 172,
+    "country_id": 58,
+    "locale": "uz",
+    "name": "Xorvatiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 173,
+    "country_id": 58,
+    "locale": "ru",
+    "name": "Хорватия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 174,
+    "country_id": 58,
+    "locale": "kaa",
+    "name": "Xorvatiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 175,
+    "country_id": 59,
+    "locale": "uz",
+    "name": "Kuba",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 176,
+    "country_id": 59,
+    "locale": "ru",
+    "name": "Куба",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 177,
+    "country_id": 59,
+    "locale": "kaa",
+    "name": "Kuba",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 178,
+    "country_id": 60,
+    "locale": "uz",
+    "name": "Kyurasao",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 179,
+    "country_id": 60,
+    "locale": "ru",
+    "name": "Кюрасао",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 180,
+    "country_id": 60,
+    "locale": "kaa",
+    "name": "Kyurasao",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 181,
+    "country_id": 61,
+    "locale": "uz",
+    "name": "Kipr",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 182,
+    "country_id": 61,
+    "locale": "ru",
+    "name": "Кипр",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 183,
+    "country_id": 61,
+    "locale": "kaa",
+    "name": "Kipr",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 184,
+    "country_id": 62,
+    "locale": "uz",
+    "name": "Chexiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 185,
+    "country_id": 62,
+    "locale": "ru",
+    "name": "Чехия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 186,
+    "country_id": 62,
+    "locale": "kaa",
+    "name": "Chexiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 187,
+    "country_id": 63,
+    "locale": "uz",
+    "name": "Daniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 188,
+    "country_id": 63,
+    "locale": "ru",
+    "name": "Дания",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 189,
+    "country_id": 63,
+    "locale": "kaa",
+    "name": "Daniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 190,
+    "country_id": 64,
+    "locale": "uz",
+    "name": "Jibuti",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 191,
+    "country_id": 64,
+    "locale": "ru",
+    "name": "Джибути",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 192,
+    "country_id": 64,
+    "locale": "kaa",
+    "name": "Jibuti",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 193,
+    "country_id": 65,
+    "locale": "uz",
+    "name": "Dominika",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 194,
+    "country_id": 65,
+    "locale": "ru",
+    "name": "Доминика",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 195,
+    "country_id": 65,
+    "locale": "kaa",
+    "name": "Dominika",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 196,
+    "country_id": 66,
+    "locale": "uz",
+    "name": "Dominikan Respublikasi",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 197,
+    "country_id": 66,
+    "locale": "ru",
+    "name": "Доминиканская Республика",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 198,
+    "country_id": 66,
+    "locale": "kaa",
+    "name": "Dominikan Respublikası",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 199,
+    "country_id": 67,
+    "locale": "uz",
+    "name": "Ekvador",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 200,
+    "country_id": 67,
+    "locale": "ru",
+    "name": "Эквадор",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 201,
+    "country_id": 67,
+    "locale": "kaa",
+    "name": "Ekvador",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 202,
+    "country_id": 68,
+    "locale": "uz",
+    "name": "Misr",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 203,
+    "country_id": 68,
+    "locale": "ru",
+    "name": "Египет",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 204,
+    "country_id": 68,
+    "locale": "kaa",
+    "name": "Mısır",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 205,
+    "country_id": 69,
+    "locale": "uz",
+    "name": "Salvador",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 206,
+    "country_id": 69,
+    "locale": "ru",
+    "name": "Сальвадор",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 207,
+    "country_id": 69,
+    "locale": "kaa",
+    "name": "Salvador",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 208,
+    "country_id": 70,
+    "locale": "uz",
+    "name": "Ekvatorial Gvineya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 209,
+    "country_id": 70,
+    "locale": "ru",
+    "name": "Экваториальная Гвинея",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 210,
+    "country_id": 70,
+    "locale": "kaa",
+    "name": "Ekvatorial Gvineya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 211,
+    "country_id": 71,
+    "locale": "uz",
+    "name": "Eritreya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 212,
+    "country_id": 71,
+    "locale": "ru",
+    "name": "Эритрея",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 213,
+    "country_id": 71,
+    "locale": "kaa",
+    "name": "Eritreya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 214,
+    "country_id": 72,
+    "locale": "uz",
+    "name": "Estoniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 215,
+    "country_id": 72,
+    "locale": "ru",
+    "name": "Эстония",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 216,
+    "country_id": 72,
+    "locale": "kaa",
+    "name": "Estoniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 217,
+    "country_id": 73,
+    "locale": "uz",
+    "name": "Efiopiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 218,
+    "country_id": 73,
+    "locale": "ru",
+    "name": "Эфиопия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 219,
+    "country_id": 73,
+    "locale": "kaa",
+    "name": "Efiopiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 220,
+    "country_id": 74,
+    "locale": "uz",
+    "name": "Folklend orollari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 221,
+    "country_id": 74,
+    "locale": "ru",
+    "name": "Фолклендские острова",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 222,
+    "country_id": 74,
+    "locale": "kaa",
+    "name": "Folklend atawları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 223,
+    "country_id": 75,
+    "locale": "uz",
+    "name": "Farer orollari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 224,
+    "country_id": 75,
+    "locale": "ru",
+    "name": "Фарерские острова",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 225,
+    "country_id": 75,
+    "locale": "kaa",
+    "name": "Farer atawları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 226,
+    "country_id": 76,
+    "locale": "uz",
+    "name": "Fiji",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 227,
+    "country_id": 76,
+    "locale": "ru",
+    "name": "Фиджи",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 228,
+    "country_id": 76,
+    "locale": "kaa",
+    "name": "Fiji",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 229,
+    "country_id": 77,
+    "locale": "uz",
+    "name": "Finlandiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 230,
+    "country_id": 77,
+    "locale": "ru",
+    "name": "Финляндия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 231,
+    "country_id": 77,
+    "locale": "kaa",
+    "name": "Finlyandiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 232,
+    "country_id": 78,
+    "locale": "uz",
+    "name": "Fransiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 233,
+    "country_id": 78,
+    "locale": "ru",
+    "name": "Франция",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 234,
+    "country_id": 78,
+    "locale": "kaa",
+    "name": "Franciya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 235,
+    "country_id": 79,
+    "locale": "uz",
+    "name": "Fransuz Gvianasi",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 236,
+    "country_id": 79,
+    "locale": "ru",
+    "name": "Французская Гвиана",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 237,
+    "country_id": 79,
+    "locale": "kaa",
+    "name": "Francuz Gvianası",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 238,
+    "country_id": 80,
+    "locale": "uz",
+    "name": "Fransuz Polineziyasi",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 239,
+    "country_id": 80,
+    "locale": "ru",
+    "name": "Французская Полинезия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 240,
+    "country_id": 80,
+    "locale": "kaa",
+    "name": "Francuz Polineziyası",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 241,
+    "country_id": 81,
+    "locale": "uz",
+    "name": "Fransuz Janubiy hududlari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 242,
+    "country_id": 81,
+    "locale": "ru",
+    "name": "Французские Южные территории",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 243,
+    "country_id": 81,
+    "locale": "kaa",
+    "name": "Franciyanıń Qubla aymaqları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 244,
+    "country_id": 82,
+    "locale": "uz",
+    "name": "Gabon",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 245,
+    "country_id": 82,
+    "locale": "ru",
+    "name": "Габон",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 246,
+    "country_id": 82,
+    "locale": "kaa",
+    "name": "Gabon",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 247,
+    "country_id": 83,
+    "locale": "uz",
+    "name": "Gambiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 248,
+    "country_id": 83,
+    "locale": "ru",
+    "name": "Гамбия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 249,
+    "country_id": 83,
+    "locale": "kaa",
+    "name": "Gambiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 250,
+    "country_id": 84,
+    "locale": "uz",
+    "name": "Gruziya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 251,
+    "country_id": 84,
+    "locale": "ru",
+    "name": "Грузия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 252,
+    "country_id": 84,
+    "locale": "kaa",
+    "name": "Gruziya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 253,
+    "country_id": 85,
+    "locale": "uz",
+    "name": "Germaniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 254,
+    "country_id": 85,
+    "locale": "ru",
+    "name": "Германия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 255,
+    "country_id": 85,
+    "locale": "kaa",
+    "name": "Germaniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 256,
+    "country_id": 86,
+    "locale": "uz",
+    "name": "Gana",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 257,
+    "country_id": 86,
+    "locale": "ru",
+    "name": "Гана",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 258,
+    "country_id": 86,
+    "locale": "kaa",
+    "name": "Gana",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 259,
+    "country_id": 87,
+    "locale": "uz",
+    "name": "Gibraltar",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 260,
+    "country_id": 87,
+    "locale": "ru",
+    "name": "Гибралтар",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 261,
+    "country_id": 87,
+    "locale": "kaa",
+    "name": "Gibraltar",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 262,
+    "country_id": 88,
+    "locale": "uz",
+    "name": "Gretsiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 263,
+    "country_id": 88,
+    "locale": "ru",
+    "name": "Греция",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 264,
+    "country_id": 88,
+    "locale": "kaa",
+    "name": "Greciya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 265,
+    "country_id": 89,
+    "locale": "uz",
+    "name": "Grenlandiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 266,
+    "country_id": 89,
+    "locale": "ru",
+    "name": "Гренландия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 267,
+    "country_id": 89,
+    "locale": "kaa",
+    "name": "Grenlandiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 268,
+    "country_id": 90,
+    "locale": "uz",
+    "name": "Grenada",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 269,
+    "country_id": 90,
+    "locale": "ru",
+    "name": "Гренада",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 270,
+    "country_id": 90,
+    "locale": "kaa",
+    "name": "Grenada",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 271,
+    "country_id": 91,
+    "locale": "uz",
+    "name": "Gvadelupa",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 272,
+    "country_id": 91,
+    "locale": "ru",
+    "name": "Гваделупа",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 273,
+    "country_id": 91,
+    "locale": "kaa",
+    "name": "Gvadelupa",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 274,
+    "country_id": 92,
+    "locale": "uz",
+    "name": "Guam",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 275,
+    "country_id": 92,
+    "locale": "ru",
+    "name": "Гуам",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 276,
+    "country_id": 92,
+    "locale": "kaa",
+    "name": "Guam",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 277,
+    "country_id": 93,
+    "locale": "uz",
+    "name": "Gvatemala",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 278,
+    "country_id": 93,
+    "locale": "ru",
+    "name": "Гватемала",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 279,
+    "country_id": 93,
+    "locale": "kaa",
+    "name": "Gvatemala",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 280,
+    "country_id": 94,
+    "locale": "uz",
+    "name": "Gernsi",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 281,
+    "country_id": 94,
+    "locale": "ru",
+    "name": "Гернси",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 282,
+    "country_id": 94,
+    "locale": "kaa",
+    "name": "Gernsi",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 283,
+    "country_id": 95,
+    "locale": "uz",
+    "name": "Gvineya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 284,
+    "country_id": 95,
+    "locale": "ru",
+    "name": "Гвинея",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 285,
+    "country_id": 95,
+    "locale": "kaa",
+    "name": "Gvineya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 286,
+    "country_id": 96,
+    "locale": "uz",
+    "name": "Gvineya-Bisau",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 287,
+    "country_id": 96,
+    "locale": "ru",
+    "name": "Гвинея-Бисау",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 288,
+    "country_id": 96,
+    "locale": "kaa",
+    "name": "Gvineya-Bisau",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 289,
+    "country_id": 97,
+    "locale": "uz",
+    "name": "Gayana",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 290,
+    "country_id": 97,
+    "locale": "ru",
+    "name": "Гайана",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 291,
+    "country_id": 97,
+    "locale": "kaa",
+    "name": "Gayana",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 292,
+    "country_id": 98,
+    "locale": "uz",
+    "name": "Gaiti",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 293,
+    "country_id": 98,
+    "locale": "ru",
+    "name": "Гаити",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 294,
+    "country_id": 98,
+    "locale": "kaa",
+    "name": "Gaiti",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 295,
+    "country_id": 99,
+    "locale": "uz",
+    "name": "Xerd oroli va Makdonald orollari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 296,
+    "country_id": 99,
+    "locale": "ru",
+    "name": "Остров Херд и острова Макдональд",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 297,
+    "country_id": 99,
+    "locale": "kaa",
+    "name": "Xerd atawı hám Makdonald atawları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 298,
+    "country_id": 100,
+    "locale": "uz",
+    "name": "Vatikan",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 299,
+    "country_id": 100,
+    "locale": "ru",
+    "name": "Ватикан",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 300,
+    "country_id": 100,
+    "locale": "kaa",
+    "name": "Vatikan",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 301,
+    "country_id": 101,
+    "locale": "uz",
+    "name": "Gonduras",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 302,
+    "country_id": 101,
+    "locale": "ru",
+    "name": "Гондурас",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 303,
+    "country_id": 101,
+    "locale": "kaa",
+    "name": "Gonduras",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 304,
+    "country_id": 102,
+    "locale": "uz",
+    "name": "Gonkong",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 305,
+    "country_id": 102,
+    "locale": "ru",
+    "name": "Гонконг",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 306,
+    "country_id": 102,
+    "locale": "kaa",
+    "name": "Gonkong",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 307,
+    "country_id": 103,
+    "locale": "uz",
+    "name": "Vengriya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 308,
+    "country_id": 103,
+    "locale": "ru",
+    "name": "Венгрия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 309,
+    "country_id": 103,
+    "locale": "kaa",
+    "name": "Vengriya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 310,
+    "country_id": 104,
+    "locale": "uz",
+    "name": "Islandiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 311,
+    "country_id": 104,
+    "locale": "ru",
+    "name": "Исландия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 312,
+    "country_id": 104,
+    "locale": "kaa",
+    "name": "Islandiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 313,
+    "country_id": 105,
+    "locale": "uz",
+    "name": "Hindiston",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 314,
+    "country_id": 105,
+    "locale": "ru",
+    "name": "Индия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 315,
+    "country_id": 105,
+    "locale": "kaa",
+    "name": "Hindstan",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 316,
+    "country_id": 106,
+    "locale": "uz",
+    "name": "Indoneziya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 317,
+    "country_id": 106,
+    "locale": "ru",
+    "name": "Индонезия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 318,
+    "country_id": 106,
+    "locale": "kaa",
+    "name": "Indoneziya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 319,
+    "country_id": 107,
+    "locale": "uz",
+    "name": "Kot-d’Ivuar",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 320,
+    "country_id": 107,
+    "locale": "ru",
+    "name": "Кот-д'Ивуар",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 321,
+    "country_id": 107,
+    "locale": "kaa",
+    "name": "Kot-d’Ivuar",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 322,
+    "country_id": 108,
+    "locale": "uz",
+    "name": "Eron",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 323,
+    "country_id": 108,
+    "locale": "ru",
+    "name": "Иран",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 324,
+    "country_id": 108,
+    "locale": "kaa",
+    "name": "Iran",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 325,
+    "country_id": 109,
+    "locale": "uz",
+    "name": "Iroq",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 326,
+    "country_id": 109,
+    "locale": "ru",
+    "name": "Ирак",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 327,
+    "country_id": 109,
+    "locale": "kaa",
+    "name": "Iraq",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 328,
+    "country_id": 110,
+    "locale": "uz",
+    "name": "Irlandiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 329,
+    "country_id": 110,
+    "locale": "ru",
+    "name": "Ирландия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 330,
+    "country_id": 110,
+    "locale": "kaa",
+    "name": "Irlandiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 331,
+    "country_id": 111,
+    "locale": "uz",
+    "name": "Men oroli",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 332,
+    "country_id": 111,
+    "locale": "ru",
+    "name": "Остров Мэн",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 333,
+    "country_id": 111,
+    "locale": "kaa",
+    "name": "Men atawı",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 334,
+    "country_id": 112,
+    "locale": "uz",
+    "name": "Isroil",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 335,
+    "country_id": 112,
+    "locale": "ru",
+    "name": "Израиль",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 336,
+    "country_id": 112,
+    "locale": "kaa",
+    "name": "Izrail",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 337,
+    "country_id": 113,
+    "locale": "uz",
+    "name": "Italiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 338,
+    "country_id": 113,
+    "locale": "ru",
+    "name": "Италия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 339,
+    "country_id": 113,
+    "locale": "kaa",
+    "name": "Italiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 340,
+    "country_id": 114,
+    "locale": "uz",
+    "name": "Yamayka",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 341,
+    "country_id": 114,
+    "locale": "ru",
+    "name": "Ямайка",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 342,
+    "country_id": 114,
+    "locale": "kaa",
+    "name": "Yamayka",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 343,
+    "country_id": 115,
+    "locale": "uz",
+    "name": "Yaponiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 344,
+    "country_id": 115,
+    "locale": "ru",
+    "name": "Япония",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 345,
+    "country_id": 115,
+    "locale": "kaa",
+    "name": "Yaponiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 346,
+    "country_id": 116,
+    "locale": "uz",
+    "name": "Jersi",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 347,
+    "country_id": 116,
+    "locale": "ru",
+    "name": "Джерси",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 348,
+    "country_id": 116,
+    "locale": "kaa",
+    "name": "Jersi",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 349,
+    "country_id": 117,
+    "locale": "uz",
+    "name": "Iordaniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 350,
+    "country_id": 117,
+    "locale": "ru",
+    "name": "Иордания",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 351,
+    "country_id": 117,
+    "locale": "kaa",
+    "name": "Iordaniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 352,
+    "country_id": 118,
+    "locale": "uz",
+    "name": "Qozogʻiston",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 353,
+    "country_id": 118,
+    "locale": "ru",
+    "name": "Казахстан",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 354,
+    "country_id": 118,
+    "locale": "kaa",
+    "name": "Qazaqstan",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 355,
+    "country_id": 119,
+    "locale": "uz",
+    "name": "Keniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 356,
+    "country_id": 119,
+    "locale": "ru",
+    "name": "Кения",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 357,
+    "country_id": 119,
+    "locale": "kaa",
+    "name": "Keniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 358,
+    "country_id": 120,
+    "locale": "uz",
+    "name": "Kiribati",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 359,
+    "country_id": 120,
+    "locale": "ru",
+    "name": "Кирибати",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 360,
+    "country_id": 120,
+    "locale": "kaa",
+    "name": "Kiribati",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 361,
+    "country_id": 121,
+    "locale": "uz",
+    "name": "Quvayt",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 362,
+    "country_id": 121,
+    "locale": "ru",
+    "name": "Кувейт",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 363,
+    "country_id": 121,
+    "locale": "kaa",
+    "name": "Kuveyt",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 364,
+    "country_id": 122,
+    "locale": "uz",
+    "name": "Qirgʻiziston",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 365,
+    "country_id": 122,
+    "locale": "ru",
+    "name": "Кыргызстан",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 366,
+    "country_id": 122,
+    "locale": "kaa",
+    "name": "Qırǵızstan",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 367,
+    "country_id": 123,
+    "locale": "uz",
+    "name": "Laos",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 368,
+    "country_id": 123,
+    "locale": "ru",
+    "name": "Лаос",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 369,
+    "country_id": 123,
+    "locale": "kaa",
+    "name": "Laos",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 370,
+    "country_id": 124,
+    "locale": "uz",
+    "name": "Latviya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 371,
+    "country_id": 124,
+    "locale": "ru",
+    "name": "Латвия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 372,
+    "country_id": 124,
+    "locale": "kaa",
+    "name": "Latviya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 373,
+    "country_id": 125,
+    "locale": "uz",
+    "name": "Livan",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 374,
+    "country_id": 125,
+    "locale": "ru",
+    "name": "Ливан",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 375,
+    "country_id": 125,
+    "locale": "kaa",
+    "name": "Livan",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 376,
+    "country_id": 126,
+    "locale": "uz",
+    "name": "Lesoto",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 377,
+    "country_id": 126,
+    "locale": "ru",
+    "name": "Лесото",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 378,
+    "country_id": 126,
+    "locale": "kaa",
+    "name": "Lesoto",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 379,
+    "country_id": 127,
+    "locale": "uz",
+    "name": "Liberiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 380,
+    "country_id": 127,
+    "locale": "ru",
+    "name": "Либерия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 381,
+    "country_id": 127,
+    "locale": "kaa",
+    "name": "Liberiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 382,
+    "country_id": 128,
+    "locale": "uz",
+    "name": "Liviya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 383,
+    "country_id": 128,
+    "locale": "ru",
+    "name": "Ливия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 384,
+    "country_id": 128,
+    "locale": "kaa",
+    "name": "Liviya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 385,
+    "country_id": 129,
+    "locale": "uz",
+    "name": "Lixtenshteyn",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 386,
+    "country_id": 129,
+    "locale": "ru",
+    "name": "Лихтенштейн",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 387,
+    "country_id": 129,
+    "locale": "kaa",
+    "name": "Lixtenshteyn",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 388,
+    "country_id": 130,
+    "locale": "uz",
+    "name": "Litva",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 389,
+    "country_id": 130,
+    "locale": "ru",
+    "name": "Литва",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 390,
+    "country_id": 130,
+    "locale": "kaa",
+    "name": "Litva",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 391,
+    "country_id": 131,
+    "locale": "uz",
+    "name": "Lyuksemburg",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 392,
+    "country_id": 131,
+    "locale": "ru",
+    "name": "Люксембург",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 393,
+    "country_id": 131,
+    "locale": "kaa",
+    "name": "Lyuksemburg",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 394,
+    "country_id": 132,
+    "locale": "uz",
+    "name": "Makao",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 395,
+    "country_id": 132,
+    "locale": "ru",
+    "name": "Макао",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 396,
+    "country_id": 132,
+    "locale": "kaa",
+    "name": "Makao",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 397,
+    "country_id": 133,
+    "locale": "uz",
+    "name": "Shimoliy Makedoniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 398,
+    "country_id": 133,
+    "locale": "ru",
+    "name": "Северная Македония",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 399,
+    "country_id": 133,
+    "locale": "kaa",
+    "name": "Arqa Makedoniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 400,
+    "country_id": 134,
+    "locale": "uz",
+    "name": "Madagaskar",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 401,
+    "country_id": 134,
+    "locale": "ru",
+    "name": "Мадагаскар",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 402,
+    "country_id": 134,
+    "locale": "kaa",
+    "name": "Madagaskar",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 403,
+    "country_id": 135,
+    "locale": "uz",
+    "name": "Malavi",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 404,
+    "country_id": 135,
+    "locale": "ru",
+    "name": "Малави",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 405,
+    "country_id": 135,
+    "locale": "kaa",
+    "name": "Malavi",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 406,
+    "country_id": 136,
+    "locale": "uz",
+    "name": "Malayziya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 407,
+    "country_id": 136,
+    "locale": "ru",
+    "name": "Малайзия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 408,
+    "country_id": 136,
+    "locale": "kaa",
+    "name": "Malayziya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 409,
+    "country_id": 137,
+    "locale": "uz",
+    "name": "Maldiv orollari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 410,
+    "country_id": 137,
+    "locale": "ru",
+    "name": "Мальдивы",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 411,
+    "country_id": 137,
+    "locale": "kaa",
+    "name": "Maldiv atawları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 412,
+    "country_id": 138,
+    "locale": "uz",
+    "name": "Mali",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 413,
+    "country_id": 138,
+    "locale": "ru",
+    "name": "Мали",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 414,
+    "country_id": 138,
+    "locale": "kaa",
+    "name": "Mali",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 415,
+    "country_id": 139,
+    "locale": "uz",
+    "name": "Malta",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 416,
+    "country_id": 139,
+    "locale": "ru",
+    "name": "Мальта",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 417,
+    "country_id": 139,
+    "locale": "kaa",
+    "name": "Malta",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 418,
+    "country_id": 140,
+    "locale": "uz",
+    "name": "Marshall orollari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 419,
+    "country_id": 140,
+    "locale": "ru",
+    "name": "Маршалловы острова",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 420,
+    "country_id": 140,
+    "locale": "kaa",
+    "name": "Marshall atawları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 421,
+    "country_id": 141,
+    "locale": "uz",
+    "name": "Martinika",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 422,
+    "country_id": 141,
+    "locale": "ru",
+    "name": "Мартиника",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 423,
+    "country_id": 141,
+    "locale": "kaa",
+    "name": "Martinika",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 424,
+    "country_id": 142,
+    "locale": "uz",
+    "name": "Mavritaniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 425,
+    "country_id": 142,
+    "locale": "ru",
+    "name": "Мавритания",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 426,
+    "country_id": 142,
+    "locale": "kaa",
+    "name": "Mavritaniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 427,
+    "country_id": 143,
+    "locale": "uz",
+    "name": "Mavrikiy",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 428,
+    "country_id": 143,
+    "locale": "ru",
+    "name": "Маврикий",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 429,
+    "country_id": 143,
+    "locale": "kaa",
+    "name": "Mavrikiy",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 430,
+    "country_id": 144,
+    "locale": "uz",
+    "name": "Mayotta",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 431,
+    "country_id": 144,
+    "locale": "ru",
+    "name": "Майот",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 432,
+    "country_id": 144,
+    "locale": "kaa",
+    "name": "Mayotta",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 433,
+    "country_id": 145,
+    "locale": "uz",
+    "name": "Meksika",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 434,
+    "country_id": 145,
+    "locale": "ru",
+    "name": "Мексика",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 435,
+    "country_id": 145,
+    "locale": "kaa",
+    "name": "Meksika",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 436,
+    "country_id": 146,
+    "locale": "uz",
+    "name": "Mikroneziya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 437,
+    "country_id": 146,
+    "locale": "ru",
+    "name": "Федеративные Штаты Микронезии",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 438,
+    "country_id": 146,
+    "locale": "kaa",
+    "name": "Mikroneziya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 439,
+    "country_id": 147,
+    "locale": "uz",
+    "name": "Moldova",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 440,
+    "country_id": 147,
+    "locale": "ru",
+    "name": "Молдова",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 441,
+    "country_id": 147,
+    "locale": "kaa",
+    "name": "Moldova",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 442,
+    "country_id": 148,
+    "locale": "uz",
+    "name": "Monako",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 443,
+    "country_id": 148,
+    "locale": "ru",
+    "name": "Монако",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 444,
+    "country_id": 148,
+    "locale": "kaa",
+    "name": "Monako",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 445,
+    "country_id": 149,
+    "locale": "uz",
+    "name": "Mongoliya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 446,
+    "country_id": 149,
+    "locale": "ru",
+    "name": "Монголия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 447,
+    "country_id": 149,
+    "locale": "kaa",
+    "name": "Mongoliya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 448,
+    "country_id": 150,
+    "locale": "uz",
+    "name": "Chernogoriya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 449,
+    "country_id": 150,
+    "locale": "ru",
+    "name": "Черногория",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 450,
+    "country_id": 150,
+    "locale": "kaa",
+    "name": "Chernogoriya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 451,
+    "country_id": 151,
+    "locale": "uz",
+    "name": "Montserrat",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 452,
+    "country_id": 151,
+    "locale": "ru",
+    "name": "Монтсеррат",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 453,
+    "country_id": 151,
+    "locale": "kaa",
+    "name": "Montserrat",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 454,
+    "country_id": 152,
+    "locale": "uz",
+    "name": "Marokash",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 455,
+    "country_id": 152,
+    "locale": "ru",
+    "name": "Марокко",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 456,
+    "country_id": 152,
+    "locale": "kaa",
+    "name": "Marokko",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 457,
+    "country_id": 153,
+    "locale": "uz",
+    "name": "Mozambik",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 458,
+    "country_id": 153,
+    "locale": "ru",
+    "name": "Мозамбик",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 459,
+    "country_id": 153,
+    "locale": "kaa",
+    "name": "Mozambik",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 460,
+    "country_id": 154,
+    "locale": "uz",
+    "name": "Myanma",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 461,
+    "country_id": 154,
+    "locale": "ru",
+    "name": "Мьянма",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 462,
+    "country_id": 154,
+    "locale": "kaa",
+    "name": "Myanma",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 463,
+    "country_id": 155,
+    "locale": "uz",
+    "name": "Namibiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 464,
+    "country_id": 155,
+    "locale": "ru",
+    "name": "Намибия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 465,
+    "country_id": 155,
+    "locale": "kaa",
+    "name": "Namibiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 466,
+    "country_id": 156,
+    "locale": "uz",
+    "name": "Nauru",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 467,
+    "country_id": 156,
+    "locale": "ru",
+    "name": "Науру",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 468,
+    "country_id": 156,
+    "locale": "kaa",
+    "name": "Nauru",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 469,
+    "country_id": 157,
+    "locale": "uz",
+    "name": "Nepal",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 470,
+    "country_id": 157,
+    "locale": "ru",
+    "name": "Непал",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 471,
+    "country_id": 157,
+    "locale": "kaa",
+    "name": "Nepal",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 472,
+    "country_id": 158,
+    "locale": "uz",
+    "name": "Niderlandiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 473,
+    "country_id": 158,
+    "locale": "ru",
+    "name": "Нидерланды",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 474,
+    "country_id": 158,
+    "locale": "kaa",
+    "name": "Niderlandiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 475,
+    "country_id": 159,
+    "locale": "uz",
+    "name": "Yangi Kaledoniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 476,
+    "country_id": 159,
+    "locale": "ru",
+    "name": "Новая Каледония",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 477,
+    "country_id": 159,
+    "locale": "kaa",
+    "name": "Jańa Kaledoniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 478,
+    "country_id": 160,
+    "locale": "uz",
+    "name": "Yangi Zelandiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 479,
+    "country_id": 160,
+    "locale": "ru",
+    "name": "Новая Зеландия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 480,
+    "country_id": 160,
+    "locale": "kaa",
+    "name": "Jańa Zelandiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 481,
+    "country_id": 161,
+    "locale": "uz",
+    "name": "Nikaragua",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 482,
+    "country_id": 161,
+    "locale": "ru",
+    "name": "Никарагуа",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 483,
+    "country_id": 161,
+    "locale": "kaa",
+    "name": "Nikaragua",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 484,
+    "country_id": 162,
+    "locale": "uz",
+    "name": "Niger",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 485,
+    "country_id": 162,
+    "locale": "ru",
+    "name": "Нигер",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 486,
+    "country_id": 162,
+    "locale": "kaa",
+    "name": "Niger",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 487,
+    "country_id": 163,
+    "locale": "uz",
+    "name": "Nigeriya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 488,
+    "country_id": 163,
+    "locale": "ru",
+    "name": "Нигерия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 489,
+    "country_id": 163,
+    "locale": "kaa",
+    "name": "Nigeriya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 490,
+    "country_id": 164,
+    "locale": "uz",
+    "name": "Niue",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 491,
+    "country_id": 164,
+    "locale": "ru",
+    "name": "Ниуэ",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 492,
+    "country_id": 164,
+    "locale": "kaa",
+    "name": "Niue",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 493,
+    "country_id": 165,
+    "locale": "uz",
+    "name": "Norfolk oroli",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 494,
+    "country_id": 165,
+    "locale": "ru",
+    "name": "Остров Норфолк",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 495,
+    "country_id": 165,
+    "locale": "kaa",
+    "name": "Norfolk atawı",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 496,
+    "country_id": 166,
+    "locale": "uz",
+    "name": "Shimoliy Koreya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 497,
+    "country_id": 166,
+    "locale": "ru",
+    "name": "Северная Корея",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 498,
+    "country_id": 166,
+    "locale": "kaa",
+    "name": "Arqa Koreya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 499,
+    "country_id": 167,
+    "locale": "uz",
+    "name": "Shimoliy Mariana orollari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 500,
+    "country_id": 167,
+    "locale": "ru",
+    "name": "Северные Марианские острова",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 501,
+    "country_id": 167,
+    "locale": "kaa",
+    "name": "Arqa Mariana atawları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 502,
+    "country_id": 168,
+    "locale": "uz",
+    "name": "Norvegiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 503,
+    "country_id": 168,
+    "locale": "ru",
+    "name": "Норвегия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 504,
+    "country_id": 168,
+    "locale": "kaa",
+    "name": "Norvegiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 505,
+    "country_id": 169,
+    "locale": "uz",
+    "name": "Ummon",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 506,
+    "country_id": 169,
+    "locale": "ru",
+    "name": "Оман",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 507,
+    "country_id": 169,
+    "locale": "kaa",
+    "name": "Oman",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 508,
+    "country_id": 170,
+    "locale": "uz",
+    "name": "Pokiston",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 509,
+    "country_id": 170,
+    "locale": "ru",
+    "name": "Пакистан",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 510,
+    "country_id": 170,
+    "locale": "kaa",
+    "name": "Pákistan",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 511,
+    "country_id": 171,
+    "locale": "uz",
+    "name": "Palau",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 512,
+    "country_id": 171,
+    "locale": "ru",
+    "name": "Палау",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 513,
+    "country_id": 171,
+    "locale": "kaa",
+    "name": "Palau",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 514,
+    "country_id": 172,
+    "locale": "uz",
+    "name": "Falastin",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 515,
+    "country_id": 172,
+    "locale": "ru",
+    "name": "Палестина",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 516,
+    "country_id": 172,
+    "locale": "kaa",
+    "name": "Palestina",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 517,
+    "country_id": 173,
+    "locale": "uz",
+    "name": "Panama",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 518,
+    "country_id": 173,
+    "locale": "ru",
+    "name": "Панама",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 519,
+    "country_id": 173,
+    "locale": "kaa",
+    "name": "Panama",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 520,
+    "country_id": 174,
+    "locale": "uz",
+    "name": "Papua – Yangi Gvineya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 521,
+    "country_id": 174,
+    "locale": "ru",
+    "name": "Папуа — Новая Гвинея",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 522,
+    "country_id": 174,
+    "locale": "kaa",
+    "name": "Papua – Jańa Gvineya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 523,
+    "country_id": 175,
+    "locale": "uz",
+    "name": "Paragvay",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 524,
+    "country_id": 175,
+    "locale": "ru",
+    "name": "Парагвай",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 525,
+    "country_id": 175,
+    "locale": "kaa",
+    "name": "Paragvay",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 526,
+    "country_id": 176,
+    "locale": "uz",
+    "name": "Peru",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 527,
+    "country_id": 176,
+    "locale": "ru",
+    "name": "Перу",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 528,
+    "country_id": 176,
+    "locale": "kaa",
+    "name": "Peru",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 529,
+    "country_id": 177,
+    "locale": "uz",
+    "name": "Filippin",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 530,
+    "country_id": 177,
+    "locale": "ru",
+    "name": "Филиппины",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 531,
+    "country_id": 177,
+    "locale": "kaa",
+    "name": "Filippin",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 532,
+    "country_id": 178,
+    "locale": "uz",
+    "name": "Pitkern orollari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 533,
+    "country_id": 178,
+    "locale": "ru",
+    "name": "Острова Питкэрн",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 534,
+    "country_id": 178,
+    "locale": "kaa",
+    "name": "Pitkern atawları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 535,
+    "country_id": 179,
+    "locale": "uz",
+    "name": "Polsha",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 536,
+    "country_id": 179,
+    "locale": "ru",
+    "name": "Польша",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 537,
+    "country_id": 179,
+    "locale": "kaa",
+    "name": "Polsha",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 538,
+    "country_id": 180,
+    "locale": "uz",
+    "name": "Portugaliya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 539,
+    "country_id": 180,
+    "locale": "ru",
+    "name": "Португалия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 540,
+    "country_id": 180,
+    "locale": "kaa",
+    "name": "Portugaliya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 541,
+    "country_id": 181,
+    "locale": "uz",
+    "name": "Puerto-Riko",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 542,
+    "country_id": 181,
+    "locale": "ru",
+    "name": "Пуэрто-Рико",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 543,
+    "country_id": 181,
+    "locale": "kaa",
+    "name": "Puerto-Riko",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 544,
+    "country_id": 182,
+    "locale": "uz",
+    "name": "Qatar",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 545,
+    "country_id": 182,
+    "locale": "ru",
+    "name": "Катар",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 546,
+    "country_id": 182,
+    "locale": "kaa",
+    "name": "Qatar",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 547,
+    "country_id": 183,
+    "locale": "uz",
+    "name": "Kosovo",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 548,
+    "country_id": 183,
+    "locale": "ru",
+    "name": "Косово",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 549,
+    "country_id": 183,
+    "locale": "kaa",
+    "name": "Kosovo",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 550,
+    "country_id": 184,
+    "locale": "uz",
+    "name": "Reyunyon",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 551,
+    "country_id": 184,
+    "locale": "ru",
+    "name": "Реюньон",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 552,
+    "country_id": 184,
+    "locale": "kaa",
+    "name": "Reyunyon",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 553,
+    "country_id": 185,
+    "locale": "uz",
+    "name": "Ruminiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 554,
+    "country_id": 185,
+    "locale": "ru",
+    "name": "Румыния",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 555,
+    "country_id": 185,
+    "locale": "kaa",
+    "name": "Ruminiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 556,
+    "country_id": 186,
+    "locale": "uz",
+    "name": "Rossiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 557,
+    "country_id": 186,
+    "locale": "ru",
+    "name": "Россия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 558,
+    "country_id": 186,
+    "locale": "kaa",
+    "name": "Rossiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 559,
+    "country_id": 187,
+    "locale": "uz",
+    "name": "Ruanda",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 560,
+    "country_id": 187,
+    "locale": "ru",
+    "name": "Руанда",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 561,
+    "country_id": 187,
+    "locale": "kaa",
+    "name": "Ruanda",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 562,
+    "country_id": 188,
+    "locale": "uz",
+    "name": "Sen-Bartelemi",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 563,
+    "country_id": 188,
+    "locale": "ru",
+    "name": "Сен-Бартельми",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 564,
+    "country_id": 188,
+    "locale": "kaa",
+    "name": "Sen-Bartelemi",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 565,
+    "country_id": 189,
+    "locale": "uz",
+    "name": "Muqaddas Yelena oroli",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 566,
+    "country_id": 189,
+    "locale": "ru",
+    "name": "Остров Святой Елены",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 567,
+    "country_id": 189,
+    "locale": "kaa",
+    "name": "Muqaddes Elena atawı",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 568,
+    "country_id": 190,
+    "locale": "uz",
+    "name": "Sent-Kits va Nevis",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 569,
+    "country_id": 190,
+    "locale": "ru",
+    "name": "Сент-Китс и Невис",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 570,
+    "country_id": 190,
+    "locale": "kaa",
+    "name": "Sent-Kits hám Nevis",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 571,
+    "country_id": 191,
+    "locale": "uz",
+    "name": "Sent-Lyusiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 572,
+    "country_id": 191,
+    "locale": "ru",
+    "name": "Сент-Люсия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 573,
+    "country_id": 191,
+    "locale": "kaa",
+    "name": "Sent-Lyusiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 574,
+    "country_id": 192,
+    "locale": "uz",
+    "name": "Sen-Marten",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 575,
+    "country_id": 192,
+    "locale": "ru",
+    "name": "Сен-Мартен",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 576,
+    "country_id": 192,
+    "locale": "kaa",
+    "name": "Sen-Marten",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 577,
+    "country_id": 193,
+    "locale": "uz",
+    "name": "Sen-Pyer va Mikelon",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 578,
+    "country_id": 193,
+    "locale": "ru",
+    "name": "Сен-Пьер и Микелон",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 579,
+    "country_id": 193,
+    "locale": "kaa",
+    "name": "Sen-Pyer hám Mikelon",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 580,
+    "country_id": 194,
+    "locale": "uz",
+    "name": "Sent-Vinsent va Grenadinlar",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 581,
+    "country_id": 194,
+    "locale": "ru",
+    "name": "Сент-Винсент и Гренадины",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 582,
+    "country_id": 194,
+    "locale": "kaa",
+    "name": "Sent-Vinsent hám Grenadinler",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 583,
+    "country_id": 195,
+    "locale": "uz",
+    "name": "Samoa",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 584,
+    "country_id": 195,
+    "locale": "ru",
+    "name": "Самоа",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 585,
+    "country_id": 195,
+    "locale": "kaa",
+    "name": "Samoa",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 586,
+    "country_id": 196,
+    "locale": "uz",
+    "name": "San-Marino",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 587,
+    "country_id": 196,
+    "locale": "ru",
+    "name": "Сан-Марино",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 588,
+    "country_id": 196,
+    "locale": "kaa",
+    "name": "San-Marino",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 589,
+    "country_id": 197,
+    "locale": "uz",
+    "name": "San-Tome va Prinsipi",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 590,
+    "country_id": 197,
+    "locale": "ru",
+    "name": "Сан-Томе и Принсипи",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 591,
+    "country_id": 197,
+    "locale": "kaa",
+    "name": "San-Tome hám Prinsipi",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 592,
+    "country_id": 198,
+    "locale": "uz",
+    "name": "Saudiya Arabistoni",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 593,
+    "country_id": 198,
+    "locale": "ru",
+    "name": "Саудовская Аравия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 594,
+    "country_id": 198,
+    "locale": "kaa",
+    "name": "Saud Arabiyası",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 595,
+    "country_id": 199,
+    "locale": "uz",
+    "name": "Senegal",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 596,
+    "country_id": 199,
+    "locale": "ru",
+    "name": "Сенегал",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 597,
+    "country_id": 199,
+    "locale": "kaa",
+    "name": "Senegal",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 598,
+    "country_id": 200,
+    "locale": "uz",
+    "name": "Serbiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 599,
+    "country_id": 200,
+    "locale": "ru",
+    "name": "Сербия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 600,
+    "country_id": 200,
+    "locale": "kaa",
+    "name": "Serbiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 601,
+    "country_id": 201,
+    "locale": "uz",
+    "name": "Seyshel orollari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 602,
+    "country_id": 201,
+    "locale": "ru",
+    "name": "Сейшелы",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 603,
+    "country_id": 201,
+    "locale": "kaa",
+    "name": "Seyshel atawları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 604,
+    "country_id": 202,
+    "locale": "uz",
+    "name": "Syerra-Leone",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 605,
+    "country_id": 202,
+    "locale": "ru",
+    "name": "Сьерра-Леоне",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 606,
+    "country_id": 202,
+    "locale": "kaa",
+    "name": "Sierra-Leone",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 607,
+    "country_id": 203,
+    "locale": "uz",
+    "name": "Singapur",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 608,
+    "country_id": 203,
+    "locale": "ru",
+    "name": "Сингапур",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 609,
+    "country_id": 203,
+    "locale": "kaa",
+    "name": "Singapur",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 610,
+    "country_id": 204,
+    "locale": "uz",
+    "name": "Sint-Marten",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 611,
+    "country_id": 204,
+    "locale": "ru",
+    "name": "Синт-Мартен",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 612,
+    "country_id": 204,
+    "locale": "kaa",
+    "name": "Sint-Marten",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 613,
+    "country_id": 205,
+    "locale": "uz",
+    "name": "Slovakiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 614,
+    "country_id": 205,
+    "locale": "ru",
+    "name": "Словакия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 615,
+    "country_id": 205,
+    "locale": "kaa",
+    "name": "Slovakiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 616,
+    "country_id": 206,
+    "locale": "uz",
+    "name": "Sloveniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 617,
+    "country_id": 206,
+    "locale": "ru",
+    "name": "Словения",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 618,
+    "country_id": 206,
+    "locale": "kaa",
+    "name": "Sloveniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 619,
+    "country_id": 207,
+    "locale": "uz",
+    "name": "Solomon orollari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 620,
+    "country_id": 207,
+    "locale": "ru",
+    "name": "Соломоновы Острова",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 621,
+    "country_id": 207,
+    "locale": "kaa",
+    "name": "Solomon atawları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 622,
+    "country_id": 208,
+    "locale": "uz",
+    "name": "Somali",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 623,
+    "country_id": 208,
+    "locale": "ru",
+    "name": "Сомали",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 624,
+    "country_id": 208,
+    "locale": "kaa",
+    "name": "Somali",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 625,
+    "country_id": 209,
+    "locale": "uz",
+    "name": "Janubiy Afrika Respublikasi",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 626,
+    "country_id": 209,
+    "locale": "ru",
+    "name": "Южно-Африканская Республика",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 627,
+    "country_id": 209,
+    "locale": "kaa",
+    "name": "Qubla Afrika Respublikası",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 628,
+    "country_id": 210,
+    "locale": "uz",
+    "name": "Janubiy Georgiya va Janubiy Sendvich orollari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 629,
+    "country_id": 210,
+    "locale": "ru",
+    "name": "Южная Джорджия и Южные Сандвичевы острова",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 630,
+    "country_id": 210,
+    "locale": "kaa",
+    "name": "Qubla Georgiya hám Qubla Sendvich atawları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 631,
+    "country_id": 211,
+    "locale": "uz",
+    "name": "Janubiy Koreya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 632,
+    "country_id": 211,
+    "locale": "ru",
+    "name": "Южная Корея",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 633,
+    "country_id": 211,
+    "locale": "kaa",
+    "name": "Qubla Koreya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 634,
+    "country_id": 212,
+    "locale": "uz",
+    "name": "Janubiy Sudan",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 635,
+    "country_id": 212,
+    "locale": "ru",
+    "name": "Южный Судан",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 636,
+    "country_id": 212,
+    "locale": "kaa",
+    "name": "Qubla Sudan",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 637,
+    "country_id": 213,
+    "locale": "uz",
+    "name": "Ispaniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 638,
+    "country_id": 213,
+    "locale": "ru",
+    "name": "Испания",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 639,
+    "country_id": 213,
+    "locale": "kaa",
+    "name": "Ispaniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 640,
+    "country_id": 214,
+    "locale": "uz",
+    "name": "Shri-Lanka",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 641,
+    "country_id": 214,
+    "locale": "ru",
+    "name": "Шри-Ланка",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 642,
+    "country_id": 214,
+    "locale": "kaa",
+    "name": "Shri-Lanka",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 643,
+    "country_id": 215,
+    "locale": "uz",
+    "name": "Sudan",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 644,
+    "country_id": 215,
+    "locale": "ru",
+    "name": "Судан",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 645,
+    "country_id": 215,
+    "locale": "kaa",
+    "name": "Sudan",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 646,
+    "country_id": 216,
+    "locale": "uz",
+    "name": "Surinam",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 647,
+    "country_id": 216,
+    "locale": "ru",
+    "name": "Суринам",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 648,
+    "country_id": 216,
+    "locale": "kaa",
+    "name": "Surinam",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 649,
+    "country_id": 217,
+    "locale": "uz",
+    "name": "Shpitsbergen va Yan-Mayen",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 650,
+    "country_id": 217,
+    "locale": "ru",
+    "name": "Шпицберген и Ян-Майен",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 651,
+    "country_id": 217,
+    "locale": "kaa",
+    "name": "Shpicbergen hám Yan-Mayen",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 652,
+    "country_id": 218,
+    "locale": "uz",
+    "name": "Esvatini",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 653,
+    "country_id": 218,
+    "locale": "ru",
+    "name": "Эсватини",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 654,
+    "country_id": 218,
+    "locale": "kaa",
+    "name": "Esvatini",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 655,
+    "country_id": 219,
+    "locale": "uz",
+    "name": "Shvetsiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 656,
+    "country_id": 219,
+    "locale": "ru",
+    "name": "Швеция",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 657,
+    "country_id": 219,
+    "locale": "kaa",
+    "name": "Shveciya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 658,
+    "country_id": 220,
+    "locale": "uz",
+    "name": "Shveytsariya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 659,
+    "country_id": 220,
+    "locale": "ru",
+    "name": "Швейцария",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 660,
+    "country_id": 220,
+    "locale": "kaa",
+    "name": "Shveycariya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 661,
+    "country_id": 221,
+    "locale": "uz",
+    "name": "Suriya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 662,
+    "country_id": 221,
+    "locale": "ru",
+    "name": "Сирия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 663,
+    "country_id": 221,
+    "locale": "kaa",
+    "name": "Siriya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 664,
+    "country_id": 222,
+    "locale": "uz",
+    "name": "Tayvan",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 665,
+    "country_id": 222,
+    "locale": "ru",
+    "name": "Тайвань",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 666,
+    "country_id": 222,
+    "locale": "kaa",
+    "name": "Tayvan",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 667,
+    "country_id": 223,
+    "locale": "uz",
+    "name": "Tojikiston",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 668,
+    "country_id": 223,
+    "locale": "ru",
+    "name": "Таджикистан",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 669,
+    "country_id": 223,
+    "locale": "kaa",
+    "name": "Tájikstan",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 670,
+    "country_id": 224,
+    "locale": "uz",
+    "name": "Tanzaniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 671,
+    "country_id": 224,
+    "locale": "ru",
+    "name": "Танзания",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 672,
+    "country_id": 224,
+    "locale": "kaa",
+    "name": "Tanzaniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 673,
+    "country_id": 225,
+    "locale": "uz",
+    "name": "Tailand",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 674,
+    "country_id": 225,
+    "locale": "ru",
+    "name": "Таиланд",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 675,
+    "country_id": 225,
+    "locale": "kaa",
+    "name": "Tailand",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 676,
+    "country_id": 226,
+    "locale": "uz",
+    "name": "Sharqiy Timor",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 677,
+    "country_id": 226,
+    "locale": "ru",
+    "name": "Восточный Тимор",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 678,
+    "country_id": 226,
+    "locale": "kaa",
+    "name": "Shıǵıs Timor",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 679,
+    "country_id": 227,
+    "locale": "uz",
+    "name": "Togo",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 680,
+    "country_id": 227,
+    "locale": "ru",
+    "name": "Того",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 681,
+    "country_id": 227,
+    "locale": "kaa",
+    "name": "Togo",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 682,
+    "country_id": 228,
+    "locale": "uz",
+    "name": "Tokelau",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 683,
+    "country_id": 228,
+    "locale": "ru",
+    "name": "Токелау",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 684,
+    "country_id": 228,
+    "locale": "kaa",
+    "name": "Tokelau",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 685,
+    "country_id": 229,
+    "locale": "uz",
+    "name": "Tonga",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 686,
+    "country_id": 229,
+    "locale": "ru",
+    "name": "Тонга",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 687,
+    "country_id": 229,
+    "locale": "kaa",
+    "name": "Tonga",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 688,
+    "country_id": 230,
+    "locale": "uz",
+    "name": "Trinidad va Tobago",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 689,
+    "country_id": 230,
+    "locale": "ru",
+    "name": "Тринидад и Тобаго",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 690,
+    "country_id": 230,
+    "locale": "kaa",
+    "name": "Trinidad hám Tobago",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 691,
+    "country_id": 231,
+    "locale": "uz",
+    "name": "Tunis",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 692,
+    "country_id": 231,
+    "locale": "ru",
+    "name": "Тунис",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 693,
+    "country_id": 231,
+    "locale": "kaa",
+    "name": "Tunis",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 694,
+    "country_id": 232,
+    "locale": "uz",
+    "name": "Turkiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 695,
+    "country_id": 232,
+    "locale": "ru",
+    "name": "Турция",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 696,
+    "country_id": 232,
+    "locale": "kaa",
+    "name": "Túrkiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 697,
+    "country_id": 233,
+    "locale": "uz",
+    "name": "Turkmaniston",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 698,
+    "country_id": 233,
+    "locale": "ru",
+    "name": "Туркменистан",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 699,
+    "country_id": 233,
+    "locale": "kaa",
+    "name": "Túrkmenstan",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 700,
+    "country_id": 234,
+    "locale": "uz",
+    "name": "Turks va Kaykos orollari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 701,
+    "country_id": 234,
+    "locale": "ru",
+    "name": "Острова Туркс и Каикос",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 702,
+    "country_id": 234,
+    "locale": "kaa",
+    "name": "Terks hám Kaykos atawları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 703,
+    "country_id": 235,
+    "locale": "uz",
+    "name": "Tuvalu",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 704,
+    "country_id": 235,
+    "locale": "ru",
+    "name": "Тувалу",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 705,
+    "country_id": 235,
+    "locale": "kaa",
+    "name": "Tuvalu",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 706,
+    "country_id": 236,
+    "locale": "uz",
+    "name": "Uganda",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 707,
+    "country_id": 236,
+    "locale": "ru",
+    "name": "Уганда",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 708,
+    "country_id": 236,
+    "locale": "kaa",
+    "name": "Uganda",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 709,
+    "country_id": 237,
+    "locale": "uz",
+    "name": "Ukraina",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 710,
+    "country_id": 237,
+    "locale": "ru",
+    "name": "Украина",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 711,
+    "country_id": 237,
+    "locale": "kaa",
+    "name": "Ukraina",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 712,
+    "country_id": 238,
+    "locale": "uz",
+    "name": "Birlashgan Arab Amirliklari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 713,
+    "country_id": 238,
+    "locale": "ru",
+    "name": "Объединённые Арабские Эмираты",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 714,
+    "country_id": 238,
+    "locale": "kaa",
+    "name": "Birlesken Arab Ámirlikleri",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 715,
+    "country_id": 239,
+    "locale": "uz",
+    "name": "Buyuk Britaniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 716,
+    "country_id": 239,
+    "locale": "ru",
+    "name": "Великобритания",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 717,
+    "country_id": 239,
+    "locale": "kaa",
+    "name": "Ullı Britaniya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 718,
+    "country_id": 240,
+    "locale": "uz",
+    "name": "Amerika Qoʻshma Shtatlari",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 719,
+    "country_id": 240,
+    "locale": "ru",
+    "name": "Соединённые Штаты Америки",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 720,
+    "country_id": 240,
+    "locale": "kaa",
+    "name": "Amerika Qurama Shtatları",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 721,
+    "country_id": 241,
+    "locale": "uz",
+    "name": "Urugvay",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 722,
+    "country_id": 241,
+    "locale": "ru",
+    "name": "Уругвай",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 723,
+    "country_id": 241,
+    "locale": "kaa",
+    "name": "Urugvay",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 724,
+    "country_id": 242,
+    "locale": "uz",
+    "name": "Oʻzbekiston",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 725,
+    "country_id": 242,
+    "locale": "ru",
+    "name": "Узбекистан",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 726,
+    "country_id": 242,
+    "locale": "kaa",
+    "name": "Ózbekstan",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 727,
+    "country_id": 243,
+    "locale": "uz",
+    "name": "Vanuatu",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 728,
+    "country_id": 243,
+    "locale": "ru",
+    "name": "Вануату",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 729,
+    "country_id": 243,
+    "locale": "kaa",
+    "name": "Vanuatu",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 730,
+    "country_id": 244,
+    "locale": "uz",
+    "name": "Venesuela",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 731,
+    "country_id": 244,
+    "locale": "ru",
+    "name": "Венесуэла",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 732,
+    "country_id": 244,
+    "locale": "kaa",
+    "name": "Venesuela",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 733,
+    "country_id": 245,
+    "locale": "uz",
+    "name": "Vyetnam",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 734,
+    "country_id": 245,
+    "locale": "ru",
+    "name": "Вьетнам",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 735,
+    "country_id": 245,
+    "locale": "kaa",
+    "name": "Vetnam",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 736,
+    "country_id": 246,
+    "locale": "uz",
+    "name": "Uollis va Futuna",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 737,
+    "country_id": 246,
+    "locale": "ru",
+    "name": "Уоллис и Футуна",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 738,
+    "country_id": 246,
+    "locale": "kaa",
+    "name": "Uollis hám Futuna",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 739,
+    "country_id": 247,
+    "locale": "uz",
+    "name": "Gʻarbiy Sahroi Kabir",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 740,
+    "country_id": 247,
+    "locale": "ru",
+    "name": "Западная Сахара",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 741,
+    "country_id": 247,
+    "locale": "kaa",
+    "name": "Batıs Saxara",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 742,
+    "country_id": 248,
+    "locale": "uz",
+    "name": "Yaman",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 743,
+    "country_id": 248,
+    "locale": "ru",
+    "name": "Йемен",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 744,
+    "country_id": 248,
+    "locale": "kaa",
+    "name": "Yemen",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 745,
+    "country_id": 249,
+    "locale": "uz",
+    "name": "Zambiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 746,
+    "country_id": 249,
+    "locale": "ru",
+    "name": "Замбия",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 747,
+    "country_id": 249,
+    "locale": "kaa",
+    "name": "Zambiya",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 748,
+    "country_id": 250,
+    "locale": "uz",
+    "name": "Zimbabve",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 749,
+    "country_id": 250,
+    "locale": "ru",
+    "name": "Зимбабве",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  },
+  {
+    "id": 750,
+    "country_id": 250,
+    "locale": "kaa",
+    "name": "Zimbabve",
+    "created_at": "2026-10-28T00:00:00Z",
+    "updated_at": "2026-10-28T00:00:00Z"
+  }
+]

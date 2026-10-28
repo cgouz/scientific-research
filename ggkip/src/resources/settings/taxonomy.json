@@ -1,0 +1,19 @@
+{
+  "unknown_category_code": "UNKNOWN",
+  "record_types": [
+    "NEWS",
+    "ARTICLE",
+    "LAW",
+    "REGULATION",
+    "DECREE",
+    "SERVICE",
+    "GUIDE",
+    "REPORT",
+    "STATISTICS",
+    "PROCUREMENT",
+    "ANNOUNCEMENT",
+    "EVENT",
+    "ORGANIZATION_INFO",
+    "OTHER"
+  ]
+}

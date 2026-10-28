@@ -1,0 +1,262 @@
+[
+  {
+    "country_id": 242,
+    "organization_id": 1001,
+    "domain": "gov.uz",
+    "base_url": "https://gov.uz/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 242,
+    "organization_id": 1002,
+    "domain": "president.uz",
+    "base_url": "https://president.uz/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 242,
+    "organization_id": 1003,
+    "domain": "parliament.gov.uz",
+    "base_url": "https://parliament.gov.uz/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 242,
+    "organization_id": 1004,
+    "domain": "imv.uz",
+    "base_url": "https://imv.uz/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 242,
+    "organization_id": 1005,
+    "domain": "soliq.uz",
+    "base_url": "https://soliq.uz/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 242,
+    "organization_id": 1006,
+    "domain": "customs.uz",
+    "base_url": "https://customs.uz/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 242,
+    "organization_id": 1007,
+    "domain": "cbu.uz",
+    "base_url": "https://cbu.uz/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 242,
+    "organization_id": 1008,
+    "domain": "stat.uz",
+    "base_url": "https://stat.uz/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 242,
+    "organization_id": 1009,
+    "domain": "lex.uz",
+    "base_url": "https://lex.uz/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 242,
+    "organization_id": 1010,
+    "domain": "ssv.uz",
+    "base_url": "https://ssv.uz/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 239,
+    "organization_id": 2001,
+    "domain": "gov.uk",
+    "base_url": "https://www.gov.uk/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 239,
+    "organization_id": 2003,
+    "domain": "parliament.uk",
+    "base_url": "https://www.parliament.uk/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 239,
+    "organization_id": 2005,
+    "domain": "bankofengland.co.uk",
+    "base_url": "https://www.bankofengland.co.uk/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 239,
+    "organization_id": 2006,
+    "domain": "ons.gov.uk",
+    "base_url": "https://www.ons.gov.uk/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 239,
+    "organization_id": 2007,
+    "domain": "judiciary.uk",
+    "base_url": "https://www.judiciary.uk/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 239,
+    "organization_id": 2008,
+    "domain": "electoralcommission.org.uk",
+    "base_url": "https://www.electoralcommission.org.uk/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 239,
+    "organization_id": 2009,
+    "domain": "legislation.gov.uk",
+    "base_url": "https://www.legislation.gov.uk/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 115,
+    "organization_id": 3002,
+    "domain": "kantei.go.jp",
+    "base_url": "https://www.kantei.go.jp/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 115,
+    "organization_id": 3003,
+    "domain": "shugiin.go.jp",
+    "base_url": "https://www.shugiin.go.jp/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 115,
+    "organization_id": 3004,
+    "domain": "mof.go.jp",
+    "base_url": "https://www.mof.go.jp/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 115,
+    "organization_id": 3005,
+    "domain": "nta.go.jp",
+    "base_url": "https://www.nta.go.jp/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 115,
+    "organization_id": 3006,
+    "domain": "mhlw.go.jp",
+    "base_url": "https://www.mhlw.go.jp/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 115,
+    "organization_id": 3007,
+    "domain": "boj.or.jp",
+    "base_url": "https://www.boj.or.jp/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 115,
+    "organization_id": 3008,
+    "domain": "soumu.go.jp",
+    "base_url": "https://www.soumu.go.jp/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 115,
+    "organization_id": 3009,
+    "domain": "stat.go.jp",
+    "base_url": "https://www.stat.go.jp/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  },
+  {
+    "country_id": 115,
+    "organization_id": 3010,
+    "domain": "courts.go.jp",
+    "base_url": "https://www.courts.go.jp/",
+    "is_official": true,
+    "verification_score": 1.0,
+    "status": "active",
+    "crawl_interval_sec": 21600
+  }
+]

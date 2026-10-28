@@ -1,0 +1,482 @@
+[
+  {
+    "id": 1,
+    "parent_id": null,
+    "code": "GOV",
+    "name": "Government and Administration",
+    "description": "Structure, leadership, mandates and work of state bodies, public administration and civil service.",
+    "is_active": true
+  },
+  {
+    "id": 2,
+    "parent_id": null,
+    "code": "LAW",
+    "name": "Law and Justice",
+    "description": "Legislation, courts, prosecution and the rule of law.",
+    "is_active": true
+  },
+  {
+    "id": 3,
+    "parent_id": null,
+    "code": "FIN",
+    "name": "Finance",
+    "description": "Government finance, fiscal and monetary policy.",
+    "is_active": true
+  },
+  {
+    "id": 4,
+    "parent_id": null,
+    "code": "ECON",
+    "name": "Economy and Business",
+    "description": "Economic policy, trade, investment and business environment.",
+    "is_active": true
+  },
+  {
+    "id": 5,
+    "parent_id": null,
+    "code": "HEALTH",
+    "name": "Health",
+    "description": "Healthcare, medicines and public health.",
+    "is_active": true
+  },
+  {
+    "id": 6,
+    "parent_id": null,
+    "code": "EDU",
+    "name": "Education and Science",
+    "description": "Education at all levels, research and innovation.",
+    "is_active": true
+  },
+  {
+    "id": 7,
+    "parent_id": null,
+    "code": "SOC",
+    "name": "Social Protection and Labour",
+    "description": "Employment, social security and family support.",
+    "is_active": true
+  },
+  {
+    "id": 8,
+    "parent_id": null,
+    "code": "SEC",
+    "name": "Defence and Security",
+    "description": "Defence, public safety, borders and migration.",
+    "is_active": true
+  },
+  {
+    "id": 9,
+    "parent_id": null,
+    "code": "FOREIGN",
+    "name": "Foreign Affairs",
+    "description": "Foreign policy and international relations.",
+    "is_active": true
+  },
+  {
+    "id": 10,
+    "parent_id": null,
+    "code": "INFRA",
+    "name": "Infrastructure and Transport",
+    "description": "Transport, construction and communications.",
+    "is_active": true
+  },
+  {
+    "id": 11,
+    "parent_id": null,
+    "code": "ENV",
+    "name": "Energy and Environment",
+    "description": "Energy, natural resources and environmental protection.",
+    "is_active": true
+  },
+  {
+    "id": 12,
+    "parent_id": null,
+    "code": "AGRI",
+    "name": "Agriculture and Food",
+    "description": "Agriculture, food security and rural development.",
+    "is_active": true
+  },
+  {
+    "id": 13,
+    "parent_id": null,
+    "code": "CULT",
+    "name": "Culture, Sport and Tourism",
+    "description": "Culture, heritage, sport, youth and tourism.",
+    "is_active": true
+  },
+  {
+    "id": 14,
+    "parent_id": null,
+    "code": "REG",
+    "name": "Regions and Local Government",
+    "description": "Regional development and local authorities.",
+    "is_active": true
+  },
+  {
+    "id": 15,
+    "parent_id": null,
+    "code": "UNKNOWN",
+    "name": "Unknown",
+    "description": "Content that does not fit any other category.",
+    "is_active": true
+  },
+  {
+    "id": 16,
+    "parent_id": 1,
+    "code": "GOV.STRUCTURE",
+    "name": "Organization and Leadership",
+    "description": "Structure of state bodies, leadership, appointments, mandates, functions and official contacts.",
+    "is_active": true
+  },
+  {
+    "id": 17,
+    "parent_id": 1,
+    "code": "GOV.CIVIL_SERVICE",
+    "name": "Civil Service",
+    "description": "Civil service, public sector recruitment, vacancies, staff training and public servant rules.",
+    "is_active": true
+  },
+  {
+    "id": 18,
+    "parent_id": 1,
+    "code": "GOV.ANTI_CORRUPTION",
+    "name": "Anti-Corruption",
+    "description": "Anti-corruption measures, integrity, conflicts of interest, transparency and open data.",
+    "is_active": true
+  },
+  {
+    "id": 19,
+    "parent_id": 1,
+    "code": "GOV.DIGITAL",
+    "name": "Digital Government",
+    "description": "E-government, online public services portals, digital identity and government IT systems.",
+    "is_active": true
+  },
+  {
+    "id": 20,
+    "parent_id": 1,
+    "code": "GOV.ELECTIONS",
+    "name": "Elections",
+    "description": "Elections, referendums, voter registration, candidates, election results and electoral commissions.",
+    "is_active": true
+  },
+  {
+    "id": 21,
+    "parent_id": 2,
+    "code": "LAW.LEGISLATION",
+    "name": "Legislation",
+    "description": "Laws, codes, bills, decrees, resolutions and the legislative process.",
+    "is_active": true
+  },
+  {
+    "id": 22,
+    "parent_id": 2,
+    "code": "LAW.COURTS",
+    "name": "Courts",
+    "description": "Courts, judges, judicial decisions, court procedures and judicial administration.",
+    "is_active": true
+  },
+  {
+    "id": 23,
+    "parent_id": 2,
+    "code": "LAW.PROSECUTION",
+    "name": "Prosecution and Law Enforcement",
+    "description": "Prosecutor offices, criminal investigations, police and enforcement of the law.",
+    "is_active": true
+  },
+  {
+    "id": 24,
+    "parent_id": 2,
+    "code": "LAW.HUMAN_RIGHTS",
+    "name": "Human Rights",
+    "description": "Human rights, ombudsman, civil liberties, citizen appeals and equality.",
+    "is_active": true
+  },
+  {
+    "id": 25,
+    "parent_id": 3,
+    "code": "FIN.TAX",
+    "name": "Taxation",
+    "description": "Taxes, VAT, income tax, corporate tax, taxpayer obligations, tax benefits and tax administration.",
+    "is_active": true
+  },
+  {
+    "id": 26,
+    "parent_id": 3,
+    "code": "FIN.CUSTOMS",
+    "name": "Customs",
+    "description": "Import, export, customs duties, customs procedures and border clearance of goods.",
+    "is_active": true
+  },
+  {
+    "id": 27,
+    "parent_id": 3,
+    "code": "FIN.BUDGET",
+    "name": "Public Budget",
+    "description": "State budget, public spending, public debt, fiscal reports and budget transparency.",
+    "is_active": true
+  },
+  {
+    "id": 28,
+    "parent_id": 3,
+    "code": "FIN.BANKING",
+    "name": "Banking and Monetary Policy",
+    "description": "Central bank, interest rates, inflation, exchange rates, banking supervision and financial markets.",
+    "is_active": true
+  },
+  {
+    "id": 29,
+    "parent_id": 3,
+    "code": "FIN.PROCUREMENT",
+    "name": "Public Procurement",
+    "description": "Public tenders, procurement procedures, government contracts and suppliers.",
+    "is_active": true
+  },
+  {
+    "id": 30,
+    "parent_id": 4,
+    "code": "ECON.TRADE",
+    "name": "Trade",
+    "description": "Foreign and domestic trade, trade agreements, export promotion and markets.",
+    "is_active": true
+  },
+  {
+    "id": 31,
+    "parent_id": 4,
+    "code": "ECON.INVESTMENT",
+    "name": "Investment",
+    "description": "Investment policy, investment projects, public-private partnership and special economic zones.",
+    "is_active": true
+  },
+  {
+    "id": 32,
+    "parent_id": 4,
+    "code": "ECON.BUSINESS",
+    "name": "Business and Entrepreneurship",
+    "description": "Business registration, licensing, permits, small and medium enterprises and competition.",
+    "is_active": true
+  },
+  {
+    "id": 33,
+    "parent_id": 4,
+    "code": "ECON.INDUSTRY",
+    "name": "Industry",
+    "description": "Industrial policy, manufacturing, mining and industrial development.",
+    "is_active": true
+  },
+  {
+    "id": 34,
+    "parent_id": 4,
+    "code": "ECON.STATISTICS",
+    "name": "Official Statistics",
+    "description": "Official statistics, census, economic and social indicators and statistical methodology.",
+    "is_active": true
+  },
+  {
+    "id": 35,
+    "parent_id": 5,
+    "code": "HEALTH.MEDICINES",
+    "name": "Medicines",
+    "description": "Medicines, pharmaceuticals, drug registration, medical devices and pharmacies.",
+    "is_active": true
+  },
+  {
+    "id": 36,
+    "parent_id": 5,
+    "code": "HEALTH.PUBLIC_HEALTH",
+    "name": "Public Health",
+    "description": "Epidemiology, vaccination, disease prevention, sanitary rules and health campaigns.",
+    "is_active": true
+  },
+  {
+    "id": 37,
+    "parent_id": 5,
+    "code": "HEALTH.HEALTHCARE",
+    "name": "Healthcare Services",
+    "description": "Hospitals, clinics, medical care, health insurance and medical staff.",
+    "is_active": true
+  },
+  {
+    "id": 38,
+    "parent_id": 6,
+    "code": "EDU.SCHOOL",
+    "name": "School Education",
+    "description": "Preschool, general secondary and vocational education, schools and teachers.",
+    "is_active": true
+  },
+  {
+    "id": 39,
+    "parent_id": 6,
+    "code": "EDU.HIGHER",
+    "name": "Higher Education",
+    "description": "Universities, admission, degrees, scholarships and higher education accreditation.",
+    "is_active": true
+  },
+  {
+    "id": 40,
+    "parent_id": 6,
+    "code": "EDU.SCIENCE",
+    "name": "Science and Innovation",
+    "description": "Scientific research, academies, grants, innovation and technology development.",
+    "is_active": true
+  },
+  {
+    "id": 41,
+    "parent_id": 7,
+    "code": "SOC.LABOUR",
+    "name": "Labour and Employment",
+    "description": "Employment, labour law, wages, unemployment, labour migration and occupational safety.",
+    "is_active": true
+  },
+  {
+    "id": 42,
+    "parent_id": 7,
+    "code": "SOC.PENSIONS",
+    "name": "Pensions",
+    "description": "Pensions, retirement, pension funds and social insurance contributions.",
+    "is_active": true
+  },
+  {
+    "id": 43,
+    "parent_id": 7,
+    "code": "SOC.WELFARE",
+    "name": "Social Welfare",
+    "description": "Social benefits, poverty reduction, disability, family, children and elderly support.",
+    "is_active": true
+  },
+  {
+    "id": 44,
+    "parent_id": 8,
+    "code": "SEC.DEFENCE",
+    "name": "Defence",
+    "description": "Armed forces, military service, defence policy and veterans.",
+    "is_active": true
+  },
+  {
+    "id": 45,
+    "parent_id": 8,
+    "code": "SEC.PUBLIC_SAFETY",
+    "name": "Public Safety",
+    "description": "Emergencies, disaster response, fire safety, civil protection and crime prevention.",
+    "is_active": true
+  },
+  {
+    "id": 46,
+    "parent_id": 8,
+    "code": "SEC.MIGRATION",
+    "name": "Borders, Migration and Citizenship",
+    "description": "Border control, visas, residence permits, passports, citizenship and migration.",
+    "is_active": true
+  },
+  {
+    "id": 47,
+    "parent_id": 9,
+    "code": "FOREIGN.DIPLOMACY",
+    "name": "Diplomacy",
+    "description": "Foreign policy, international agreements, official visits and international organizations.",
+    "is_active": true
+  },
+  {
+    "id": 48,
+    "parent_id": 9,
+    "code": "FOREIGN.CONSULAR",
+    "name": "Consular Services",
+    "description": "Embassies, consulates, consular services and help for citizens abroad.",
+    "is_active": true
+  },
+  {
+    "id": 49,
+    "parent_id": 10,
+    "code": "INFRA.TRANSPORT",
+    "name": "Transport",
+    "description": "Roads, railways, aviation, public transport, vehicles and driving licences.",
+    "is_active": true
+  },
+  {
+    "id": 50,
+    "parent_id": 10,
+    "code": "INFRA.CONSTRUCTION",
+    "name": "Construction and Housing",
+    "description": "Construction, urban planning, housing, building permits and utilities.",
+    "is_active": true
+  },
+  {
+    "id": 51,
+    "parent_id": 10,
+    "code": "INFRA.TELECOM",
+    "name": "Telecommunications and IT",
+    "description": "Telecommunications, internet, postal services, IT industry and cybersecurity.",
+    "is_active": true
+  },
+  {
+    "id": 52,
+    "parent_id": 11,
+    "code": "ENV.ENERGY",
+    "name": "Energy",
+    "description": "Electricity, oil, gas, renewable energy, energy tariffs and energy efficiency.",
+    "is_active": true
+  },
+  {
+    "id": 53,
+    "parent_id": 11,
+    "code": "ENV.ENVIRONMENT",
+    "name": "Environmental Protection",
+    "description": "Ecology, pollution, protected areas, waste management and climate change.",
+    "is_active": true
+  },
+  {
+    "id": 54,
+    "parent_id": 11,
+    "code": "ENV.WATER",
+    "name": "Water Resources",
+    "description": "Water resources, irrigation, water supply and water management.",
+    "is_active": true
+  },
+  {
+    "id": 55,
+    "parent_id": 12,
+    "code": "AGRI.FARMING",
+    "name": "Farming",
+    "description": "Agriculture, crops, livestock, farmers, land use and agricultural subsidies.",
+    "is_active": true
+  },
+  {
+    "id": 56,
+    "parent_id": 12,
+    "code": "AGRI.FOOD_SAFETY",
+    "name": "Food Safety",
+    "description": "Food safety, veterinary and phytosanitary control and food quality standards.",
+    "is_active": true
+  },
+  {
+    "id": 57,
+    "parent_id": 13,
+    "code": "CULT.CULTURE",
+    "name": "Culture and Heritage",
+    "description": "Culture, arts, cultural heritage, museums, media, religion and language policy.",
+    "is_active": true
+  },
+  {
+    "id": 58,
+    "parent_id": 13,
+    "code": "CULT.SPORT",
+    "name": "Sport and Youth",
+    "description": "Sport, physical culture, competitions and youth policy.",
+    "is_active": true
+  },
+  {
+    "id": 59,
+    "parent_id": 13,
+    "code": "CULT.TOURISM",
+    "name": "Tourism",
+    "description": "Tourism, tourist services, travel and hospitality.",
+    "is_active": true
+  },
+  {
+    "id": 60,
+    "parent_id": 14,
+    "code": "REG.LOCAL",
+    "name": "Local Government",
+    "description": "Regional and city administrations, local councils, local services and regional development.",
+    "is_active": true
+  }
+]
